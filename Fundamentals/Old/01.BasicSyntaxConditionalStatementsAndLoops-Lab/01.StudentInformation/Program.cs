@@ -6,7 +6,11 @@ namespace _01.StudentInformation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string studentName = Console.ReadLine();
+            int age = int.Parse(Console.ReadLine());
+            double averageGrade = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Name: {studentName}, Age: {age}, Grade: {averageGrade:f2}");
         }
     }
 }
