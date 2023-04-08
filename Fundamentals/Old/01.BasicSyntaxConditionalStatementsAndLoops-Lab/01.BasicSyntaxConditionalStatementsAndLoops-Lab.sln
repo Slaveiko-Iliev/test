@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.StudentInformation", "01.StudentInformation\01.StudentInformation.csproj", "{005EC2AB-5ADD-4B38-9C06-0EBF2B7C160E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.StudentInformation", "01.StudentInformation\01.StudentInformation.csproj", "{02C6F4C8-8057-440B-A4CD-EEC0869BAC66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.Passed", "02.Passed\02.Passed.csproj", "{F9E25095-1FDE-4DA4-BB1D-D46EA5BAEDDB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.PassedOrFailed", "03.PassedOrFailed\03.PassedOrFailed.csproj", "{30A60695-82D5-42D7-8BBC-C8EE90DF379D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.BackIn30Minutes", "04.BackIn30Minutes\04.BackIn30Minutes.csproj", "{F441A966-EFD9-468D-91B0-B86B5C3F27D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.MonthPrinter", "05.MonthPrinter\05.MonthPrinter.csproj", "{16A466C2-FD34-4171-87AA-B0BBACFBEF5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.ForeignLanguages", "06.ForeignLanguages\06.ForeignLanguages.csproj", "{A964A270-D433-4C7D-B94A-BB49E7B71EDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.TheatrePromotion", "07.TheatrePromotion\07.TheatrePromotion.csproj", "{62206049-E9BE-4BC7-8650-CC6DA858863E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.DivisibleBy3", "08.DivisibleBy3\08.DivisibleBy3.csproj", "{9D03FCEC-9248-44F5-81CB-85BBAEFAC83F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09.SumOfOddNumbers", "09.SumOfOddNumbers\09.SumOfOddNumbers.csproj", "{4C5B99B4-2C95-472D-A777-1D0D3412BD55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10.MultiplicationTable", "10.MultiplicationTable\10.MultiplicationTable.csproj", "{F6D6DA42-99AF-4900-A1BA-7507C88B8D5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11.MultiplicationTable2.0", "11.MultiplicationTable2.0\11.MultiplicationTable2.0.csproj", "{6E6831E5-678B-420F-8D48-B7307D4A1900}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12.EvenNumber", "12.EvenNumber\12.EvenNumber.csproj", "{EB09ECFE-23CE-43CC-85EE-39947A1D1BA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13.HolidaysBetweenTwoDates", "13.HolidaysBetweenTwoDates\13.HolidaysBetweenTwoDates.csproj", "{29B46095-296C-4E90-8A68-51E4531ADD03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
