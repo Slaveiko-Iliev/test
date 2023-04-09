@@ -13,8 +13,9 @@ namespace _13.HolidaysBetweenTwoDates
                 "d.mm.yyyy", CultureInfo.InvariantCulture);
             var holidaysCount = 0;
             for (var date = startDate; date <= endDate; date = date.AddDays(1))
-                if (date.DayOfWeek == DayOfWeek.Saturday ||
-                    date.DayOfWeek == DayOfWeek.Sunday) holidaysCount++;
+
+                if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday) holidaysCount++;
+
             Console.WriteLine(holidaysCount);
         }
     }
