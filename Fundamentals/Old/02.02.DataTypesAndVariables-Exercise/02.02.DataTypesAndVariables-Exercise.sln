@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09.SpiceMustFlow", "09.Spic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10.PokeMon", "10.PokeMon\10.PokeMon.csproj", "{E260DAC2-6E99-4761-B19B-4F66B5B6E9EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.Snowballs", "11.Snowballs\11.Snowballs.csproj", "{85FFCFF4-7B99-4A95-812F-69D8F4B9FFF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11.Snowballs", "11.Snowballs\11.Snowballs.csproj", "{85FFCFF4-7B99-4A95-812F-69D8F4B9FFF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
