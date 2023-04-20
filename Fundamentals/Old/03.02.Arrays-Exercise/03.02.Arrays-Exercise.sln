@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Train", "01.Train\01.Train.csproj", "{A3239E35-36B2-4208-903A-609D29F45028}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.Train", "01.Train\01.Train.csproj", "{A3239E35-36B2-4208-903A-609D29F45028}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.CommonElements", "02.CommonElements\02.CommonElements.csproj", "{36732EDE-F087-4397-B9B0-B8CEA06CA7DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.CommonElements", "02.CommonElements\02.CommonElements.csproj", "{36732EDE-F087-4397-B9B0-B8CEA06CA7DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.Zig-ZagArrays", "03.Zig-ZagArrays\03.Zig-ZagArrays.csproj", "{161BDF64-34D4-4F54-B8F3-E621967278C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.Zig-ZagArrays", "03.Zig-ZagArrays\03.Zig-ZagArrays.csproj", "{161BDF64-34D4-4F54-B8F3-E621967278C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.ArrayRotation", "04.ArrayRotation\04.ArrayRotation.csproj", "{13DC73DE-A36F-449C-8FF0-1F19D4863A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.ArrayRotation", "04.ArrayRotation\04.ArrayRotation.csproj", "{13DC73DE-A36F-449C-8FF0-1F19D4863A52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.TopIntegers", "05.TopIntegers\05.TopIntegers.csproj", "{34ACE443-8E1E-49CA-B76C-50D67EDA6863}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.TopIntegers", "05.TopIntegers\05.TopIntegers.csproj", "{34ACE443-8E1E-49CA-B76C-50D67EDA6863}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.EqualSum", "06.EqualSum\06.EqualSum.csproj", "{C916B16C-B1A0-48CD-9125-9D3F53072E8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{34ACE443-8E1E-49CA-B76C-50D67EDA6863}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34ACE443-8E1E-49CA-B76C-50D67EDA6863}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34ACE443-8E1E-49CA-B76C-50D67EDA6863}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C916B16C-B1A0-48CD-9125-9D3F53072E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C916B16C-B1A0-48CD-9125-9D3F53072E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C916B16C-B1A0-48CD-9125-9D3F53072E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C916B16C-B1A0-48CD-9125-9D3F53072E8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

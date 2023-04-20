@@ -10,8 +10,6 @@ namespace _08.CondenseArrayToNumber
             int[] nums = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
 
             
-            if (nums.Length > 1 )
-            {
                 while ( nums.Length > 1 )
                 {
                     int[] condensed = new int[nums.Length - 1];
@@ -24,11 +22,7 @@ namespace _08.CondenseArrayToNumber
                 }
 
                 Console.WriteLine(nums[0]);
-            }
-            else if (nums.Length == 1)
-            {
-                Console.WriteLine($"{nums[0]} is already condensed to number");
-            }
+            
 
         }
     }

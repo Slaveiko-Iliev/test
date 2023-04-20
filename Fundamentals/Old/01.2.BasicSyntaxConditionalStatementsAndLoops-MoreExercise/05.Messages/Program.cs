@@ -6,34 +6,23 @@ namespace _05.Messages
     {
         static void Main(string[] args)
         {
-            
-            
-            
-            //int clicks = int.Parse(Console.ReadLine());
-            //string message = string.Empty;
+            int n = int.Parse(Console.ReadLine());
+            string messages = String.Empty;
 
-            //for (int i = 0; i < clicks; i++)
-            //{
-            //    string digits = Console.ReadLine();
-            //    int digitLength = digits.Length;
-            //    int digit = digits[0] - '0';    // ASCII hack hehehe
-            //    int offset = (digit - 2) * 3;
-
-            //    if (digit == 0)
-            //    {
-            //        message += (char)(digit + 32);
-            //        continue;
-            //    }
-
-            //    if (digit == 8 || digit == 9)
-            //    {
-            //        offset++;
-            //    }
-            //    int letterIndex = offset + digitLength - 1;
-            //    message += (char)(letterIndex + 97);
-            //}
-
-            //Console.WriteLine(message);
+            for (int i = 0; i < n; i++)
+            {
+                string input = Console.ReadLine();
+                int number = int.Parse(input);
+                int digit = number % 10;
+                int offset = (digit - 2) * 3;
+                if (digit == 0)
+                    messages += ' ';
+                else if (digit > 7)
+                    messages += (char)(97 + offset + input.Length);
+                else
+                    messages += (char)(97 + offset + input.Length - 1);
+            }
+            Console.WriteLine(messages);
         }
     }
 }
