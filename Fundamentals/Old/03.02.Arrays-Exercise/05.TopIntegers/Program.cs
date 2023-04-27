@@ -7,7 +7,7 @@ namespace _05.TopIntegers
     {
         static void Main(string[] args)
         {
-            int[] numbers = Console.ReadLine().Split(' '). Select(int.Parse).ToArray();
+            int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
 
             
 
