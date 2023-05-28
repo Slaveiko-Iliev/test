@@ -57,24 +57,24 @@ namespace _07.ListManipulationAdvanced
                         if (currentInput[1] == "<" &&  number < int.Parse(currentInput[2]))
                         {
                             filteredList.Add(number);
-                            isChanged = true;
                         }
                         else if (currentInput[1] == ">" && number > int.Parse(currentInput[2]))
                         {
                             filteredList.Add(number);
-                            isChanged = true;
                         }
                         else if (currentInput[1] == ">=" && number >= int.Parse(currentInput[2]))
                         {
                             filteredList.Add(number);
-                            isChanged = true;
                         }
                         else if (currentInput[1] == "<=" && number <= int.Parse(currentInput[2]))
                         {
                             filteredList.Add(number);
-                            isChanged = true;
                         }
-                    } 
+                    }
+                    if (filteredList.Count > 0)
+                    {
+                        Console.WriteLine(string.Join(" ", filteredList));
+                    }
                 }
                 else if (currentInput[0] == "Add")
                 {
@@ -96,11 +96,10 @@ namespace _07.ListManipulationAdvanced
                     numbers.Insert(int.Parse(currentInput[2]), int.Parse(currentInput[1]));
                     isChanged = true;
                 }
-
-                if (isChanged)
-                {
-                    Console.WriteLine(string.Join(" ", numbers));
-                }
+            }
+            if (isChanged)
+            {
+                Console.WriteLine(string.Join(" ", numbers));
             }
         }
 
