@@ -9,8 +9,14 @@ namespace _07.EqualArrays
     {
         static void Main(string[] args)
         {
-            int[] array1 = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
-            int[] array2 = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            int[] array1 = Console.ReadLine()
+                .Split(' ').
+                Select(int.Parse).
+                ToArray();
+            int[] array2 = Console.ReadLine()
+                .Split(' ')
+                .Select(int.Parse)
+                .ToArray();
 
             int sumOfElements = 0;
             bool areIdentical = true;

@@ -40,7 +40,7 @@ namespace _10.SoftUniCoursePlanning
                 {
                     string lessonTwoTitle = command[2];
 
-                    //SwapLessons(trackOfLessons, lessonTitle, lessonTwoTitle);
+                    SwapLessons(trackOfLessons, lessonTitle, lessonTwoTitle);
                 }
                 else if (curentCommand == "Exercise")
                 {
@@ -67,7 +67,7 @@ namespace _10.SoftUniCoursePlanning
         }
         static void InsertLesson(List<string> trackOfLessons, string lessonTitle, int index)
         {
-            if (trackOfLessons.Any(x => x != lessonTitle) && index >= 0 && index < trackOfLessons.Count)
+            if (!trackOfLessons.Contains(lessonTitle) && index >= 0 && index < trackOfLessons.Count)
             {
                 trackOfLessons.Insert(index, lessonTitle);
             }
@@ -75,69 +75,83 @@ namespace _10.SoftUniCoursePlanning
 
         static void AddExercise(List<string> trackOfLessons, string lessonTitle)
         {
-            if (trackOfLessons.Any(x => x == lessonTitle))  // && trackOfLessons.Any(x => x != ($"{lessonTitle}-Exercise"))
+            if (trackOfLessons.Contains(lessonTitle))  // && trackOfLessons.Any(x => x != ($"{lessonTitle}-Exercise"))
             {
                 int indexOfLessonTitle = trackOfLessons.IndexOf(lessonTitle);
 
-                if (trackOfLessons[indexOfLessonTitle + 1] != ($"{lessonTitle}-Exercise"))
+                if (indexOfLessonTitle < trackOfLessons.Count - 1)
                 {
-                    trackOfLessons.Insert((indexOfLessonTitle + 1), ($"{lessonTitle}-Exercise"));
+                    if (trackOfLessons[indexOfLessonTitle + 1] != ($"{lessonTitle}-Exercise"))
+                    {
+                        trackOfLessons.Insert((indexOfLessonTitle + 1), ($"{lessonTitle}-Exercise"));
+                    }
+                }
+                else if(indexOfLessonTitle == trackOfLessons.Count - 1)
+                {
+                    trackOfLessons.Add(($"{lessonTitle}-Exercise"));
                 }
             }
-            else if (trackOfLessons.Any(x => x != lessonTitle))
+            else if (!trackOfLessons.Contains(lessonTitle))
             {
                 trackOfLessons.Add(lessonTitle);
                 trackOfLessons.Add($"{lessonTitle}-Exercise");
             }
         }
-        //static void SwapLessons(List<string> trackOfLessons, string lessonTitle, string lessonTwoTitle)
-        //{
-        //    if (trackOfLessons.Any(x => x == lessonTitle) && trackOfLessons.Any(x => x == lessonTwoTitle))
-        //    {
-        //        int indexOfLessonTitle = trackOfLessons.IndexOf(lessonTitle);
-        //        int indexOflessonTwoTitle = trackOfLessons.IndexOf(lessonTwoTitle);
-        //        //string firstLesson = lessonTitle;
+        static void SwapLessons(List<string> trackOfLessons, string lessonTitle, string lessonTwoTitle)
+        {
+            if (trackOfLessons.Any(x => x == lessonTitle) && trackOfLessons.Any(x => x == lessonTwoTitle))
+            {
+                int indexOfLessonTitle = trackOfLessons.IndexOf(lessonTitle);
+                int indexOflessonTwoTitle = trackOfLessons.IndexOf(lessonTwoTitle);
+                //string firstLesson = lessonTitle;
 
-        //        if (trackOfLessons.Any(x => x == ($"{lessonTitle}-Exercise")) && trackOfLessons.Any(x => x != ($"{lessonTwoTitle}-Exercise")))
-        //        {
-        //            trackOfLessons[indexOfLessonTitle] = lessonTwoTitle;
-        //            trackOfLessons[indexOflessonTwoTitle] = lessonTitle;
+                if (trackOfLessons.Any(x => x == ($"{lessonTitle}-Exercise")) && trackOfLessons.Any(x => x != ($"{lessonTwoTitle}-Exercise")))
+                {
+                    trackOfLessons[indexOfLessonTitle] = lessonTwoTitle;
+                    trackOfLessons[indexOflessonTwoTitle] = lessonTitle;
 
-        //            if (indexOflessonTwoTitle + 1 == trackOfLessons.Count)
-        //            {
-        //                trackOfLessons.Add(($"{lessonTitle}-Exercise"));
-        //            }
-        //            else
-        //            {
-        //                trackOfLessons.Insert(indexOflessonTwoTitle + 1, ($"{lessonTitle}-Exercise"));
-        //            }
+                    if (indexOflessonTwoTitle + 1 == trackOfLessons.Count)
+                    {
+                        trackOfLessons.Add(($"{lessonTitle}-Exercise"));
+                    }
+                    else
+                    {
+                        trackOfLessons.Insert(indexOflessonTwoTitle + 1, ($"{lessonTitle}-Exercise"));
+                    }
 
-        //        }
-        //        else if (trackOfLessons.Any(x => x != ($"{lessonTitle}-Exercise")) && trackOfLessons.Any(x => x == ($"{lessonTwoTitle}-Exercise")))
-        //        {
-        //            trackOfLessons[indexOfLessonTitle] = lessonTwoTitle;
-        //            trackOfLessons[indexOflessonTwoTitle] = lessonTitle;
-                    
-        //            if (indexOfLessonTitle + 1 == trackOfLessons.Count)
-        //            {
-        //                trackOfLessons.Add(($"{lessonTwoTitle}-Exercise"));
-        //            }
-        //            else
-        //            {
-        //                trackOfLessons.Insert(indexOfLessonTitle + 1, ($"{lessonTwoTitle}-Exercise"));
-        //            }
-        //        }
-        //        else if(trackOfLessons.Any(x => x == ($"{lessonTitle}-Exercise")) && trackOfLessons.Any(x => x == ($"{lessonTwoTitle}-Exercise")))
-        //        {
-        //            trackOfLessons[indexOfLessonTitle] = lessonTwoTitle;
-        //            trackOfLessons[indexOflessonTwoTitle] = lessonTitle;
-        //            trackOfLessons[indexOfLessonTitle + 1] = ($"{lessonTwoTitle}-Exercise");
-        //            trackOfLessons[indexOflessonTwoTitle + 1] = ($"{lessonTitle}-Exercise");
-        //        }
-                
-                
+                    trackOfLessons.RemoveAt(indexOfLessonTitle + 1);
+                }
+                else if (trackOfLessons.Any(x => x != ($"{lessonTitle}-Exercise")) && trackOfLessons.Any(x => x == ($"{lessonTwoTitle}-Exercise")))
+                {
+                    trackOfLessons[indexOfLessonTitle] = lessonTwoTitle;
+                    trackOfLessons[indexOflessonTwoTitle] = lessonTitle;
 
-        //    }
-        //}
+                    if (indexOfLessonTitle + 1 == trackOfLessons.Count)
+                    {
+                        trackOfLessons.Add(($"{lessonTwoTitle}-Exercise"));
+                    }
+                    else
+                    {
+                        trackOfLessons.Insert(indexOfLessonTitle + 1, ($"{lessonTwoTitle}-Exercise"));
+                    }
+                    trackOfLessons.RemoveAt(indexOflessonTwoTitle + 2);
+                }
+                else if (trackOfLessons.Any(x => x == ($"{lessonTitle}-Exercise")) && trackOfLessons.Any(x => x == ($"{lessonTwoTitle}-Exercise")))
+                {
+                    trackOfLessons[indexOfLessonTitle] = lessonTwoTitle;
+                    trackOfLessons[indexOflessonTwoTitle] = lessonTitle;
+                    trackOfLessons[indexOfLessonTitle + 1] = ($"{lessonTwoTitle}-Exercise");
+                    trackOfLessons[indexOflessonTwoTitle + 1] = ($"{lessonTitle}-Exercise");
+                }
+                else if (trackOfLessons.Any(x => x != ($"{lessonTitle}-Exercise")) && trackOfLessons.Any(x => x != ($"{lessonTwoTitle}-Exercise")))
+                {
+                    trackOfLessons[indexOfLessonTitle] = lessonTwoTitle;
+                    trackOfLessons[indexOflessonTwoTitle] = lessonTitle;
+                }
+
+
+
+            }
+        }
     }
 }
