@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace _11._1.ArrayManipulator
 {
@@ -19,27 +18,13 @@ namespace _11._1.ArrayManipulator
             {
                 string[] manipulationCommands = input.Split();
                 var command = manipulationCommands[0];
-                
+
                 if (command == "exchange")
                 {
                     int cleavageIndex = int.Parse(manipulationCommands[1]);
 
                     if (IsValidIndex(integers, cleavageIndex))
                     {
-                        //for (int i = 0; i <= cleavageIndex; i++)
-                        //{
-                        //    int firstDigit = integers[0];
-
-                        //    for (int j = 1; j < integers.Length; j++)
-                        //    {
-                        //        integers[j - 1] = integers[j];
-                        //    }
-
-                        //    integers[integers.Length - 1] = firstDigit;
-                        //}
-
-
-
                         List<int> tempList = new List<int>();
 
                         tempList.InsertRange(0, integers.Skip(cleavageIndex + 1).Take(integers.Length - 1 - cleavageIndex).ToList());
@@ -76,7 +61,7 @@ namespace _11._1.ArrayManipulator
                     string argument = manipulationCommands[1];
 
                     int maxEvenOrOdd = int.MinValue;
-                    int indexOfMaxEvenOrOdd = -1;
+                    int indexOfMaxEvenOrOdd = int.MinValue;
 
                     for (int i = 0; i < integers.Length; i++)
                     {
@@ -97,7 +82,7 @@ namespace _11._1.ArrayManipulator
                             }
                         }
                     }
-                    if (indexOfMaxEvenOrOdd == -1)
+                    if (maxEvenOrOdd == int.MinValue)
                     {
                         Console.WriteLine("No matches");
                     }
@@ -111,7 +96,7 @@ namespace _11._1.ArrayManipulator
                     string argument = manipulationCommands[1];
 
                     int minEvenOrOdd = int.MaxValue;
-                    int indexOfMinEvenOrOdd = -1;
+                    int indexOfMinEvenOrOdd = int.MinValue;
 
                     for (int i = 0; i < integers.Length; i++)
                     {
@@ -132,7 +117,7 @@ namespace _11._1.ArrayManipulator
                             }
                         }
                     }
-                    if (indexOfMinEvenOrOdd == -1)
+                    if (minEvenOrOdd == int.MaxValue)
                     {
                         Console.WriteLine("No matches");
                     }
@@ -146,14 +131,14 @@ namespace _11._1.ArrayManipulator
                     int count = int.Parse(manipulationCommands[1]);
                     string argument = manipulationCommands[2];
                     List<int> firstEvenOrOdd = new List<int>();
-                    
+
                     if (count > integers.Length)
                     {
                         Console.WriteLine("Invalid count");
-                        break;
                     }
-                    
-                    for (int i = 0; i < integers.Length && count > 0; i++)
+                    else
+                    {
+                        for (int i = 0; i < integers.Length && count > 0; i++)
                         {
                             if (argument == "even" && IsEven(integers[i]))
                             {
@@ -167,6 +152,7 @@ namespace _11._1.ArrayManipulator
                             }
                         }
                         Console.WriteLine($"[{string.Join(", ", firstEvenOrOdd)}]");
+                    }
                 }
                 else if (command == "last")
                 {
