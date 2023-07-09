@@ -10,8 +10,20 @@ while ((input = Console.ReadLine()) != "End")
     string id = persoInfo[1];
     int age = int.Parse(persoInfo[2]);
 
-    Person person = new Person(name, id, age);
-    persons.Add(person);
+    if (persons.FirstOrDefault(x => x.Id == id) == null )
+    {
+        Person person = new Person(name, id, age);
+        persons.Add(person);
+    }
+    else
+    {
+        int index = persons.FindIndex(x => x.Id == id);
+
+        persons[index].Age = age;
+        persons[index].Name = name;
+    }
+
+    
 }
 
 persons = persons.OrderBy(x => x.Age).ToList();
