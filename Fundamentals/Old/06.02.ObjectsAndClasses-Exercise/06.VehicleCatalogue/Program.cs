@@ -1,95 +1,78 @@
-﻿string input = string.Empty;
+﻿using System.Runtime.CompilerServices;
 
+string input = string.Empty;
 List<Vehicle> vehicles = new List<Vehicle>();
 
 while ((input = Console.ReadLine()) != "End")
 {
     string[] vehicleInfo = input.Split();
-
-    string type = vehicleInfo[0];
-    if (type == "car")
-    {
-        type = "Car";
-    }
-    else
-    {
-        type = "Truck";
-    }
+    string typeOfVehicle = vehicleInfo[0];
+    typeOfVehicle = char.ToUpper(typeOfVehicle[0]) + typeOfVehicle.Substring(1);
     string model = vehicleInfo[1];
     string color = vehicleInfo[2];
-    double horsepower = int.Parse(vehicleInfo[3]);
+    double horsepower = double.Parse(vehicleInfo[3]);
 
-    Vehicle vehicle = new Vehicle(type, model, color, horsepower);
-
+    Vehicle vehicle = new Vehicle(typeOfVehicle, model, color, horsepower);
     vehicles.Add(vehicle);
 }
-
-double sumOfTruckHorsepower = 0;
-int truckCount = 0;
-double sumOfCarHorsepower = 0;
-int carCount = 0;
 
 while ((input = Console.ReadLine()) != "Close the Catalogue")
 {
     string model = input;
 
-    foreach (Vehicle vehicle in vehicles)
-    {
-        if (vehicle.Model == model)
-        {
-            Console.WriteLine($"Type: {vehicle.Type}");
-            Console.WriteLine($"Model: {vehicle.Model}");
-            Console.WriteLine($"Color: {vehicle.Color}");
-            Console.WriteLine($"Horsepower: {vehicle.Horsepower}");
-        }
+    int index = vehicles.FindIndex(x => x.Model == model);
 
-        if (vehicle.Type == "Truck")
-        {
-            sumOfTruckHorsepower += vehicle.Horsepower;
-            truckCount++;
-        }
-        else
-        {
-            sumOfCarHorsepower += vehicle.Horsepower;
-            carCount++;
-        }
-    }
+    Console.WriteLine($"Type: {vehicles[index].TypeOfVehicle}");
+    Console.WriteLine($"Model: {vehicles[index].Model}");
+    Console.WriteLine($"Color: {vehicles[index].Color}");
+    Console.WriteLine($"Horsepower: {vehicles[index].Horsepower}");
 }
 
-double averageTruckHorsepower = sumOfTruckHorsepower / truckCount;
-double averageCarHorsepower = sumOfCarHorsepower / carCount;
+List<Vehicle> car = vehicles.Where(x => x.TypeOfVehicle == "Car").ToList();
+List<Vehicle> truck = vehicles.Where(x => x.TypeOfVehicle == "Truck").ToList();
 
-if (carCount > 0)
+double sumOfHorsepowerOfCar = 0;
+double sumOfHorsepowerOfTruck = 0;
+
+foreach (Vehicle vehicle in car)
 {
-    Console.WriteLine($"Cars have average horsepower of: {averageCarHorsepower:f2}.");
-}
-else
-{
-    Console.WriteLine($"Cars have average horsepower of: 0.00.");
+    sumOfHorsepowerOfCar += vehicle.Horsepower;
 }
 
-if (truckCount > 0)
+foreach (Vehicle vehicle in truck)
 {
-    Console.WriteLine($"Trucks have average horsepower of: {averageTruckHorsepower:f2}.");
-}
-else
-{
-    Console.WriteLine($"Trucks have average horsepower of: 0.00.");
+    sumOfHorsepowerOfTruck += vehicle.Horsepower;
 }
 
+double averageOfHorsepowerOfCar = sumOfHorsepowerOfCar / car.Count;
+double averageOfHorsepowerOfTruck = sumOfHorsepowerOfTruck / truck.Count;
+
+if (car.Count == 0)
+{
+    averageOfHorsepowerOfCar = 0;
+}
+
+if (truck.Count == 0)
+{
+    averageOfHorsepowerOfTruck = 0;
+}
+
+Console.WriteLine($"Cars have average horsepower of: {averageOfHorsepowerOfCar:f2}.");
+Console.WriteLine($"Trucks have average horsepower of: {averageOfHorsepowerOfTruck:f2}.");
 
 public class Vehicle
 {
-    public Vehicle(string type, string model, string color, double horsepower)
+    public Vehicle(string typeOgVehicle, string model, string color, double horsepower)
     {
-        this.Type = type;
-        this.Model = model;
-        this.Color = color;
-        this.Horsepower = horsepower;
+        TypeOfVehicle = typeOgVehicle;
+        Model = model;
+        Color = color;
+        Horsepower = horsepower;
     }
 
-    public string Type { get; set; }
+    public string TypeOfVehicle { get; set; }
     public string Model { get; set; }
     public string Color { get; set; }
     public double Horsepower { get; set; }
+
 }
