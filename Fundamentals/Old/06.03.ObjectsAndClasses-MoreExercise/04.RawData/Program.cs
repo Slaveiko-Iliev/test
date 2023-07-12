@@ -22,14 +22,14 @@ string command = Console.ReadLine();
 
 if (command == "fragile")
 {
-    cars.FindAll(x => x.Cargo.CargoType == command);//.Where(x => x.Cargo.CargoWeight < 1000);
+    Console.WriteLine(string.Join(Environment.NewLine, cars.FindAll(x => x.Cargo.CargoType == command).Where(x => x.Cargo.CargoWeight < 1000)));
 }
 else if (command == "flamable")
 {
-    cars.FindAll(x => x.Cargo.CargoType == command).Where(x => x.Engine.EnginePower > 250);
+    Console.WriteLine(string.Join(Environment.NewLine, cars.FindAll(x => x.Cargo.CargoType == command).Where(x => x.Engine.EnginePower > 250)));
 }
 
-Console.WriteLine(string.Join(Environment.NewLine, cars));
+
 
 
 
