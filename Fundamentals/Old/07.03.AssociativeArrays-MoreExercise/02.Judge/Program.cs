@@ -14,7 +14,10 @@ while ((input = Console.ReadLine()) != "no more time")
     string contest = userContest[1];
     int points = int.Parse(userContest[2]);
 
-
+    if (!userPoints.ContainsKey(username))
+    {
+        userPoints.Add(username, 0);
+    }
 
     if (!contests.ContainsKey(contest))
     {
@@ -23,24 +26,20 @@ while ((input = Console.ReadLine()) != "no more time")
 
     if (!contests[contest].ContainsKey(username))
     {
+        userPoints[username] += points;
         contests[contest].Add(username, points);
     }
     else
     {
         if (contests[contest][username] < points)
         {
+            userPoints[username] += (points - contests[contest][username]);
             contests[contest][username] = points;
         }
     }
 
-    if (!userPoints.ContainsKey(username))
-    {
-        userPoints.Add(username, points);
-    }
-    else
-    {
-        userPoints[username] += points;
-    }
+    
+    
 }
 
 int counter = 0;
