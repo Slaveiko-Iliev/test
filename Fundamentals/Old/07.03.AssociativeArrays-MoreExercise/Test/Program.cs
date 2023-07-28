@@ -2,89 +2,62 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Ranking
+
+namespace _4._Snowwhite
 {
-    public class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            var dictContestPassword = new Dictionary<string, string>();
-            var dictNameStudent = new Dictionary<string, Student>();
+            Dictionary<string, int> dwarfs = new Dictionary<string, int>();
 
-            string input;
-            while ((input = Console.ReadLine()) != "end of contests")
+            string[] input = Console.ReadLine()
+                .Split(" <:> ")
+                .ToArray();
+
+            while (input[0] != "Once upon a time")
             {
-                string[] inputArray = input.Split(":");
-                string contest = inputArray[0];
-                string password = inputArray[1];
-                if (!dictContestPassword.ContainsKey(contest))
+                string name = input[0];
+                string color = input[1];
+                int physics = int.Parse(input[2]);
+
+                string spec = name + "-" + color;
+
+                // if dwarf does not exist
+                if (dwarfs.ContainsKey(spec) == false)
                 {
-                    dictContestPassword.Add(contest, password);
+                    dwarfs.Add(spec, physics);
                 }
+                else
+                //if 2 dwarfs have the same name and the same color,store the one with the higher physics.
+                {
+                    if (dwarfs[spec] < physics)
+                    {
+                        dwarfs[spec] = physics;
+                    }
+
+                }
+
+                input = Console.ReadLine()
+                .Split(" <:> ")
+                .ToArray();
             }
 
-            while ((input = Console.ReadLine()) != "end of submissions")
+            Console.WriteLine();
+
+            foreach (var pair in dwarfs
+                .OrderByDescending(x => x.Value)
+                .ThenByDescending(x => dwarfs.Where(y => y.Key.Split("-")[1] == x.Key.Split("-")[1])
+                .Count())
+                )
             {
-                string[] inputArray = input.Split("=>");
-                string contest = inputArray[0];
-                string password = inputArray[1];
-                string studentName = inputArray[2];
-                int points = int.Parse(inputArray[3]);
 
-                if (!dictContestPassword.ContainsKey(contest) || dictContestPassword[contest] != password)
-                {
-                    continue;
-                }
-
-                if (!dictNameStudent.ContainsKey(studentName))
-                {
-                    dictNameStudent.Add(studentName, new Student(studentName));
-                }
-
-                Student student = dictNameStudent[studentName];
-
-                if (!student.ContestsWithPoints.ContainsKey(contest))
-                {
-                    student.ContestsWithPoints.Add(contest, points);
-                }
-
-                if (student.ContestsWithPoints[contest] < points)
-                {
-                    student.ContestsWithPoints[contest] = points;
-                }
+                Console.WriteLine("({0}) {1} <-> {2}",
+                    pair.Key.Split('-')[1],
+                    pair.Key.Split('-')[0],
+                    pair.Value);
             }
 
-            PrintTheRanking(dictNameStudent.Values.ToList());
-            ;
-        }
-        
-
-        private class Student
-        {
-            public string Name { get; }
-            public Dictionary<string, int> ContestsWithPoints { get; }
-
-            public Student(string name)
-            {
-                Name = name;
-                ContestsWithPoints = new Dictionary<string, int>();
-            }
-        }
-
-        private static void PrintTheRanking(List<Student> listWithStudents)
-        {
-            var bestCandidate = listWithStudents.OrderByDescending(x => x.ContestsWithPoints.Values.Sum()).First();
-            Console.WriteLine(
-                $"Best candidate is {bestCandidate.Name} with total {bestCandidate.ContestsWithPoints.Values.Sum()} points.");
-            Console.WriteLine("Ranking:");
-            foreach (var student in listWithStudents.OrderBy(x => x.Name))
-            {
-                Console.WriteLine(student.Name);
-                foreach (var (contest, points) in student.ContestsWithPoints.OrderByDescending(x => x.Value))
-                {
-                    Console.WriteLine($"#  {contest} -> {points}");
-                }
-            }
         }
     }
 }
