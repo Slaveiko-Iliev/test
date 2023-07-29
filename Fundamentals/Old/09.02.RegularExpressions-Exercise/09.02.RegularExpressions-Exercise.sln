@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Furniture", "01.Furniture\01.Furniture.csproj", "{BA3DC329-6D91-4B9A-B30A-AA167BA447A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.Furniture", "01.Furniture\01.Furniture.csproj", "{BA3DC329-6D91-4B9A-B30A-AA167BA447A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.Race", "02.Race\02.Race.csproj", "{4FE79D3E-3984-402A-B9CA-4CBCC120CE88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.SoftUniBarIncome", "03.SoftUniBarIncome\03.SoftUniBarIncome.csproj", "{2FE1539E-577A-4E3E-B263-EF0496D422B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BA3DC329-6D91-4B9A-B30A-AA167BA447A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA3DC329-6D91-4B9A-B30A-AA167BA447A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA3DC329-6D91-4B9A-B30A-AA167BA447A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FE79D3E-3984-402A-B9CA-4CBCC120CE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FE79D3E-3984-402A-B9CA-4CBCC120CE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FE79D3E-3984-402A-B9CA-4CBCC120CE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FE79D3E-3984-402A-B9CA-4CBCC120CE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FE1539E-577A-4E3E-B263-EF0496D422B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE1539E-577A-4E3E-B263-EF0496D422B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE1539E-577A-4E3E-B263-EF0496D422B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FE1539E-577A-4E3E-B263-EF0496D422B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
