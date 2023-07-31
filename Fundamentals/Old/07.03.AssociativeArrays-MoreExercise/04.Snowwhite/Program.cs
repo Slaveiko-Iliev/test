@@ -1,4 +1,6 @@
-﻿string input = string.Empty;
+﻿using System.Xml.Linq;
+
+string input = string.Empty;
 
 var dwarfs = new Dictionary<string, Dictionary<string, int>>();
 
@@ -30,20 +32,26 @@ while ((input = Console.ReadLine()) != "Once upon a time")
         dwarfs.Add(color, new Dictionary<string, int>());
         dwarfs[color].Add(name, physics);
     }
-
-    
 }
 
-var orderedDwarfs = dwarfs.OrderByDescending(x => x.Value.Values).ThenByDescending(x => x.Key.Count()).ToDictionary(x => x.Key, x => x.Value);
+var sortedDwarfs = new Dictionary<string, int>();
 
-
-foreach (var item in dwarfs)
+foreach (var kvp in dwarfs.OrderByDescending(x => x.Value.Count()))
 {
-    foreach (var items in dwarfs[item.Key])
+    string hatColor = kvp.Key;
+
+    foreach (var dwarf in kvp.Value)
     {
-        Console.WriteLine($"({item.Key}) {items.Key} <-> {items.Value}");
+        string name = dwarf.Key;
+        int physics = dwarf.Value;
+
+        sortedDwarfs.Add(($"({hatColor}) {name} <-> "), physics);
     }
 }
 
-//"({hatColor}) {name} <-> {physics}"
+foreach (var dwarf in sortedDwarfs.OrderByDescending(x => x.Value))
+{
+    Console.WriteLine($"{dwarf.Key}{dwarf.Value}");
+}
+
 

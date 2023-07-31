@@ -38,22 +38,35 @@ while ((input = Console.ReadLine()) != "Once upon a time")
     }
 }
 
-var sortedDwarf = new Dictionary<string, int>();
-foreach (var kvp in hatColorWithNamesAndPhysics.OrderByDescending(x => x.Value.Count()))
+hatColorWithNamesAndPhysics = hatColorWithNamesAndPhysics
+    .OrderByDescending(x => x.Value.Count())
+    .ToDictionary(x => x.Key, x => x.Value);
+
+var finalDwarfs = new Dictionary<int, Dictionary<int, Dictionary<string, string>>>();
+int dwarfNumber = 1;
+foreach (var (color, dwarfs) in hatColorWithNamesAndPhysics)
 {
-    string hatColor = kvp.Key;
-    var namesAndPhysics = kvp.Value;
-    foreach (var kvp1 in namesAndPhysics)
+    foreach (var (name, power) in dwarfs)
     {
-        string name = kvp1.Key;
-        int physic = kvp1.Value;
-        sortedDwarf.Add($"({hatColor}) {name} <-> ", physic);
+        finalDwarfs[dwarfNumber] = new Dictionary<int, Dictionary<string, string>>();
+        finalDwarfs[dwarfNumber][power] = new Dictionary<string, string>();
+        finalDwarfs[dwarfNumber][power][name] = color;
+        dwarfNumber++;
     }
 }
 
-foreach (var kvp in sortedDwarf.OrderByDescending(x => x.Value))
+finalDwarfs = finalDwarfs
+    .OrderByDescending(d => d.Value.Keys.Max())
+    .ToDictionary(x => x.Key, x => x.Value);
+
+foreach (var (number, dwarf) in finalDwarfs)
 {
-    string name = kvp.Key;
-    int physic = kvp.Value;
-    Console.WriteLine($"{name}{physic}");
+    foreach (var (power, nameAndColor) in dwarf)
+    {
+        foreach (var (name, color) in nameAndColor)
+        {
+            Console.WriteLine($"({color}) {name} <-> {power}");
+
+        }
+    }
 }
