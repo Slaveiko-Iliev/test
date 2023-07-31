@@ -19,9 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.AppendArrays", "07.Appen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.AnonymousThreat", "08.AnonymousThreat\08.AnonymousThreat.csproj", "{F6D140CC-2E72-4757-A3EC-39AAF56C1C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.PokemonDon'tGo", "09.PokemonDon'tGo\09.PokemonDon'tGo.csproj", "{85C7C91B-3BFD-441B-A73D-A010635A4C74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09.PokemonDon'tGo", "09.PokemonDon'tGo\09.PokemonDon'tGo.csproj", "{85C7C91B-3BFD-441B-A73D-A010635A4C74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.SoftUniCoursePlanning", "10.SoftUniCoursePlanning\10.SoftUniCoursePlanning.csproj", "{81FF7F10-359D-44CE-9990-F74EBBE410BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10.SoftUniCoursePlanning", "10.SoftUniCoursePlanning\10.SoftUniCoursePlanning.csproj", "{81FF7F10-359D-44CE-9990-F74EBBE410BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.Test.08.AnonymousThreat", "11.Test.08.AnonymousThreat\11.Test.08.AnonymousThreat.csproj", "{1BCF591F-4E13-4A95-AC74-D70002302BF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12.Test.05.BombNumbers", "12.Test.05.BombNumbers\12.Test.05.BombNumbers.csproj", "{791EA24F-13D9-49D6-B547-51C3CFF4694C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{81FF7F10-359D-44CE-9990-F74EBBE410BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81FF7F10-359D-44CE-9990-F74EBBE410BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81FF7F10-359D-44CE-9990-F74EBBE410BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCF591F-4E13-4A95-AC74-D70002302BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCF591F-4E13-4A95-AC74-D70002302BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCF591F-4E13-4A95-AC74-D70002302BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCF591F-4E13-4A95-AC74-D70002302BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791EA24F-13D9-49D6-B547-51C3CFF4694C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791EA24F-13D9-49D6-B547-51C3CFF4694C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791EA24F-13D9-49D6-B547-51C3CFF4694C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791EA24F-13D9-49D6-B547-51C3CFF4694C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

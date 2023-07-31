@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-string pattern = @">>(?<furnitureName>\w+)<<(?<price>\d+\.\d{2}|\d+)!(?<quantity>\d*)";
+string pattern = @">>(?<furnitureName>[A-Za-z]+)<<(?<price>\d+(.\d+)?)!(?<quantity>\d+)";
 string input = string.Empty;
 
 List<Furniture> furnitures = new List<Furniture>();
@@ -31,14 +31,13 @@ while ((input = Console.ReadLine()) != "Purchase")
 Console.WriteLine("Bought furniture:");
 furnitures.ForEach(furniture => Console.WriteLine($"{furniture.FurnitureName}"));
 
-//Console.WriteLine($"Total money spend: {furnitures.ForEach(furniture => furniture.Price * furniture.Quantity).Sum())}");
+double totalSpend = 0;
 
-//Bought furniture:
-//Chair
-//Sofa
-//Bench
-//Bed
-//Total money spend: 9536.69
+
+furnitures.ForEach(furniture => totalSpend += furniture.Price * furniture.Quantity);
+
+Console.WriteLine($"Total money spend: {totalSpend:f2}");
+
 
 
 public class Furniture
