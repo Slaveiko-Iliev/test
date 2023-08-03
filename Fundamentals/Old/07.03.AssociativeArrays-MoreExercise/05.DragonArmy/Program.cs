@@ -1,4 +1,5 @@
-﻿//{type} {name} {damage} {health} {armor}
+﻿using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 int number = int.Parse(Console.ReadLine());
 
@@ -9,32 +10,83 @@ for (int i = 0; i < number; i++)
     string[] dragonInfo = Console.ReadLine()
         .Split();
 
+    int damage = 0;
+    int health = 0;
+    int armor = 0;
+
     string type = dragonInfo[0];
     string name = dragonInfo[1];
     if (dragonInfo[2] != "null")
     {
-        int damage = int.Parse(dragonInfo[2]);
+        damage = int.Parse(dragonInfo[2]);
     }
     else
     {
-        int damage = 250;
+        damage = 45;
     }
     if (dragonInfo[3] != "null")
     {
-        int health = int.Parse(dragonInfo[3]);
+        health = int.Parse(dragonInfo[3]);
     }
     else
     {
-        int health = 45;
+        health = 250;
     }
     if (dragonInfo[4] != "null")
     {
-        int armor = int.Parse(dragonInfo[4]);
+        armor = int.Parse(dragonInfo[4]);
     }
     else
     {
-        int armor = 10;
+        armor = 10;
     }
 
+    List<int> currentDragonSkills = new List<int>{damage, health, armor };
 
+    if (!dragonArmy.ContainsKey(type))
+    {
+        dragonArmy.Add(type, new Dictionary<string, List<int>>());
+        dragonArmy[type].Add(name, currentDragonSkills);
+    }
+    else
+    {
+        if (!dragonArmy[type].ContainsKey(name))
+        {
+            dragonArmy[type].Add(name, currentDragonSkills);
+        }
+        else
+        {
+            dragonArmy[type][name] = currentDragonSkills;
+        }
+    }
 }
+
+
+
+foreach (var type in dragonArmy)
+{
+    double averageDamage = 0;
+    double averageHealth = 0;
+    double averageArmor = 0;
+
+    foreach (var dragon in type.Value)
+    {
+        averageDamage += dragon.Value[0];
+        averageHealth += dragon.Value[1];
+        averageArmor += dragon.Value[2];
+    }
+    averageDamage /= type.Value.Count;
+    averageHealth /= type.Value.Count;
+    averageArmor /= type.Value.Count;
+
+    Console.WriteLine($"{type.Key}::({averageDamage:f2}/{averageHealth:f2}/{averageArmor:f2})");
+
+    foreach (var dragon in type.Value.OrderBy(x=>x.Key))
+    {
+        Console.WriteLine($"-{dragon.Key} -> damage: {dragon.Value[0]}, health: {dragon.Value[1]}, armor: {dragon.Value[2]}");
+    }
+}
+
+//"{Type}::({damage}/{health}/{armor})"
+
+//"-{Name} -> damage: {damage}, health: {health}, armor: {armor}"

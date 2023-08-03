@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.CaesarCipher", "04.Caesa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.ReplaceRepeatingChars", "06.ReplaceRepeatingChars\06.ReplaceRepeatingChars.csproj", "{F110AD07-347C-411C-A337-7CE6CD0032B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.StringExplosion", "07.StringExplosion\07.StringExplosion.csproj", "{32526C33-EAAA-410C-A155-4CCE43D30018}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.StringExplosion", "07.StringExplosion\07.StringExplosion.csproj", "{32526C33-EAAA-410C-A155-4CCE43D30018}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.MultiplyBigNumber", "05.MultiplyBigNumber\05.MultiplyBigNumber.csproj", "{B326EACF-EA15-4818-8391-379E10A58764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.MultiplyBigNumber", "05.MultiplyBigNumber\05.MultiplyBigNumber.csproj", "{B326EACF-EA15-4818-8391-379E10A58764}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.LettersChangeNumbers", "08.LettersChangeNumbers\08.LettersChangeNumbers.csproj", "{AC0C9A7E-FB01-4AC1-9299-1209E55EB00D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B326EACF-EA15-4818-8391-379E10A58764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B326EACF-EA15-4818-8391-379E10A58764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B326EACF-EA15-4818-8391-379E10A58764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0C9A7E-FB01-4AC1-9299-1209E55EB00D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0C9A7E-FB01-4AC1-9299-1209E55EB00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0C9A7E-FB01-4AC1-9299-1209E55EB00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0C9A7E-FB01-4AC1-9299-1209E55EB00D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
