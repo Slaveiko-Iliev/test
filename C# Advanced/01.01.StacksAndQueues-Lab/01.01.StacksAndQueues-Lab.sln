@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.ReverseAString", "01.ReverseAString\01.ReverseAString.csproj", "{274A7B51-E7B6-4476-8853-4E1B058C656A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.ReverseAString", "01.ReverseAString\01.ReverseAString.csproj", "{274A7B51-E7B6-4476-8853-4E1B058C656A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.StackSum", "02.StackSum\02.StackSum.csproj", "{86FBA384-8A7C-4F20-B3AF-080189200AE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.StackSum", "02.StackSum\02.StackSum.csproj", "{86FBA384-8A7C-4F20-B3AF-080189200AE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.SimpleCalculator", "03.SimpleCalculator\03.SimpleCalculator.csproj", "{6711EBBD-1484-43E4-8BAE-EC8897022629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.SimpleCalculator", "03.SimpleCalculator\03.SimpleCalculator.csproj", "{6711EBBD-1484-43E4-8BAE-EC8897022629}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.MatchingBrackets", "04.MatchingBrackets\04.MatchingBrackets.csproj", "{86EEFBE4-D391-4EF2-ABEF-E81A501B4F52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.MatchingBrackets", "04.MatchingBrackets\04.MatchingBrackets.csproj", "{86EEFBE4-D391-4EF2-ABEF-E81A501B4F52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. PrintEvenNumbers", "05. PrintEvenNumbers\05. PrintEvenNumbers.csproj", "{48F92099-799F-4B76-AC16-E263C861ADE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05. PrintEvenNumbers", "05. PrintEvenNumbers\05. PrintEvenNumbers.csproj", "{48F92099-799F-4B76-AC16-E263C861ADE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.Supermarket", "06.Supermarket\06.Supermarket.csproj", "{7135F55D-ED83-40DF-9598-07705CA28F5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.HotPotato", "07.HotPotato\07.HotPotato.csproj", "{62582D27-7613-4E09-8174-C9FF0E8654F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.TrafficJam", "08.TrafficJam\08.TrafficJam.csproj", "{C2778946-546E-4D37-87E9-CE6E59D87AD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{48F92099-799F-4B76-AC16-E263C861ADE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48F92099-799F-4B76-AC16-E263C861ADE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48F92099-799F-4B76-AC16-E263C861ADE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7135F55D-ED83-40DF-9598-07705CA28F5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7135F55D-ED83-40DF-9598-07705CA28F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7135F55D-ED83-40DF-9598-07705CA28F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7135F55D-ED83-40DF-9598-07705CA28F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62582D27-7613-4E09-8174-C9FF0E8654F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62582D27-7613-4E09-8174-C9FF0E8654F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62582D27-7613-4E09-8174-C9FF0E8654F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62582D27-7613-4E09-8174-C9FF0E8654F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2778946-546E-4D37-87E9-CE6E59D87AD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2778946-546E-4D37-87E9-CE6E59D87AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2778946-546E-4D37-87E9-CE6E59D87AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2778946-546E-4D37-87E9-CE6E59D87AD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
