@@ -7,8 +7,8 @@ int[] input = Console.ReadLine()
     .Select(int.Parse)
     .ToArray();
 
-int numberToPush = input[0];
-int numberToPop = input[1];
+int numbersToAdd = input[0];
+int numbersToRemove = input[1];
 int findNumber = input[2];
 
 int[] inputNumbers = Console.ReadLine()
@@ -16,16 +16,16 @@ int[] inputNumbers = Console.ReadLine()
     .Select(int.Parse)
     .ToArray();
 
-Stack<int> numbersInStack = new Stack<int>();
+Queue<int> numbersInStack = new ();
 
-for (int i = 0; i < numberToPush; i++)
+for (int i = 0; i < numbersToAdd; i++)
 {
-    numbersInStack.Push(inputNumbers[i]);
+    numbersInStack.Enqueue(inputNumbers[i]);
 }
 
-for (int i = 0; i < numberToPop; i++)
+for (int i = 0; i < numbersToRemove; i++)
 {
-    numbersInStack.Pop();
+    numbersInStack.Dequeue();
 }
 
 if (!numbersInStack.Any())
