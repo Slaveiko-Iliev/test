@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.DiagonalDifference", "01.DiagonalDifference\01.DiagonalDifference.csproj", "{875BEAB0-14FD-48DC-AAA4-8C87D63B99C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.SquaresInMatrix", "02.SquaresInMatrix\02.SquaresInMatrix.csproj", "{56106DAC-C992-40A7-ACCA-86D595A47F6E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{875BEAB0-14FD-48DC-AAA4-8C87D63B99C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{875BEAB0-14FD-48DC-AAA4-8C87D63B99C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{875BEAB0-14FD-48DC-AAA4-8C87D63B99C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{875BEAB0-14FD-48DC-AAA4-8C87D63B99C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56106DAC-C992-40A7-ACCA-86D595A47F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56106DAC-C992-40A7-ACCA-86D595A47F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56106DAC-C992-40A7-ACCA-86D595A47F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56106DAC-C992-40A7-ACCA-86D595A47F6E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DD6FEB3-964D-460F-B491-160B608787E7}
+	EndGlobalSection
+EndGlobal
