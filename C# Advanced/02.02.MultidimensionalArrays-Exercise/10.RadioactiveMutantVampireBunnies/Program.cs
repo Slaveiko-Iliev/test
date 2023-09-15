@@ -32,7 +32,7 @@ bool isPlayerWin = true;
 bool isPlayerOut = false;
 Queue < int[]> bunnies = new Queue<int[]> ();
 
-for (int ch = 0; ch < command.Length && isPlayerWin; ch++)
+for (int ch = 0; ch < command.Length && isPlayerWin && !isPlayerOut; ch++)
 {
     switch (command[ch])
     {
@@ -163,7 +163,7 @@ else
 
 bool IsValidIndexOfP(char[,] matrix, int[] currentPositionOfP, int positionInCommand, string command)
 {
-    if (command[positionInCommand] == 'R' && currentPositionOfP[1] + 1 < matrix.GetLength(0))
+    if (command[positionInCommand] == 'R' && currentPositionOfP[1] + 1 < matrix.GetLength(1))
     {
         return true;
     }
