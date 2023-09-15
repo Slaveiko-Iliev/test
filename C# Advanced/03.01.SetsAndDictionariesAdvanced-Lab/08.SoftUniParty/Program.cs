@@ -3,16 +3,40 @@ using System.Collections.Generic;
 
 string reservation = string.Empty;
 
-SortedSet<string> reservations = new SortedSet<string>();
+HashSet<string> reservations = new HashSet<string>();
+HashSet<string> vipReservations = new HashSet<string>();
 
 while ((reservation = Console.ReadLine()) != "PARTY")
 {
-    reservations.Add(reservation);
+    if (Char.IsDigit(reservation[0]))
+    {
+        vipReservations.Add(reservation);
+    }
+    else
+    {
+        reservations.Add(reservation);
+    }
 }
 
 while ((reservation = Console.ReadLine()) != "END")
 {
-    reservations.Remove(reservation);
+    if (Char.IsDigit(reservation[0]))
+    {
+        vipReservations.Remove(reservation);
+    }
+    else
+    {
+        reservations.Remove(reservation);
+    }
+}
+    
+int missingGuests = vipReservations.Count + reservations.Count;
+
+Console.WriteLine(missingGuests);
+
+foreach (var item in vipReservations)
+{
+    Console.WriteLine(item);
 }
 
 foreach (var item in reservations)
