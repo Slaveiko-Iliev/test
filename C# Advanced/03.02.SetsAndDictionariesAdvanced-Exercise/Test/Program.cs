@@ -57,17 +57,20 @@ Dictionary<string, SortedSet<string>> orderedSides = sides
     .OrderByDescending(x => x.Value.Count)
     .ToDictionary(x => x.Key, x => x.Value);
 
-foreach (var (side, users) in sides)
+foreach (var side in sides)
 {
-    if (users.Count == 0)
-    {
-        continue;
-    }
+    //if (users.Count == 0)
+    //{
+    //    continue;
+    //}
 
-    Console.WriteLine($"Side: {side}, Members: {users.Count}");
-
-    foreach (var user in users)
+    if (side.Value.Any())
     {
-        Console.WriteLine($"! {user}");
+        Console.WriteLine($"Side: {side.Key}, Members: {side.Value.Count}");
+
+        foreach (var user in side.Value)
+        {
+            Console.WriteLine($"! {user}");
+        }
     }
 }
