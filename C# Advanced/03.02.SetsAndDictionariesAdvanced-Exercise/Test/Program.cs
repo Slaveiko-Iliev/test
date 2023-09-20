@@ -7,7 +7,7 @@ string input = string.Empty;
 
 while ((input = Console.ReadLine()) != "Lumpawaroo")
 {
-    if (input.Contains("|"))
+    if (input.Contains('|'))
     {
         string[] commandInfo = input
             .Split(" | ", StringSplitOptions.RemoveEmptyEntries);
@@ -33,11 +33,11 @@ while ((input = Console.ReadLine()) != "Lumpawaroo")
         string forceUser = commandInfo[0];
         string forceSide = commandInfo[1];
 
-        foreach (var (side, users) in sides)
+        foreach (var side in sides)
         {
-            if (users.Contains(forceUser))
+            if (side.Value.Contains(forceUser))
             {
-                users.Remove(forceUser);
+                side.Value.Remove(forceUser);
                 break;
             }
         }
@@ -57,13 +57,8 @@ Dictionary<string, SortedSet<string>> orderedSides = sides
     .OrderByDescending(x => x.Value.Count)
     .ToDictionary(x => x.Key, x => x.Value);
 
-foreach (var side in sides)
+foreach (var side in orderedSides)
 {
-    //if (users.Count == 0)
-    //{
-    //    continue;
-    //}
-
     if (side.Value.Any())
     {
         Console.WriteLine($"Side: {side.Key}, Members: {side.Value.Count}");
