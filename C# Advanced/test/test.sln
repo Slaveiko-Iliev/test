@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2. Squares in Matrix", "2. 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.MaximalSum", "3.MaximalSum\3.MaximalSum.csproj", "{A0CBB5C5-57E7-4A3D-B8DB-1D3C04344CF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.MatrixShuffling", "4.MatrixShuffling\4.MatrixShuffling.csproj", "{8F74373B-DE13-449B-A94E-70FB4A3F0F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.MatrixShuffling", "4.MatrixShuffling\4.MatrixShuffling.csproj", "{8F74373B-DE13-449B-A94E-70FB4A3F0F6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStramTest", "FileStramTest\FileStramTest.csproj", "{9941B441-729D-415E-894D-4AAE3F218A74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8F74373B-DE13-449B-A94E-70FB4A3F0F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F74373B-DE13-449B-A94E-70FB4A3F0F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F74373B-DE13-449B-A94E-70FB4A3F0F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9941B441-729D-415E-894D-4AAE3F218A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9941B441-729D-415E-894D-4AAE3F218A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9941B441-729D-415E-894D-4AAE3F218A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9941B441-729D-415E-894D-4AAE3F218A74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
