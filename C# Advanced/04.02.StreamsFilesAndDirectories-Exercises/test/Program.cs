@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Compression;
 
 var fileName = Path.Combine(Environment.GetFolderPath(
@@ -23,4 +24,7 @@ for (int i = 0; i < filesInDir.Length; i++)
 }
 
 Console.WriteLine(string.Join(Environment.NewLine, filesInDir));
+
+int aggregate(start, end, func) { … }
+int sum = aggregate(1, 10, (a, b) => a + b); // 55
 
