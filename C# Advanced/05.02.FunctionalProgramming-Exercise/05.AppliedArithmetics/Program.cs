@@ -7,7 +7,27 @@ int[] numbers = Console.ReadLine()
     .ToArray();
 
 string input = string.Empty;
-Action<int[], string> actionCalculation = MakeCalculation;
+Action<int[], string> actionCalculation = (numbers, input) =>
+{
+    {
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            switch (input)
+            {
+                case "add":
+                    numbers[i] += 1;
+                    break;
+                case "multiply":
+                    numbers[i] *= 2;
+                    break;
+                case "subtract":
+                    numbers[i] -= 1;
+                    break;
+            }
+        }
+    }
+};
+//Action<int[], string> actionCalculation = MakeCalculation;
 Action<int[]> actionPrint = numbers 
     => Console.WriteLine(string.Join(" ", numbers));
 

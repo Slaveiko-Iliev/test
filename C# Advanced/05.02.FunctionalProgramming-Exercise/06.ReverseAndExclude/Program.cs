@@ -22,8 +22,8 @@ Console.WriteLine(string.Join(" ", Division(reversedList, divisibleMatch)));
 static List<int> ReverseList (List<int> numbers)
 {
     var reversedList = new List<int>();
-
-    for (int i = numbers.Count - 1; i >= 0; i--)
+     
+    for  (int i = numbers.Count - 1; i >= 0; i--)
     {
         reversedList.Add(numbers[i]);
     }
