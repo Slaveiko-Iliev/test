@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DefiningClasses
 {
-    internal class Person
+    public class Person
     {
         public Person()
         {

@@ -10,19 +10,34 @@ namespace DefiningClasses
     {
         public static void Main()
         {
-            string input = string.Empty;
-            List<Person> persons = new();
+            int count = int.Parse(Console.ReadLine());
+            List<Person> family = new ();
 
-            while ((input = Console.ReadLine()) != "end")
+            for (int i = 0; i < count; i++)
             {
-                string[] userInfo = input
+                string[] input = Console.ReadLine()
                     .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-                string name = userInfo[0];
-                int age = int.Parse(userInfo[1]);
+                string name = input[0];
+                int age = int.Parse(input[1]);
 
-                Person person = new Person(name, age); 
+                if (age > 30)
+                {
+                    Person person = new Person(name, age);
+                    family.Add(person);
+                }
             }
+
+            List<Person> orderedFamily = family.OrderBy(x => x.Name).ToList();
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (var member in orderedFamily)
+            {
+                stringBuilder.AppendLine($"{member.Name} - {member.Age}");
+            }
+
+            Console.WriteLine(stringBuilder);
         }
     }
 }
