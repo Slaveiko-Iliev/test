@@ -13,8 +13,8 @@ List<Predicate<int>> predicates = new ();
 
 foreach (int number in dividers)
 {
-    Predicate<int> predicate = x => x % number == 0;
-    predicates.Add(predicate);
+    //Predicate<int> predicate = x => x % number == 0;
+    predicates.Add(x => x % number == 0);
 }
 
 Console.WriteLine(string.Join(" ", FindMatch(endOfRange, predicates)));

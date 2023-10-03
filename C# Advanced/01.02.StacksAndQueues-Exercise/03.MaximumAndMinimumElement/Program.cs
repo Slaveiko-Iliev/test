@@ -1,4 +1,8 @@
-﻿Stack<int> numbersInStack = new();
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+Stack<int> numbersInStack = new();
 
 int numberOfQueries = int.Parse(Console.ReadLine());
 
