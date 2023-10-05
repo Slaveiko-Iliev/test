@@ -14,29 +14,29 @@ namespace SoftUniParking
         private int horsePower;
         private string registrationNumber;
 
-        public Car()
+        public Car(string make, string model, int horsePower, string registrationNumber)
         {
             Make = make;
             Model = model;
-            HoursePower = horsePower;
+            HorsePower = horsePower;
             RegistrationNumber = registrationNumber;
         }
 
         public string Make { get; set; }
         public string Model { get; set; }
-        public int HoursePower { get; set; }
+        public int HorsePower { get; set; }
         public string RegistrationNumber { get; set; }
 
         public override string ToString()
         {
             StringBuilder sb = new ();
 
-            sb.Append ($"Make: {make}");
-            sb.Append ($"Model: {model}");
-            sb.Append ($"HorsePower: {horsePower}");
-            sb.Append ($"RegistrationNumber: {registrationNumber}");
+            sb.AppendLine ($"Make: {Make}");
+            sb.AppendLine($"Model: {Model}");
+            sb.AppendLine($"HorsePower: {HorsePower}");
+            sb.AppendLine($"RegistrationNumber: {RegistrationNumber}");
 
-            return sb.ToString();
+            return sb.ToString().TrimEnd();
         }
     }
 }
