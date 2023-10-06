@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.SpeedRacing", "06.SpeedR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "7.RawData", "7.RawData\7.RawData.csproj", "{6839DAD4-BB66-4EBD-8063-DCE669B7E0FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.SoftUniParking", "10.SoftUniParking\10.SoftUniParking.csproj", "{B8DF5B78-8103-499C-B40D-6DBE598ACE23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.P_okemonTrainer", "09.P okemonTrainer\09.P_okemonTrainer.csproj", "{1DBD06A3-C89E-4166-BD1E-550BC07D747A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{6839DAD4-BB66-4EBD-8063-DCE669B7E0FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6839DAD4-BB66-4EBD-8063-DCE669B7E0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6839DAD4-BB66-4EBD-8063-DCE669B7E0FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8DF5B78-8103-499C-B40D-6DBE598ACE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8DF5B78-8103-499C-B40D-6DBE598ACE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8DF5B78-8103-499C-B40D-6DBE598ACE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8DF5B78-8103-499C-B40D-6DBE598ACE23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DBD06A3-C89E-4166-BD1E-550BC07D747A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DBD06A3-C89E-4166-BD1E-550BC07D747A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DBD06A3-C89E-4166-BD1E-550BC07D747A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DBD06A3-C89E-4166-BD1E-550BC07D747A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
