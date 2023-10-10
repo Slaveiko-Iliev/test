@@ -9,18 +9,18 @@ namespace _09.P_okemonTrainer
 {
     public class Pokemon
     {
-        private string name;
+        private string pokemonName;
         private string element;
         private int health;
 
-        public Pokemon(string name, string element, int health)
+        public Pokemon(string pokemonName, string element, int health)
         {
-            Name = name;
+            PokemonName = pokemonName;
             Element = element;
             Health = health;
         }
 
-        public string Name { get; set; }
+        public string PokemonName { get; set; }
         public string Element { get; set; }
         public int Health { get; set; }
 
