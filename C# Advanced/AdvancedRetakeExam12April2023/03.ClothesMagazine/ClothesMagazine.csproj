@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="03. Clothes Magazine_Problem_Description.pdf" />
+    <None Remove="ClothesMagazine.zip" />
+    <None Remove="~%24. Clothes Magazine_Problem_Description.pdf" />
+  </ItemGroup>
+
+</Project>
