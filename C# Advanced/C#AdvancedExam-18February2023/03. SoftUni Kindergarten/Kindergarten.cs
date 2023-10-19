@@ -8,18 +8,15 @@ namespace SoftUniKindergarten
     {
         public Kindergarten(string name, int capacity)
         {
-            KindergartenName = name;
+            Name = name;
             Capacity = capacity;
             Registry = new List<Child>();
         }
 
-        public string KindergartenName { get; set; }
-        public int Capacity { get; set; }
-        public List<Child> Registry { get; set; }
-        public int ChildrenCount
-        {
-            get { return Registry.Count; }
-        }
+        public string Name { get; private set; }
+        public int Capacity { get; private set; }
+        public List<Child> Registry { get; private set; }
+        public int ChildrenCount => Registry.Count;
 
 
         public bool AddChild(Child child)
@@ -43,9 +40,7 @@ namespace SoftUniKindergarten
             string[] fullName = childFullName
                 .Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
 
-            Child child = Registry.Find(x => x.FirstName == fullName[0] && x.LastName == fullName[1]);
-
-            return Registry.Remove(child);
+            return Registry.Remove(Registry.FirstOrDefault(x => x.FirstName == fullName[0] && x.LastName == fullName[1]));
         }
 
         public Child GetChild(string childFullName)
@@ -53,14 +48,7 @@ namespace SoftUniKindergarten
             string[] fullName = childFullName
                 .Split(' ', System.StringSplitOptions.RemoveEmptyEntries);
 
-            if (Registry.Find(x => x.FirstName == fullName[0] && x.LastName == fullName[1]) != null)
-            {
-                return Registry.Find(x => x.FirstName == fullName[0] && x.LastName == fullName[1]);
-            }
-            else
-            {
-                return null;
-            }
+            return Registry.FirstOrDefault(x => x.FirstName == fullName[0] && x.LastName == fullName[1]);
         }
 
         public string RegistryReport()
@@ -68,7 +56,7 @@ namespace SoftUniKindergarten
             string temp = string.Empty;
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine($"Registered children in {KindergartenName}:");
+            stringBuilder.AppendLine($"Registered children in {Name}:");
             foreach (var child in Registry.OrderByDescending(x => x.Age).ThenBy(x => x.LastName).ThenBy(x => x.FirstName))
             {
                 stringBuilder.AppendLine(child.ToString());

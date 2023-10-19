@@ -33,7 +33,7 @@ namespace ClothesMagazine
             //Get Cloth 
             Cloth getCloth = magazine.GetCloth("brown");
             //Product: t-shirt with size 34, color brown
-            Console.WriteLine(getCloth);
+            Console.WriteLine(getCloth.ToString());
 
 
             Console.WriteLine(magazine.Report());
