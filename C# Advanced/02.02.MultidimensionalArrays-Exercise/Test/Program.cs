@@ -35,7 +35,7 @@ while (true)
         {
             if (matrix[row, col] == 'K')
             {
-                int attackedKnights = CountAttackedKnights(row, col, size, matrix);
+                int attackedKnights = AttackedKnights(row, col, size, matrix);
 
                 if (countMostAttacking < attackedKnights)
                 {
@@ -60,12 +60,11 @@ while (true)
 
 Console.WriteLine(knightsRemoved);
 
-static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
+static int AttackedKnights(int row, int col, int size, char[,] matrix)
 {
     int attackedKnights = 0;
 
-    //horizontal left-up
-    if (ValidateCell(row - 1, col - 2, size))
+    if (IsValid(row - 1, col - 2, size))
     {
         if (matrix[row - 1, col - 2] == 'K')
         {
@@ -73,8 +72,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
         }
     }
 
-    //horizontal left-down
-    if (ValidateCell(row + 1, col - 2, size))
+    if (IsValid(row + 1, col - 2, size))
     {
         if (matrix[row + 1, col - 2] == 'K')
         {
@@ -82,8 +80,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
         }
     }
 
-    //horizontal right-up
-    if (ValidateCell(row - 1, col + 2, size))
+    if (IsValid(row - 1, col + 2, size))
     {
         if (matrix[row - 1, col + 2] == 'K')
         {
@@ -91,8 +88,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
         }
     }
 
-    //horizontal right-down
-    if (ValidateCell(row + 1, col + 2, size))
+    if (IsValid(row + 1, col + 2, size))
     {
         if (matrix[row + 1, col + 2] == 'K')
         {
@@ -100,8 +96,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
         }
     }
 
-    //horizontal up-left
-    if (ValidateCell(row - 2, col - 1, size))
+    if (IsValid(row - 2, col - 1, size))
     {
         if (matrix[row - 2, col - 1] == 'K')
         {
@@ -109,8 +104,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
         }
     }
 
-    //horizontal up-right
-    if (ValidateCell(row - 2, col + 1, size))
+    if (IsValid(row - 2, col + 1, size))
     {
         if (matrix[row - 2, col + 1] == 'K')
         {
@@ -118,8 +112,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
         }
     }
 
-    //horizontal down-left
-    if (ValidateCell(row + 2, col - 1, size))
+    if (IsValid(row + 2, col - 1, size))
     {
         if (matrix[row + 2, col - 1] == 'K')
         {
@@ -127,8 +120,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
         }
     }
 
-    //horizontal down-right
-    if (ValidateCell(row + 2, col + 1, size))
+    if (IsValid(row + 2, col + 1, size))
     {
         if (matrix[row + 2, col + 1] == 'K')
         {
@@ -139,7 +131,7 @@ static int CountAttackedKnights(int row, int col, int size, char[,] matrix)
     return attackedKnights;
 }
 
-static bool ValidateCell(int row, int col, int size)
+static bool IsValid(int row, int col, int size)
 {
     return
         row >= 0
