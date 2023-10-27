@@ -6,11 +6,11 @@ namespace Restaurant
 {
     public class Coffee : HotBeverage
     {
-        private const double _coffeeMilliliters = 50;
-        private const decimal _coffeePrice = 3.50m;
+        private const double CoffeeMilliliters = 50;
+        private const decimal CoffeePrice = 3.50m;
 
 
-        public Coffee(string name, double caffeine) : base(name, _coffeePrice, _coffeeMilliliters)
+        public Coffee(string name, double caffeine) : base(name, CoffeePrice, CoffeeMilliliters)
         {
             Caffeine = caffeine;
         }
