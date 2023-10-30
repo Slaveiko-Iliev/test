@@ -22,7 +22,13 @@ namespace _Person
         public int Age
         {
             get { return _age; }
-            set { _age = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _age = value;
+                }
+            }
         }
         public string Name
         {
