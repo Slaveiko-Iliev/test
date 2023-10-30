@@ -3,13 +3,13 @@ using System;
 
 namespace Animals
 {
-    public abstract class Animals
+    public abstract class Animal
     {
         private string _name;
         private int _age;
         private string _gender;
 
-        public Animals(string name, int age, string gender)
+        public Animal(string name, int age, string gender)
         {
             Name = name;
             Age = age;
@@ -19,7 +19,7 @@ namespace Animals
         public string Name
         { 
             get => _name;
-            set
+            private set
             {
                 if (string.IsNullOrEmpty(value))
                 {
@@ -32,7 +32,7 @@ namespace Animals
         public int Age 
         {
             get => _age;
-            set
+            private set
             {
                 if(value <= 0)
                 {
@@ -45,7 +45,7 @@ namespace Animals
         public string Gender
         {
             get => _gender;
-            set
+            private set
             {
                 if (string.IsNullOrEmpty(value))
                 {
@@ -56,30 +56,30 @@ namespace Animals
             }
         }
 
-        public string ProduceSound(string kindOfAnimal)
-        {
-            switch (kindOfAnimal)
-            {
-                case "Dog":
-                    return "Woof!";
-                case "Cat":
-                    return "Meow meow";
-                case "Frog":
-                    return "Ribbit";
-                case "Kitten":
-                    return "Meow";
-                case "Tomcat":
-                    return "MEOW";
-                default:
-                    return null;
-            }
-        }
+        public abstract string ProduceSound();
+        //{
+        //    switch (kindOfAnimal)
+        //    {
+        //        case "Dog":
+        //            return "Woof!";
+        //        case "Cat":
+        //            return "Meow meow";
+        //        case "Frog":
+        //            return "Ribbit";
+        //        case "Kitten":
+        //            return "Meow";
+        //        case "Tomcat":
+        //            return "MEOW";
+        //        default:
+        //            return null;
+        //    }
+        //}
 
-        public string PrintAnimal<T>(string kindOfAnimal, T animal) where T : Animals
+        public string PrintAnimal<T>(string kindOfAnimal, T animal) where T : Animal
         {
             return $"{kindOfAnimal}{Environment.NewLine}" +
                 $"{animal.Name} {animal.Age} {animal.Gender}{Environment.NewLine}" +
-                $"{animal.ProduceSound(kindOfAnimal)}";
+                $"{animal.ProduceSound()}";
         }
     }
 }

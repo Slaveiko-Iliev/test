@@ -4,12 +4,13 @@ namespace Animals
 {
     public class Kitten : Cat
     {
-        private const string _Gender = "Female";
-        
-        public Kitten(string name, int age) : base(name, age, _Gender)
+        private const string Gender = "Female";
+        private const string Sound = "Meow";
+
+        public Kitten(string name, int age) : base(name, age, Gender)
         {
         }
 
-        //public override string ProduceSound() => "Meow";
+        public override string ProduceSound() => Sound;
     }
 }
