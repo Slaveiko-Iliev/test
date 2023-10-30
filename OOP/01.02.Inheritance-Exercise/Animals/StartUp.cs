@@ -12,32 +12,32 @@ namespace Animals
             {
                 string[] animalInfo = Console.ReadLine()
                     .Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                string name = animalInfo[0];
-                int age = int.Parse(animalInfo[1]);
-                string gender = animalInfo[2];
+                //string name = animalInfo[0];
+                //int age = int.Parse(animalInfo[1]);
+                //string gender = animalInfo[2];
 
                 try
                 {
                     switch (kindOfAnimal)
                     {
                         case "Dog":
-                            Dog dog = new Dog(name, age, gender);
+                            Dog dog = new Dog(animalInfo[0], int.Parse(animalInfo[1]), animalInfo[2]);
                             Console.WriteLine(dog.PrintAnimal(kindOfAnimal, dog));
                             break;
                         case "Cat":
-                            Cat cat = new Cat(name, age, gender);
+                            Cat cat = new Cat(animalInfo[0], int.Parse(animalInfo[1]), animalInfo[2]);
                             Console.WriteLine(cat.PrintAnimal(kindOfAnimal, cat));
                             break;
                         case "Frog":
-                            Frog frog = new Frog(name, age, gender);
+                            Frog frog = new Frog(animalInfo[0], int.Parse(animalInfo[1]), animalInfo[2]);
                             Console.WriteLine(frog.PrintAnimal(kindOfAnimal, frog));
                             break;
                         case "Kitten":
-                            Kitten kitten = new Kitten(name, age);
+                            Kitten kitten = new Kitten(animalInfo[0], int.Parse(animalInfo[1]));
                             Console.WriteLine(kitten.PrintAnimal(kindOfAnimal, kitten));
                             break;
                         case "Tomcat":
-                            Tomcat tomcat = new(name, age);
+                            Tomcat tomcat = new(animalInfo[0], int.Parse(animalInfo[1]));
                             Console.WriteLine(tomcat.PrintAnimal(kindOfAnimal, tomcat));
                             break;
                     }
