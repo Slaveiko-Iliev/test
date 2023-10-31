@@ -1,13 +1,17 @@
 ﻿
 
+using System;
+
 namespace Animals
 {
-    public class Cat : Animals
+    public class Cat : Animal
     {
+        private const string Sound = "Meow meow";
+
         public Cat(string name, int age, string gender) : base(name, age, gender)
         {
         }
 
-        //public override string ProduceSound() => "Meow meow";
+        public override string ProduceSound() => Sound;
     }
 }
