@@ -1,88 +1,72 @@
-﻿List<Person>persons = new ();
+﻿using _03.ShoppingSpree.Models;
+using System;
+using System.Security.Cryptography.X509Certificates;
+
+List<Person>persons = new ();
 List<Product>products = new ();
 
-string[] personsInput = Console.ReadLine()
-    .Split(";", StringSplitOptions.RemoveEmptyEntries) ;
-
-foreach(string currentPerson in personsInput)
+try
 {
-    string[] personInfo = currentPerson
-        .Split("=", StringSplitOptions.RemoveEmptyEntries) ;
-    string personName = personInfo[0] ;
-    decimal personMoney = decimal.Parse(personInfo[1]);
-    Person person = new Person(personName, personMoney) ;
-    persons.Add(person);
-}
-
-string[] productsInput = Console.ReadLine()
+    string[] personsInput = Console.ReadLine()
     .Split(";", StringSplitOptions.RemoveEmptyEntries);
 
-foreach (string currentProduct in productsInput)
+    foreach (string currentPerson in personsInput)
+    {
+        string[] personInfo = currentPerson
+            .Split("=", StringSplitOptions.RemoveEmptyEntries);
+        string personName = personInfo[0];
+        decimal personMoney = decimal.Parse(personInfo[1]);
+        Person person = new Person(personName, personMoney);
+        persons.Add(person);
+    }
+
+    string[] productsInput = Console.ReadLine()
+    .Split(";", StringSplitOptions.RemoveEmptyEntries);
+
+    foreach (string currentProduct in productsInput)
+    {
+        string[] productInfo = currentProduct
+            .Split("=", StringSplitOptions.RemoveEmptyEntries);
+        string productName = productInfo[0];
+        decimal productCost = decimal.Parse(productInfo[1]);
+        Product product = new Product(productName, productCost);
+        products.Add(product);
+    }
+}
+catch (ArgumentException ex)
 {
-    string[] productInfo = currentProduct
-        .Split("=", StringSplitOptions.RemoveEmptyEntries);
-    string productName = productInfo[0];
-    decimal productCost = decimal.Parse(productInfo[1]);
-    Product product = new Product(productName, productCost) ;
-    products.Add(product);
+    Console.WriteLine(ex.Message);
+    return;
 }
 
 string input = string.Empty ;
 
 while ((input = Console.ReadLine()) != "END")
 {
+    string[] buyInfo = input
+        .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-}
+    Person person = persons.FirstOrDefault(p => p.Name == buyInfo[0]);
+    Product product = products.FirstOrDefault(p => p.ProductName == buyInfo[1]);
 
-class Product
-{
-    private string _productName;
-    private decimal _productCost;
-
-    public Product(string productName, decimal productCost)
+    if (!person.BuyProduct(person, product))
     {
-        ProductName = productName;
-        ProductCost = productCost;
+        Console.WriteLine($"{person.Name} can't afford {product.ProductName}");
     }
-
-    public string ProductName
-	{
-		get => _productName;
-        private set
-        {
-			if (string.IsNullOrEmpty (value))
-			{
-                throw new ArgumentException ("Name cannot be empty");
-            }
-            _productName = value;
-        }
-	}
-    public decimal ProductCost
+    else
     {
-        get => _productCost;
-        private set
-        {
-            if (value < 0)
-            {
-                throw new ArgumentException ("Money cannot be negative");
-            }
-            _productCost = value;
-        }
+        Console.WriteLine($"{person.Name} bought {product.ProductName}");
     }
 }
 
-class Person
+foreach (Person person in persons)
 {
-    private List<Product> _personProducts;
-
-    public Person(string name, decimal money)
+    if (person.Products.Count > 0)
     {
-        Name = name;
-        Money = money;
-        _personProducts = new List<Product>();
+        Console.WriteLine($"{person.Name} - {string.Join(", ", person.Products).ToString()}");
     }
-
-    public string Name { get; private set; }
-    public decimal Money { get; private set; }
-    public IReadOnlyList<Product> Products { get => _personProducts; }
+    else if(person.Products.Count == 0)
+    {
+        Console.WriteLine($"{person.Name} - Nothing bought");
+    }
 }
