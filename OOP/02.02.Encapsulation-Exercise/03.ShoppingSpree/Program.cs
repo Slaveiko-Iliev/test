@@ -14,6 +14,10 @@ try
     {
         string[] personInfo = currentPerson
             .Split("=", StringSplitOptions.RemoveEmptyEntries);
+        if (personInfo.Length < 2)
+        {
+            throw new ArgumentException("Name cannot be empty");
+        }
         string personName = personInfo[0];
         decimal personMoney = decimal.Parse(personInfo[1]);
         Person person = new Person(personName, personMoney);
@@ -49,13 +53,16 @@ while ((input = Console.ReadLine()) != "END")
     Person person = persons.FirstOrDefault(p => p.Name == buyInfo[0]);
     Product product = products.FirstOrDefault(p => p.ProductName == buyInfo[1]);
 
-    if (!person.BuyProduct(person, product))
+    if (person is not null && product is not null)
     {
-        Console.WriteLine($"{person.Name} can't afford {product.ProductName}");
-    }
-    else
-    {
-        Console.WriteLine($"{person.Name} bought {product.ProductName}");
+        if (!person.BuyProduct(person, product))
+        {
+            Console.WriteLine($"{person.Name} can't afford {product.ProductName}");
+        }
+        else
+        {
+            Console.WriteLine($"{person.Name} bought {product.ProductName}");
+        }
     }
 }
 

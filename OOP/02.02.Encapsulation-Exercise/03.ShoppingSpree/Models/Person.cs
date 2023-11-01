@@ -52,5 +52,14 @@
 
             return isBuyProduct;
         }
+
+        public override string ToString()
+        {
+            string productsString = _personProducts.Any()
+                 ? string.Join(", ", _personProducts.Select(p => p.ProductName))
+                 : "Nothing bought";
+
+            return $"{Name} - {productsString}";
+        }
     }
 }
