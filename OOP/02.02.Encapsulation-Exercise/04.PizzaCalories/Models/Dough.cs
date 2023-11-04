@@ -10,13 +10,16 @@ namespace _04.PizzaCalories.Models
         private double grams;
         private string flourType;
         private string bakingTechnique;
-        private Dictionary<string, double> flourModifiers = new Dictionary<string, double>()
+        private readonly Dictionary<string, double> flourTypeModifiers = new Dictionary<string, double>()
         {
-            { "White", 1.5 },
-            { "Wholegrain", 1.0 },
-            { "Crispy", 0.9 },
-            { "Chewy", 1.1 },
-            { "Homemade", 1.0 }
+            { "white", 1.5 },
+            { "wholegrain", 1.0 }
+        };
+        private readonly Dictionary<string, double> flourTechniqueModifiers = new Dictionary<string, double>()
+        {
+            { "crispy", 0.9 },
+            { "chewy", 1.1 },
+            { "comemade", 1.0 }
         };
 
         public Dough(string flourType, string bakingTechnique, double grams)
@@ -31,11 +34,11 @@ namespace _04.PizzaCalories.Models
             get => flourType;
             init
             {
-                if (!flourModifiers.ContainsKey(value))
+                if (!flourTypeModifiers.ContainsKey(value.ToLower()))
                 {
                     throw new ArgumentException(ExceptionMessages.TypeOfDough);
                 }
-                flourType = value;
+                flourType = value.ToLower();
             }
         }
         private string BakingTechnique
@@ -43,11 +46,11 @@ namespace _04.PizzaCalories.Models
             get => bakingTechnique;
             init
             {
-                if (!flourModifiers.ContainsKey(value))
+                if (!flourTechniqueModifiers.ContainsKey(value.ToLower()))
                 {
                     throw new ArgumentException(ExceptionMessages.TypeOfDough);
                 }
-                bakingTechnique = value;
+                bakingTechnique = value.ToLower();
             }
         }
         public double Grams
@@ -63,6 +66,6 @@ namespace _04.PizzaCalories.Models
             }
         }
 
-        public string GetDoughCalories() => $"{Grams * BaseCalories * flourModifiers[FlourType] * flourModifiers[BakingTechnique]:f2}";
+        public double GetDoughCalories() => Grams * BaseCalories * flourTypeModifiers[FlourType] * flourTechniqueModifiers[BakingTechnique];
     }
 }
