@@ -1,40 +1,38 @@
 ﻿using _05.BirthdayCelebrations;
 
-List<ICheckID> listOfPassingThrough = new List<ICheckID>();
+List<IBirthdatable> listOfIBirthdatable = new List<IBirthdatable>();
 
 string input = string.Empty;
 
 while ((input = Console.ReadLine().ToLower()) != "end")
 {
-    string[] passingThroughInfo = input
+    string[] inputInfo = input
         .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-    ICheckID passingThrough;
-
-    if (passingThroughInfo.Length == 2)
+    if (inputInfo[0] == "citizen")
     {
-        passingThrough = new Robots(passingThroughInfo[0], passingThroughInfo[1]);
-        listOfPassingThrough.Add(passingThrough);
-
+        IBirthdatable birthdatable = new Citizens(inputInfo[1], int.Parse(inputInfo[2]), inputInfo[3], inputInfo[4]);
+        listOfIBirthdatable.Add(birthdatable);
     }
-    else if (passingThroughInfo.Length == 3)
+    else if (inputInfo[0] == "pet")
     {
-        passingThrough = new Citizens(passingThroughInfo[0], int.Parse(passingThroughInfo[1]), passingThroughInfo[2]);
-        listOfPassingThrough.Add(passingThrough);
-    }
-
-    
+        IBirthdatable birthdatable = new Pet(inputInfo[1], inputInfo[2]);
+        listOfIBirthdatable.Add(birthdatable);
+    }    
 }
 
-string endOfID = Console.ReadLine();
+string year = Console.ReadLine();
 
-foreach (var passingThrough in listOfPassingThrough)
+foreach (var iBirthdatable in listOfIBirthdatable)
 {
-    if (passingThrough.IsValidID(endOfID))
+    if (iBirthdatable.CheckDate(year))
     {
-        Console.WriteLine(passingThrough.ID);
+        Console.WriteLine(iBirthdatable.Date);
     }
 }
+
+
+
 
 
 
