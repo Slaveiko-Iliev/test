@@ -1,9 +1,9 @@
-﻿namespace _04.BorderControl
+﻿namespace _05.BirthdayCelebrations
 {
     public interface ICheckID
     {
         public string ID { get; set; }
 
-        public bool IsNotValidID(string endOfID);
+        public bool IsValidID(string endOfID);
     }
 }

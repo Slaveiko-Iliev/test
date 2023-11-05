@@ -1,4 +1,4 @@
-﻿namespace _04.BorderControl
+﻿namespace _05.BirthdayCelebrations
 {
     public class Robots : ICheckID
     {
@@ -11,6 +11,6 @@
         public string Name { get; set; }
         public string ID { get; set; }
 
-        public bool IsNotValidID(string endOfID) => (ID.Substring(ID.Length - endOfID.Length) == endOfID);
+        public bool IsValidID(string endOfID) => (ID.Substring(ID.Length - endOfID.Length) == endOfID);
     }
 }

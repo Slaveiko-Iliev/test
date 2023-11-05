@@ -1,4 +1,4 @@
-﻿namespace _04.BorderControl
+﻿namespace _05.BirthdayCelebrations
 {
     public class Citizens : ICheckID
     {
@@ -12,7 +12,8 @@
         public string Name { get; set; }
         public int Age { get; set; }
         public string ID { get; set; }
+        public DateOnly DateOnly { get; set; }
 
-        public bool IsNotValidID(string endOfID) => (ID.Substring(ID.Length - endOfID.Length) == endOfID);
+        public bool IsValidID(string endOfID) => (ID.Substring(ID.Length - endOfID.Length) == endOfID);
     }
 }

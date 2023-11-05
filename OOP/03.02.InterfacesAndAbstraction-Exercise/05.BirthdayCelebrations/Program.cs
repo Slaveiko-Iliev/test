@@ -1,4 +1,4 @@
-﻿using _04.BorderControl;
+﻿using _05.BirthdayCelebrations;
 
 List<ICheckID> listOfPassingThrough = new List<ICheckID>();
 
@@ -30,7 +30,7 @@ string endOfID = Console.ReadLine();
 
 foreach (var passingThrough in listOfPassingThrough)
 {
-    if (passingThrough.IsNotValidID(endOfID))
+    if (passingThrough.IsValidID(endOfID))
     {
         Console.WriteLine(passingThrough.ID);
     }
