@@ -4,59 +4,53 @@
     {
         public static void Main()
         {
-            IBrowsingable smartBrowse = new Smartphone();
-            ICallingable smartCall = new Smartphone();
-            ICallingable stationaryPhone = new StationaryPhone();
+            ICallingable phone;
 
-            
             string[] phoneNumbers = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string phoneNumber in phoneNumbers)
             {
                 bool IsValidNumber = true;
-                
-                foreach (var ch in phoneNumber)
+                                
+                if (!phoneNumber.All(c => char.IsDigit(c)))
                 {
-                    if (!char.IsDigit(ch))
-                    {
-                        Console.WriteLine("Invalid number!");
-                        IsValidNumber = false;
-                        break;
-                    }
+                    
+                    IsValidNumber = false;
                 }
+
                 if (IsValidNumber)
                 {
                     if (phoneNumber.Length == 10)
                     {
-                        Console.WriteLine(smartCall.Calling(phoneNumber));
+                        phone = new Smartphone();
                     }
                     else
                     {
-                        Console.WriteLine(stationaryPhone.Calling(phoneNumber));
+                        phone = new StationaryPhone();
                     }
+                    Console.WriteLine(phone.Calling(phoneNumber));
+                }
+                else
+                {
+                    Console.WriteLine("Invalid number!");
                 }
             }
-
+            
             string[] adreses = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
+            IBrowsingable smart = new Smartphone();
+
             foreach (string adres in adreses)
             {
-                bool IsValidAdres = true;
-
-                foreach (var ch in adres)
+                if (!adres.Any(c => char.IsDigit(c)))
                 {
-                    if (char.IsDigit(ch) )
-                    {
-                        Console.WriteLine("Invalid URL!");
-                        IsValidAdres = false;
-                        break;
-                    }
+                    Console.WriteLine(smart.Browsing(adres));
                 }
-                if (IsValidAdres)
+                else
                 {
-                    Console.WriteLine(smartBrowse.Browsing(adres));
+                    Console.WriteLine("Invalid URL!");
                 }
             }
         }
