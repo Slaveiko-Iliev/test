@@ -26,11 +26,20 @@ namespace _01.Vehicles.Models
         public double FuelConsumption { get; private set; }
         public double TankCapacity { get; init; }
 
-        public void Drive(double distance)
+        public void Drive(double distance, bool IsPeopleInBus)
         {
-            if ((FuelConsumption + DriveWirhPeople) * distance <= FuelQuantity)
+            double currentFuelConsumption = (FuelConsumption + DriveWirhPeople) * distance;
+
+
+            if (!IsPeopleInBus)
             {
-                FuelQuantity -= (FuelConsumption + DriveWirhPeople) * distance;
+                currentFuelConsumption = FuelConsumption * distance;
+            }
+
+            
+            if (currentFuelConsumption <= FuelQuantity)
+            {
+                FuelQuantity -= currentFuelConsumption * distance;
                 Console.WriteLine($"{this.GetType().Name} travelled {distance} km");
             }
             else

@@ -13,10 +13,11 @@ namespace _01.Vehicles.Models
         private const double LeakageCorrection = 0.95;
         private double fuelQuantity;
 
-        public Truck(double fuelQuantity, double fuelConsumption)
+        public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
             FuelQuantity = fuelQuantity;
             FuelConsumption = fuelConsumption;
+            TankCapacity = tankCapacity;
         }
 
         public double FuelQuantity

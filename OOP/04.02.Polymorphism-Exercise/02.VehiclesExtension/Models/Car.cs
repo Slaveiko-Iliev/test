@@ -7,10 +7,11 @@ namespace _01.Vehicles.Models
         private const double SummerCorrection = 0.9;
         private double fuelQuantity;
 
-        public Car(double fuelQuantity, double fuelConsumption)
+        public Car (double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
             FuelQuantity = fuelQuantity;
             FuelConsumption = fuelConsumption;
+            TankCapacity = tankCapacity;
         }
 
         public double FuelQuantity
