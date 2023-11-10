@@ -2,8 +2,12 @@
 {
     public interface IAnimal
     {
-        public string Name { get; }
+        string Name { get; }
         double Weight { get; }
         int FoodEaten { get; }
+
+
+        string MadeSound();
+        void Eat(IFood food);
     }
 }
