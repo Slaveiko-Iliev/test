@@ -16,12 +16,18 @@ namespace _01.Vehicles.Core
             string[] carInfo = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-            IVehicle car = new Car(double.Parse(carInfo[1]), double.Parse(carInfo[2]));
+            IVehicle car = new Car(double.Parse(carInfo[1]), double.Parse(carInfo[2]), double.Parse(carInfo[3]));
 
             string[] truckInfo = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-            IVehicle truck = new Truck(double.Parse(truckInfo[1]), double.Parse(truckInfo[2]));
+            IVehicle truck = new Truck(double.Parse(truckInfo[1]), double.Parse(truckInfo[2]), double.Parse(carInfo[3]));
+
+            string[] BusInfo = Console.ReadLine()
+                .Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+            IVehicle bus = new Bus(double.Parse(BusInfo[1]), double.Parse(BusInfo[2]), double.Parse(BusInfo[3]));
+
 
             int numberOfLines = int.Parse(Console.ReadLine());
 
@@ -38,11 +44,23 @@ namespace _01.Vehicles.Core
                     }
                     else car.Refuel(double.Parse(commandInfo[2]));
                 }
-                else
+                else if (commandInfo[1] == "Truck")
                 {
                     if (commandInfo[0] == "Drive")
                     {
                         truck.Drive(double.Parse(commandInfo[2]));
+                    }
+                    else truck.Refuel(double.Parse(commandInfo[2]));
+                }
+                else
+                {
+                    if (commandInfo[0] == "Drive")
+                    {
+                        bus.Drive(double.Parse(commandInfo[2]), true);
+                    }
+                    else if(commandInfo[0] == "DriveEmpty")
+                    {
+                        bus.Drive(double.Parse(commandInfo[2]), false);
                     }
                     else truck.Refuel(double.Parse(commandInfo[2]));
                 }

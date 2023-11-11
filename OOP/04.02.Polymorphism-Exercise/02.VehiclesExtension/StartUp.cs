@@ -1,7 +1,7 @@
 ﻿using _01.Vehicles.Core;
 using _01.Vehicles.Core.Interfaces;
 
-namespace _01.Vehicles.Models
+namespace _02.VehiclesExtension
 {
     public class StartUp
     {

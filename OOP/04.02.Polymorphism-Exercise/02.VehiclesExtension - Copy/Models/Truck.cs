@@ -1,20 +1,36 @@
 ﻿using _01.Vehicles.Models.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace _01.Vehicles.Models
 {
-    public class Car : IVehicle
+    public class Truck : IVehicle
     {
-        private const double SummerCorrection = 0.9;
-        
-        public Car(double fuelQuantity, double fuelConsumption)
+        private const double SummerCorrection = 1.6;
+        private const double LeakageCorrection = 0.95;
+        private double fuelQuantity;
+
+        public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
             FuelQuantity = fuelQuantity;
             FuelConsumption = fuelConsumption;
+            TankCapacity = tankCapacity;
         }
 
-        public double FuelQuantity { get; private set; }
-
+        public double FuelQuantity
+        {
+            get => fuelQuantity;
+            private set
+            {
+                if (value > TankCapacity) { value = 0; }
+                fuelQuantity = value;
+            }
+        }
         public double FuelConsumption { get; private set; }
+        public double TankCapacity { get; init; }
 
         public void Drive(double distance)
         {
@@ -30,7 +46,7 @@ namespace _01.Vehicles.Models
         }
         public void Refuel(double liters)
         {
-            FuelQuantity += liters;
+            FuelQuantity += liters * LeakageCorrection;
         }
     }
 }

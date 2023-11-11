@@ -7,7 +7,7 @@ namespace _04.WildFarm.Models.Animals
         private const double DogWeightMultiplier = 0.4;
 
 
-        public Dog(string name, double weight) : base(name, weight)
+        public Dog(string name, double weight, string livingRegion) : base(name, weight, livingRegion)
         {
         }
 
@@ -21,6 +21,6 @@ namespace _04.WildFarm.Models.Animals
             => "Woof!";
 
         public override string ToString()
-            => $"{base.ToString}{Weight}, {LivingRegion}, {FoodEaten}]";
+            => $"{base.ToString()}{Weight}, {LivingRegion}, {FoodEaten}]";
     }
 }

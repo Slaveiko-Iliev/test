@@ -12,6 +12,6 @@ namespace _04.WildFarm.Models.Animals
         public double WingSize { get; private set; }
 
         public override string ToString()
-            => $"{base.ToString}{WingSize}, {Weight}, {FoodEaten}]";
+            => $"{base.ToString()}{WingSize}, {Weight}, {FoodEaten}]";
     }
 }

@@ -6,7 +6,7 @@ namespace _04.WildFarm.Models.Animals
     {
         private const double CatWeightMultiplier = 0.3;
 
-        public Cat(string name, double weight) : base(name, weight)
+        public Cat(string name, double weight, string livingRegion, string breed) : base(name, weight, livingRegion, breed)
         {
         }
 

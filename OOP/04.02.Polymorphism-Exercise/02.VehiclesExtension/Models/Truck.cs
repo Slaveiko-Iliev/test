@@ -11,26 +11,16 @@ namespace _01.Vehicles.Models
     {
         private const double SummerCorrection = 1.6;
         private const double LeakageCorrection = 0.95;
-        private double fuelQuantity;
 
-        public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity)
+        public Truck(double fuelQuantity, double fuelConsumption)
         {
             FuelQuantity = fuelQuantity;
             FuelConsumption = fuelConsumption;
-            TankCapacity = tankCapacity;
         }
 
-        public double FuelQuantity
-        {
-            get => fuelQuantity;
-            private set
-            {
-                if (value > TankCapacity) { value = 0; }
-                fuelQuantity = value;
-            }
-        }
+        public double FuelQuantity { get; private set; }
+
         public double FuelConsumption { get; private set; }
-        public double TankCapacity { get; init; }
 
         public void Drive(double distance)
         {
