@@ -12,13 +12,27 @@ namespace _04.WildFarm.Models.Animals
 
         public string Name { get; private set; }
         public double Weight { get; private set; }
-        public int FoodEaten { get; init; }
+        public int FoodEaten { get; private set; }
+        protected abstract double WeightMultiplier { get; }
+
+        //Not IFood because you cannot cast Type to Interface for example (IFood)typeof(Meat)
+        protected abstract IReadOnlyCollection<Type> PreferredFoodTypes { get; }
 
         public void Eat(IFood food)
         {
-            throw new NotImplementedException();
+            if (!PreferredFoodTypes.Any(pf => food.GetType().Name == pf.Name))
+            {
+                throw new ArgumentException($"{this.GetType().Name} does not eat {food.GetType().Name}!");
+            }
+
+            Weight += food.Quantity * WeightMultiplier;
+
+            FoodEaten += food.Quantity;
         }
 
         public abstract string MadeSound();
+
+        public override string ToString()
+        => $"{GetType().Name} [{Name}, ";
     }
 }

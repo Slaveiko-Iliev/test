@@ -1,5 +1,7 @@
 ﻿using _04.WildFarm.Core.Interfaces;
+using _04.WildFarm.Factories.Interfaces;
 using _04.WildFarm.IO.Interfaces;
+using _04.WildFarm.Models.Interfaces;
 
 namespace _04.WildFarm.Core;
 
@@ -41,7 +43,7 @@ public class Engine : IEngine
 
                 IFood food = CreateFood();
 
-                writer.WriteLine(animal.ProduceSound());
+                writer.WriteLine(animal.MadeSound());
 
                 animal.Eat(food);
 
