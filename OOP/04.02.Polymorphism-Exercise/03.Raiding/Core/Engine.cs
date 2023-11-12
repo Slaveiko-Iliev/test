@@ -10,6 +10,7 @@ public class Engine : IEngine
     private readonly IReader reader;
     private readonly IWriter writer;
     private readonly IBaseHeroFactory heroFactory;
+    private readonly ICollection<IBaseHero> heroes;
 
     public Engine(
         IReader reader,
@@ -19,11 +20,11 @@ public class Engine : IEngine
         this.reader = reader;
         this.writer = writer;
         this.heroFactory = heroFactory;
+        heroes = new List<IBaseHero>();
     }
 
     public void Run()
     {
-        List<IBaseHero> heroes = new();
 
         int number = int.Parse(reader.ReadLine());
 
@@ -37,7 +38,7 @@ public class Engine : IEngine
                 IBaseHero hero = heroFactory.CreateHero(type, name);
                 heroes.Add(hero);
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 writer.WriteLine(ex.Message);
             }

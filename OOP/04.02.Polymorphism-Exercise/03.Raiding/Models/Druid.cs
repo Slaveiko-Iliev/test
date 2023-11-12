@@ -10,6 +10,6 @@
 
         public override int Power => DruidPower;
 
-        public override string CastAbility() => $"{GetType().Name} - {Name} healed for {Power}";
+        public override string CastAbility() => $"{this.GetType().Name} - {Name} healed for {Power}";
     }
 }

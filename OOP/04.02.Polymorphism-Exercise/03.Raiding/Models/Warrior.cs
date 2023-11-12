@@ -10,6 +10,6 @@
 
         public override int Power => WarriorPower;
 
-        public override string CastAbility() => $"{GetType().Name} - {Name} hit for {Power} damage";
+        public override string CastAbility() => $"{this.GetType().Name} - {Name} hit for {Power} damage";
     }
 }
