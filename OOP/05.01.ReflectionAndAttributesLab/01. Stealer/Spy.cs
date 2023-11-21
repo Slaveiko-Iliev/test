@@ -7,21 +7,29 @@ namespace Stealer
     {
         public string StealFieldInfo(string className, params string[] fields)
         {
+            Type typeOfClass = Type.GetType(className);
+
+            var testInstance = Activator.CreateInstance(typeOfClass);
+
             StringBuilder sb = new();
             sb.AppendLine($"Class under investigation: {className}");
 
-            Type typeOfClass = Type.GetType(className);
 
-            foreach (var field in fields)
+
+            foreach (var fieldName in fields)
             {
-                FieldInfo[] fieldsInfo = typeOfClass.GetFields((BindingFlags)60);
+                FieldInfo field = typeOfClass.GetField(fieldName, (BindingFlags)60);
 
-                foreach (var fieldInfo in fieldsInfo)
-                {
-                    string fieldValue = (string)fieldInfo.GetValue(null);
+                string fieldValue = (string)field.GetValue(testInstance);
 
-                    sb.AppendLine($"{fieldInfo.Name} = {fieldValue}");
-                }
+                sb.AppendLine($"{field.Name} = {fieldValue}");
+
+                //foreach (var fieldInfo in fieldsInfo)
+                //{
+                //    string fieldValue = (string)fieldInfo.GetValue(null);
+
+                //    
+                //}
 
             }
 
