@@ -4,6 +4,7 @@ namespace Database.Tests
     using NUnit.Framework;
     using NUnit.Framework.Internal;
     using System;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class DatabaseTests
@@ -45,6 +46,8 @@ namespace Database.Tests
         public void WhenAddMoreThan16Elements_ShouldThrowInvalidOperationException(int element)
         {
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => database.Add(element));
+            Assert.AreEqual("Array's capacity must be exactly 16 integers!", exception.Message);
+
         }
 
         [TestCase(4)]
@@ -79,6 +82,28 @@ namespace Database.Tests
 
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => database.Remove());
             Assert.AreEqual(errorInvalidOperationException, exception.Message);
+        }
+
+        [Test]
+        public void RemoveMethod_ShouldDecreaseCount()
+        {
+            database.Remove();
+
+            Assert.AreEqual(testDataBaseCount - 1, database.Count);
+        }
+
+        [Test]
+        public void RemoveMethod_ShouldWorkCorrectly()
+        {
+            List<int> databaseAsList = new(databaseInput);
+
+            for (int i = database.Count - 1; i >= 0; i--)
+            {
+                databaseAsList.RemoveAt(i);
+                database.Remove();
+
+                Assert.AreEqual(databaseAsList, database.Fetch());
+            }
         }
 
         [Test]
