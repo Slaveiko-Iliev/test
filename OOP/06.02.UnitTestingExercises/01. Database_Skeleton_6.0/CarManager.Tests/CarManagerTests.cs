@@ -56,5 +56,54 @@ namespace CarManager.Tests
 
             Assert.AreEqual("Fuel consumption cannot be zero or negative!", exception.Message);
         }
+
+
+        [TestCase(make, model, fuelConsumption, 0)]
+        [TestCase(make, model, fuelConsumption, -50)]
+        public void UsingZeroOrNegativeFuelCapacity_ShouldThrowArgumentException(string make, string model, double fuelConsumption, double fuelCapacity)
+        {
+            ArgumentException exception = Assert.Throws<ArgumentException>(() => car = new(make, model, fuelConsumption, fuelCapacity));
+
+            Assert.AreEqual("Fuel capacity cannot be zero or negative!", exception.Message);
+        }
+
+        [TestCase(0)]
+        [TestCase(-50)]
+        public void RefuelWithZeroOrNegativeAmount_ShouldThrowArgumentException(double fuelAmount)
+        {
+            ArgumentException exception = Assert.Throws<ArgumentException>(() => car.Refuel(fuelAmount));
+
+            Assert.AreEqual("Fuel amount cannot be zero or negative!", exception.Message);
+        }
+
+        [TestCase(50)]
+        public void Refuel_ShouldWorkCorrectly(double fuelAmount)
+        {
+            car.Refuel(fuelAmount);
+            Assert.AreEqual(fuelAmount, car.FuelAmount);
+        }
+
+        [TestCase(55)]
+        public void RefuelWithMoreThanCapacity_ShouldWorkCorrectly(double fuelAmount)
+        {
+            car.Refuel(fuelAmount);
+            Assert.AreEqual(car.FuelCapacity, car.FuelAmount);
+        }
+
+        [TestCase(500)]
+        public void WhenDriveWhitNotEnoughFuel_shouldThrowInvalidOperationException(double distance)
+        {
+            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => car.Drive(distance));
+            Assert.AreEqual("You don't have enough fuel to drive!", exception.Message);
+        }
+
+        [TestCase(5, 50)]
+        public void WhenDrive_FuelShouldDecreasedCorrectly(double distance, double fuelAmount)
+        {
+            car.Refuel(fuelAmount);
+            double currentAmount = car.FuelAmount;
+            car.Drive(distance);
+            Assert.AreEqual(currentAmount - (distance / 100 * fuelConsumption), car.FuelAmount);
+        }
     }
 }
