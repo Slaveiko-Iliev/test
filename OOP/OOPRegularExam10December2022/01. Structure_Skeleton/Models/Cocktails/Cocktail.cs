@@ -19,7 +19,7 @@ namespace ChristmasPastryShop.Models.Cocktails
         public string Name
         {
             get => _name;
-            protected set
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -29,7 +29,7 @@ namespace ChristmasPastryShop.Models.Cocktails
             }
         }
 
-        public string Size { get; protected set; }
+        public string Size { get; private set; }
 
         public double Price
         {

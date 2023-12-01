@@ -8,7 +8,7 @@ namespace ChristmasPastryShop.Models.Delicacies
     {
         private string _name;
 
-        protected Delicacy(string delicacyName, double price)
+        public Delicacy(string delicacyName, double price)
         {
             Name = delicacyName;
             Price = price;
@@ -17,7 +17,7 @@ namespace ChristmasPastryShop.Models.Delicacies
         public string Name
         {
             get => _name;
-            protected set
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -28,7 +28,7 @@ namespace ChristmasPastryShop.Models.Delicacies
             }
         }
 
-        public double Price { get; protected set; }
+        public double Price { get; private set; }
 
         public override string ToString() => $"{this.Name} - {this.Price:f2} lv";
     }

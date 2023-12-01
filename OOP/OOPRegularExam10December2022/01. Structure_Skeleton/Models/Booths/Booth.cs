@@ -1,6 +1,7 @@
 ﻿using ChristmasPastryShop.Models.Booths.Contracts;
 using ChristmasPastryShop.Models.Cocktails.Contracts;
 using ChristmasPastryShop.Models.Delicacies.Contracts;
+using ChristmasPastryShop.Repositories;
 using ChristmasPastryShop.Repositories.Contracts;
 using ChristmasPastryShop.Utilities.Messages;
 using System;
@@ -13,8 +14,8 @@ namespace ChristmasPastryShop.Models.Booths
         private int _capacity;
         private double _currentBill;
         private double _turnover;
-        private IRepository<IDelicacy> _delicacyMenu;
-        private IRepository<ICocktail> _cocktailMenu;
+        private DelicacyRepository _delicacyMenu;
+        private CocktailRepository _cocktailMenu;
         private bool _isReserved;
 
         public Booth(int boothId, int capacity)
@@ -23,8 +24,8 @@ namespace ChristmasPastryShop.Models.Booths
             Capacity = capacity;
             _currentBill = 0;
             _turnover = 0;
-            //_delicacyMenu = new 
-            //_cocktailMenu = new 
+            _delicacyMenu = new DelicacyRepository();
+            _cocktailMenu = new CocktailRepository();
             _isReserved = false;
         }
 
@@ -42,9 +43,9 @@ namespace ChristmasPastryShop.Models.Booths
             }
         }
 
-        public IRepository<IDelicacy> DelicacyMenu => _delicacyMenu;
+        public IRepository<IDelicacy> DelicacyMenu => (IRepository<IDelicacy>)_delicacyMenu;
 
-        public IRepository<ICocktail> CocktailMenu => _cocktailMenu;
+        public IRepository<ICocktail> CocktailMenu => (IRepository<ICocktail>)_cocktailMenu;
 
         public double CurrentBill => _currentBill;
 
@@ -89,24 +90,16 @@ namespace ChristmasPastryShop.Models.Booths
             //    sb.AppendLine( cocktail.ToString() );
             //}
 
+            sb.AppendLine("-Delicacy menu:");
+
+            //foreach (var delicacy in DelicacyMenu)
+            //{
+            //    sb.AppendLine( delicacy.ToString() );
+            //}
+
             return sb.ToString().TrimEnd();
         }
 
-        /*
-         * "
 
-
-
---{cocktail1.ToString()}
---{cocktail2.ToString()}
-…
---{cocktailN.ToString()}
--Delicacy menu:
---{delicacy1.ToString()}
---{delicacy2.ToString()}
-…
---{delicacyN.ToString()}"
-
-         * */
     }
 }
