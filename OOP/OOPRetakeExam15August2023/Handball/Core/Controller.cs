@@ -26,7 +26,7 @@ namespace Handball.Core
 
             sb.AppendLine("***League Standings***");
 
-            foreach (var team in _teams.Models.OrderByDescending(t => t.PointsEarned).ThenBy(t => t.Name))
+            foreach (var team in _teams.Models.OrderByDescending(t => t.PointsEarned).ThenByDescending(t => t.OverallRating).ThenBy(t => t.Name))
             {
                 sb.AppendLine(team.ToString());
             }
@@ -108,14 +108,17 @@ namespace Handball.Core
                 if (typeName == nameof(CenterBack))
                 {
                     player = new CenterBack(name);
+                    _players.AddModel(player);
                 }
                 else if (typeName == nameof(ForwardWing))
                 {
                     player = new ForwardWing(name);
+                    _players.AddModel(player);
                 }
                 else if (typeName == nameof(Goalkeeper))
                 {
                     player = new Goalkeeper(name);
+                    _players.AddModel(player);
                 }
                 return $"{name} is filed for the handball league.";
             }
