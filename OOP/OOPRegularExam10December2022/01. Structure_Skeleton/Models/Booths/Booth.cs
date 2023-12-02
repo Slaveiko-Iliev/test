@@ -14,8 +14,8 @@ namespace ChristmasPastryShop.Models.Booths
         private int _capacity;
         private double _currentBill;
         private double _turnover;
-        private DelicacyRepository _delicacyMenu;
-        private CocktailRepository _cocktailMenu;
+        private DelicacyRepository _delicacies;
+        private CocktailRepository _cocktails;
         private bool _isReserved;
 
         public Booth(int boothId, int capacity)
@@ -24,17 +24,17 @@ namespace ChristmasPastryShop.Models.Booths
             Capacity = capacity;
             _currentBill = 0;
             _turnover = 0;
-            _delicacyMenu = new DelicacyRepository();
-            _cocktailMenu = new CocktailRepository();
+            _delicacies = new DelicacyRepository();
+            _cocktails = new CocktailRepository();
             _isReserved = false;
         }
 
-        public int BoothId { get; protected set; }
+        public int BoothId { get; private set; }
 
         public int Capacity
         {
             get => _capacity;
-            protected set
+            private set
             {
                 if (value <= 0)
                 {
@@ -43,15 +43,15 @@ namespace ChristmasPastryShop.Models.Booths
             }
         }
 
-        public IRepository<IDelicacy> DelicacyMenu => (IRepository<IDelicacy>)_delicacyMenu;
+        public IRepository<IDelicacy> DelicacyMenu => _delicacies;
 
-        public IRepository<ICocktail> CocktailMenu => (IRepository<ICocktail>)_cocktailMenu;
+        public IRepository<ICocktail> CocktailMenu => _cocktails;
 
-        public double CurrentBill => _currentBill;
+        public double CurrentBill { get; private set; }
 
-        public double Turnover => _turnover;
+        public double Turnover { get; private set; }
 
-        public bool IsReserved => _isReserved;
+        public bool IsReserved { get; private set; }
 
         public void ChangeStatus()
         {
@@ -67,13 +67,13 @@ namespace ChristmasPastryShop.Models.Booths
 
         public void Charge()
         {
-            _turnover += CurrentBill;
-            _currentBill = 0;
+            Turnover += CurrentBill;
+            CurrentBill = 0;
         }
 
         public void UpdateCurrentBill(double amount)
         {
-            _currentBill += amount;
+            CurrentBill += amount;
         }
 
         public override string ToString()
@@ -85,17 +85,17 @@ namespace ChristmasPastryShop.Models.Booths
             sb.AppendLine($"Turnover: {Turnover:f2} lv");
             sb.AppendLine("-Cocktail menu:");
 
-            //foreach (var cocktail in CocktailMenu)
-            //{
-            //    sb.AppendLine( cocktail.ToString() );
-            //}
+            foreach (var cocktail in _cocktails.Models)
+            {
+                sb.AppendLine(cocktail.ToString());
+            }
 
             sb.AppendLine("-Delicacy menu:");
 
-            //foreach (var delicacy in DelicacyMenu)
-            //{
-            //    sb.AppendLine( delicacy.ToString() );
-            //}
+            foreach (var delicacy in _delicacies.Models)
+            {
+                sb.AppendLine(delicacy.ToString());
+            }
 
             return sb.ToString().TrimEnd();
         }

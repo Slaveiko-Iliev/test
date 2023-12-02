@@ -1,23 +1,23 @@
-﻿using ChristmasPastryShop.Models.Cocktails;
+﻿using ChristmasPastryShop.Models.Cocktails.Contracts;
 using ChristmasPastryShop.Repositories.Contracts;
 using System.Collections.Generic;
 
 namespace ChristmasPastryShop.Repositories
 {
-    public class CocktailRepository : IRepository<Cocktail>
+    public class CocktailRepository : IRepository<ICocktail>
     {
-        private List<Cocktail> _cocktailMenu;
+        private List<ICocktail> _cocktails;
 
         public CocktailRepository()
         {
-            _cocktailMenu = new List<Cocktail>();
+            _cocktails = new List<ICocktail>();
         }
 
-        public IReadOnlyCollection<Cocktail> Models => _cocktailMenu;
+        public IReadOnlyCollection<ICocktail> Models => _cocktails.AsReadOnly();
 
-        public void AddModel(Cocktail model)
+        public void AddModel(ICocktail model)
         {
-            _cocktailMenu.Add(model);
+            _cocktails.Add(model);
         }
     }
 }

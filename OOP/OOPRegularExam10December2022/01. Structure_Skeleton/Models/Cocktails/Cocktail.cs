@@ -9,7 +9,7 @@ namespace ChristmasPastryShop.Models.Cocktails
         private string _name;
         private double _price;
 
-        protected Cocktail(string cocktailName, string size, double price)
+        public Cocktail(string cocktailName, string size, double price)
         {
             Name = cocktailName;
             Size = size;

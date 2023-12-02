@@ -4,7 +4,7 @@
     {
         private const double PriceOfLarge = 10.50;
 
-        protected Hibernation(string cocktailName, string size) : base(cocktailName, size, PriceOfLarge)
+        public Hibernation(string cocktailName, string size) : base(cocktailName, size, PriceOfLarge)
         {
         }
     }

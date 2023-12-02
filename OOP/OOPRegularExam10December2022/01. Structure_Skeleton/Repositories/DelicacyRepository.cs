@@ -1,23 +1,23 @@
-﻿using ChristmasPastryShop.Models.Delicacies;
+﻿using ChristmasPastryShop.Models.Delicacies.Contracts;
 using ChristmasPastryShop.Repositories.Contracts;
 using System.Collections.Generic;
 
 namespace ChristmasPastryShop.Repositories
 {
-    public class DelicacyRepository : IRepository<Delicacy>
+    public class DelicacyRepository : IRepository<IDelicacy>
     {
-        private List<Delicacy> _delicacyMenu;
+        private List<IDelicacy> _delicacies;
 
         public DelicacyRepository()
         {
-            _delicacyMenu = new List<Delicacy>();
+            _delicacies = new List<IDelicacy>();
         }
 
-        public IReadOnlyCollection<Delicacy> Models => _delicacyMenu;
+        public IReadOnlyCollection<IDelicacy> Models => _delicacies.AsReadOnly();
 
-        public void AddModel(Delicacy model)
+        public void AddModel(IDelicacy model)
         {
-            _delicacyMenu.Add(model);
+            _delicacies.Add(model);
         }
     }
 }

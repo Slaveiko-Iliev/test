@@ -1,21 +1,21 @@
-﻿using ChristmasPastryShop.Models.Booths;
+﻿using ChristmasPastryShop.Models.Booths.Contracts;
 using ChristmasPastryShop.Repositories.Contracts;
 using System.Collections.Generic;
 
 namespace ChristmasPastryShop.Repositories
 {
-    internal class BoothRepository : IRepository<Booth>
+    public class BoothRepository : IRepository<IBooth>
     {
-        private List<Booth> _booths;
+        private List<IBooth> _booths;
 
         public BoothRepository()
         {
-            _booths = new List<Booth>();
+            _booths = new List<IBooth>();
         }
 
-        public IReadOnlyCollection<Booth> Models => (IReadOnlyCollection<Booth>)_booths;
+        public IReadOnlyCollection<IBooth> Models => (IReadOnlyCollection<IBooth>)_booths.AsReadOnly();
 
-        public void AddModel(Booth model)
+        public void AddModel(IBooth model)
         {
             _booths.Add(model);
         }
