@@ -12,21 +12,18 @@ namespace ChristmasPastryShop.Models.Booths
     public class Booth : IBooth
     {
         private int _capacity;
-        private double _currentBill;
-        private double _turnover;
         private DelicacyRepository _delicacies;
         private CocktailRepository _cocktails;
-        private bool _isReserved;
 
         public Booth(int boothId, int capacity)
         {
             BoothId = boothId;
             Capacity = capacity;
-            _currentBill = 0;
-            _turnover = 0;
+            CurrentBill = 0;
+            Turnover = 0;
             _delicacies = new DelicacyRepository();
             _cocktails = new CocktailRepository();
-            _isReserved = false;
+            IsReserved = false;
         }
 
         public int BoothId { get; private set; }
@@ -40,6 +37,7 @@ namespace ChristmasPastryShop.Models.Booths
                 {
                     throw new ArgumentException(ExceptionMessages.CapacityLessThanOne);
                 }
+                _capacity = value;
             }
         }
 
@@ -55,13 +53,13 @@ namespace ChristmasPastryShop.Models.Booths
 
         public void ChangeStatus()
         {
-            if (!_isReserved)
+            if (!IsReserved)
             {
-                _isReserved = true;
+                IsReserved = true;
             }
             else
             {
-                _isReserved = false;
+                IsReserved = false;
             }
         }
 
