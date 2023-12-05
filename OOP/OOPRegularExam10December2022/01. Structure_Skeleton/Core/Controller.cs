@@ -163,7 +163,52 @@ namespace ChristmasPastryShop.Core
 
         public string TryOrder(int boothId, string order)
         {
-            throw new NotImplementedException();
+            var subclassTypes = Assembly.GetAssembly(typeof(Cocktail))
+                .GetTypes()
+                .Where(t => t.IsSubclassOf(typeof(Cocktail)) && t.IsSubclassOf(typeof(Delicacy)));
+            string[] orderInfo = order
+                .Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+            string itemTypeName = orderInfo[0];
+            string itemName = orderInfo[1];
+            string itemCount = orderInfo[2];
+            string cocktailSize;
+
+            IBooth booth = _booths.Models.First(b => b.BoothId == boothId);
+
+            if (!subclassTypes.Any(t => t.Name == itemTypeName))
+            {
+                return $"{itemTypeName} is not recognized type!";
+            }
+
+            if (!(booth.CocktailMenu.Models.Any(t => t.Name == itemName) || booth.DelicacyMenu.Models.Any(t => t.Name == itemName)))
+            {
+                return $"There is no {itemTypeName} {itemName} available!";
+            }
+
+            if (itemTypeName == "Hibernation" || itemTypeName == "MulledWine")
+            {
+                cocktailSize = orderInfo[3];
+
+                if (!booth.CocktailMenu.Models.Any(c => c.GetType().Name == itemTypeName && c.Name == itemName && c.Size == cocktailSize))
+                {
+                    return $"There is no {cocktailSize} {itemName} available!";
+                }
+                ICocktail currentCocktail = booth.CocktailMenu.Models.First(c => c.GetType().Name == itemTypeName && c.Name == itemName && c.Size == cocktailSize);
+                booth.UpdateCurrentBill(currentCocktail.Price * double.Parse(itemCount));
+            }
+
+            if (itemTypeName == "Gingerbread" || itemTypeName == "Stolen")
+            {
+                if (!booth.DelicacyMenu.Models.Any(c => c.GetType().Name == itemTypeName && c.Name == itemName))
+                {
+                    return $"There is no {itemTypeName} {itemName} available!";
+                }
+                IDelicacy currentDelicacy = booth.DelicacyMenu.Models.First(c => c.GetType().Name == itemTypeName && c.Name == itemName);
+                booth.UpdateCurrentBill(currentDelicacy.Price * double.Parse(itemCount));
+            }
+
+            return $"Booth {boothId} ordered {itemCount} {itemName}!";
         }
     }
 }
