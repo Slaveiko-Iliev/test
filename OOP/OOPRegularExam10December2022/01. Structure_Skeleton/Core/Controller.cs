@@ -9,6 +9,7 @@ using ChristmasPastryShop.Repositories;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace ChristmasPastryShop.Core
 {
@@ -108,18 +109,15 @@ namespace ChristmasPastryShop.Core
 
             IDelicacy delicacy;
 
-            foreach (var type in subclassTypes)
+            if (delicacyTypeName == "Gingerbread")
             {
-                if (type.Name == "Gingerbread")
-                {
-                    delicacy = new Gingerbread(delicacyName);
-                    currentBooth.DelicacyMenu.AddModel(delicacy);
-                }
-                else if (type.Name == "Stolen")
-                {
-                    delicacy = new Stolen(delicacyName);
-                    currentBooth.DelicacyMenu.AddModel(delicacy);
-                }
+                delicacy = new Gingerbread(delicacyName);
+                currentBooth.DelicacyMenu.AddModel(delicacy);
+            }
+            else if (delicacyTypeName == "Stolen")
+            {
+                delicacy = new Stolen(delicacyName);
+                currentBooth.DelicacyMenu.AddModel(delicacy);
             }
 
             return $"{delicacyTypeName} {delicacyName} added to the pastry shop!";
@@ -127,12 +125,23 @@ namespace ChristmasPastryShop.Core
 
         public string BoothReport(int boothId)
         {
-            throw new NotImplementedException();
+            IBooth currentBooth = _booths.Models.First(b => b.BoothId == boothId);
+            return currentBooth.ToString();
         }
 
         public string LeaveBooth(int boothId)
         {
-            throw new NotImplementedException();
+            IBooth currentBooth = _booths.Models.Where(b => b.BoothId == boothId) as IBooth;
+
+            double currentBill = currentBooth.CurrentBill;
+            currentBooth.Charge();
+            currentBooth.ChangeStatus();
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Bill {currentBill:f2} lv");
+            sb.AppendLine($"Booth {boothId} is now available!");
+
+            return sb.ToString().TrimEnd();
         }
 
         public string ReserveBooth(int countOfPeople)
