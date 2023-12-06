@@ -131,7 +131,7 @@ namespace ChristmasPastryShop.Core
 
         public string LeaveBooth(int boothId)
         {
-            IBooth currentBooth = _booths.Models.Where(b => b.BoothId == boothId) as IBooth;
+            IBooth currentBooth = _booths.Models.First(b => b.BoothId == boothId);
 
             double currentBill = currentBooth.CurrentBill;
             currentBooth.Charge();
@@ -139,7 +139,7 @@ namespace ChristmasPastryShop.Core
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Bill {currentBill:f2} lv");
-            sb.AppendLine($"Booth {boothId} is now available!");
+            sb.Append($"Booth {boothId} is now available!");
 
             return sb.ToString().TrimEnd();
         }
@@ -165,7 +165,7 @@ namespace ChristmasPastryShop.Core
         {
             var subclassTypes = Assembly.GetAssembly(typeof(Cocktail))
                 .GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(Cocktail)) && t.IsSubclassOf(typeof(Delicacy)));
+                .Where(t => t.IsSubclassOf(typeof(Cocktail)) || t.IsSubclassOf(typeof(Delicacy)));
             string[] orderInfo = order
                 .Split("/", StringSplitOptions.RemoveEmptyEntries);
 
