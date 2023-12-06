@@ -1,9 +1,7 @@
 ﻿using BankLoan.Core.Contracts;
-using BankLoan.IO.Contracts;
 using BankLoan.IO;
+using BankLoan.IO.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BankLoan.Core
 {
@@ -16,7 +14,7 @@ namespace BankLoan.Core
         {
             this.reader = new Reader();
             this.writer = new Writer();
-            //this.controller = new Controller();
+            this.controller = new Controller();
         }
         public void Run()
         {

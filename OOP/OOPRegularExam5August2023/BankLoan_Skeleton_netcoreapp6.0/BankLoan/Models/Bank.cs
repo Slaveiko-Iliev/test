@@ -1,6 +1,7 @@
 ﻿using BankLoan.Models.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BankLoan.Models
 {
@@ -40,27 +41,58 @@ namespace BankLoan.Models
 
         public void AddClient(IClient Client)
         {
-            throw new NotImplementedException();
+            if (Capacity == Clients.Count)
+            {
+                throw new ArgumentException("Not enough capacity for this client.");
+            }
+            _clients.Add(Client);
         }
 
         public void AddLoan(ILoan loan)
         {
-            throw new NotImplementedException();
+            _loans.Add(loan);
         }
 
         public string GetStatistics()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Name: {Name}, Type: {GetType().Name}");
+
+            if (_clients.Count == 0)
+            {
+                sb.AppendLine("Clients: none");
+            }
+            else
+            {
+                List<string> clientsName = new();
+                foreach (var client in _clients)
+                {
+                    clientsName.Add(client.Name);
+                }
+                sb.Append($"Clients: {string.Join(" ", clientsName)}");
+                sb.AppendLine();
+            }
+            sb.Append($"Loans: {_loans.Count}, Sum of Rates: {SumRates()}");
+
+            return sb.ToString().TrimEnd();
         }
 
         public void RemoveClient(IClient Client)
         {
-            throw new NotImplementedException();
+            _clients.Remove(Client);
         }
 
         public double SumRates()
         {
-            throw new NotImplementedException();
+            double result = 0;
+
+            foreach (var loan in _loans)
+            {
+                result += loan.Amount * loan.InterestRate;
+            }
+
+            return result;
         }
     }
 }
