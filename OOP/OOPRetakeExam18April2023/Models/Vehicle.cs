@@ -78,7 +78,12 @@ namespace EDriveRent.Models
 
         public void Drive(double mileage)
         {
+            this.BatteryLevel = (int)(100 - Math.Round(mileage / MaxMileage * 100, 0));
 
+            if (this.GetType().Name == "CargoVan")
+            {
+                this.BatteryLevel -= 5;
+            }
         }
 
         public void Recharge()
