@@ -1,6 +1,7 @@
 ﻿using _01.Vehicles.Core.Interfaces;
 using _01.Vehicles.Models;
 using _01.Vehicles.Models.Interfaces;
+using System.Security.Cryptography.X509Certificates;
 
 namespace _01.Vehicles.Core
 {
@@ -9,7 +10,7 @@ namespace _01.Vehicles.Core
         public Engine()
         {
         }
-
+        
         public void Run()
         {
             string[] carInfo = Console.ReadLine()
@@ -20,12 +21,13 @@ namespace _01.Vehicles.Core
             string[] truckInfo = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-            IVehicle truck = new Truck(double.Parse(truckInfo[1]), double.Parse(truckInfo[2]), double.Parse(truckInfo[3]));
+            IVehicle truck = new Truck(double.Parse(truckInfo[1]), double.Parse(truckInfo[2]), double.Parse(carInfo[3]));
 
-            string[] busInfo = Console.ReadLine()
+            string[] BusInfo = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-            IVehicle bus = new Bus(double.Parse(busInfo[1]), double.Parse(busInfo[2]), double.Parse(busInfo[3]));
+            IVehicle bus = new Bus(double.Parse(BusInfo[1]), double.Parse(BusInfo[2]), double.Parse(BusInfo[3]));
+
 
             int numberOfLines = int.Parse(Console.ReadLine());
 
@@ -50,22 +52,21 @@ namespace _01.Vehicles.Core
                     }
                     else truck.Refuel(double.Parse(commandInfo[2]));
                 }
-                else if (commandInfo[1] == "Bus")
+                else
                 {
                     if (commandInfo[0] == "Drive")
                     {
-                        bus.Drive(double.Parse(commandInfo[2]));
+                        bus.Drive(double.Parse(commandInfo[2]), true);
                     }
-                    else if (commandInfo[0] == "DriveEmpty")
+                    else if(commandInfo[0] == "DriveEmpty")
                     {
-                        bus.Drive(double.Parse(commandInfo[2]));
+                        bus.Drive(double.Parse(commandInfo[2]), false);
                     }
-                    else bus.Refuel(double.Parse(commandInfo[2]));
+                    else truck.Refuel(double.Parse(commandInfo[2]));
                 }
             }
             Console.WriteLine($"Car: {car.FuelQuantity:f2}");
             Console.WriteLine($"Truck: {truck.FuelQuantity:f2}");
-            Console.WriteLine($"Bus: {bus.FuelQuantity:f2}");
         }
     }
 }

@@ -1,4 +1,9 @@
 ﻿using _01.Vehicles.Models.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace _01.Vehicles.Models
 {
@@ -6,34 +11,26 @@ namespace _01.Vehicles.Models
     {
         private const double SummerCorrection = 1.6;
         private const double LeakageCorrection = 0.95;
-        private double _fuelQuantity;
+        private double fuelQuantity;
 
         public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
+            FuelQuantity = fuelQuantity;
             FuelConsumption = fuelConsumption;
             TankCapacity = tankCapacity;
-            FuelQuantity = fuelQuantity;
         }
 
         public double FuelQuantity
         {
-            get => _fuelQuantity;
+            get => fuelQuantity;
             private set
             {
-                if (TankCapacity < value)
-                {
-                    _fuelQuantity = 0;
-                }
-                else
-                {
-                    _fuelQuantity = value;
-                }
+                if (value > TankCapacity) { value = 0; }
+                fuelQuantity = value;
             }
         }
-
         public double FuelConsumption { get; private set; }
-
-        public double TankCapacity { get; private set; }
+        public double TankCapacity { get; init; }
 
         public void Drive(double distance)
         {
@@ -49,24 +46,7 @@ namespace _01.Vehicles.Models
         }
         public void Refuel(double liters)
         {
-            if (liters <= 0)
-            {
-                Console.WriteLine("Fuel must be a positive number");
-            }
-            else
-            {
-                if (FuelQuantity + liters > TankCapacity)
-                {
-                    Console.WriteLine($"Cannot fit {liters} fuel in the tank");
-                }
-                else
-                {
-                    FuelQuantity += liters * LeakageCorrection;
-                }
-            }
-
-
-
+            FuelQuantity += liters * LeakageCorrection;
         }
     }
 }

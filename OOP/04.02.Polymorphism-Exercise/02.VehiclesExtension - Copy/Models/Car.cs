@@ -5,26 +5,34 @@ namespace _01.Vehicles.Models
     public class Car : IVehicle
     {
         private const double SummerCorrection = 0.9;
-        private double fuelQuantity;
+        private double _fuelQuantity;
 
-        public Car (double fuelQuantity, double fuelConsumption, double tankCapacity)
+        public Car(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
-            FuelQuantity = fuelQuantity;
             FuelConsumption = fuelConsumption;
             TankCapacity = tankCapacity;
+            FuelQuantity = fuelQuantity;
         }
 
         public double FuelQuantity
         {
-            get => fuelQuantity;
+            get => _fuelQuantity;
             private set
             {
-                if (value > TankCapacity) { value = 0; }
-                fuelQuantity = value;
+                if (TankCapacity < value)
+                {
+                    _fuelQuantity = 0;
+                }
+                else
+                {
+                    _fuelQuantity = value;
+                }
             }
         }
+
         public double FuelConsumption { get; private set; }
-        public double TankCapacity { get; init; }
+
+        public double TankCapacity { get; private set; }
 
         public void Drive(double distance)
         {
@@ -40,7 +48,23 @@ namespace _01.Vehicles.Models
         }
         public void Refuel(double liters)
         {
-            FuelQuantity += liters;
+            if (liters <= 0)
+            {
+                Console.WriteLine("Fuel must be a positive number");
+            }
+            else
+            {
+                if (FuelQuantity + liters > TankCapacity)
+                {
+                    Console.WriteLine($"Cannot fit {liters} fuel in the tank");
+                }
+                else
+                {
+                    FuelQuantity += liters;
+                }
+            }
+
+
         }
     }
 }
