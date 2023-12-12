@@ -10,6 +10,7 @@ namespace BookingApp.Models.Rooms
         protected Room(int bedCapacity)
         {
             BedCapacity = bedCapacity;
+            PricePerNight = 0;
         }
 
         public int BedCapacity { get; private set; }
@@ -23,7 +24,7 @@ namespace BookingApp.Models.Rooms
                 {
                     throw new ArgumentException("Price cannot be negative!");
                 }
-                _pricePerNight = 0;
+                _pricePerNight = value;
             }
         }
 

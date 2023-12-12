@@ -1,6 +1,7 @@
 namespace Railway.Tests
 {
     using NUnit.Framework;
+    using System;
 
     public class Tests
     {
@@ -24,6 +25,7 @@ namespace Railway.Tests
 
         [TestCase("   ")]
         [TestCase("")]
+        [TestCase(null)]
         public void WhenUsingNullOrWhiteSpaceForName_ShouldThrowArgumentException(string name)
         {
             ArgumentException ex = Assert.Throws<ArgumentException>(() => railwayStation = new RailwayStation(name));
@@ -36,6 +38,12 @@ namespace Railway.Tests
             railwayStation.NewArrivalOnBoard(trainName);
             Assert.AreEqual(1, railwayStation.ArrivalTrains.Count);
         }
+
+        //public void NewArrivalOnBoard_ShouldWorkCorrectly(string trainName)
+        //{
+        //    railwayStation.NewArrivalOnBoard(trainName);
+        //    Assert.AreEqual(1, railwayStation.ArrivalTrains.Count);
+        //}
 
         [TestCase("NumberOne")]
         public void WhenWrongTrainHasArrived_ShouldReturnMessage(string trainName)

@@ -53,7 +53,7 @@ namespace BookingApp.Models.Bookings
             get => _childrenCount;
             private set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentException("Children count cannot be negative!");
                 }

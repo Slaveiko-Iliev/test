@@ -7,9 +7,9 @@ namespace UniversityLibrary
         static void Main(string[] args)
         {
             UniversityLibrary ul = new UniversityLibrary();
-            TextBook textBook = new TextBook("Title", "Author", "Category");
-            ul.AddTextBookToLibrary(textBook);
 
+            ul.AddTextBookToLibrary(textBook);
+            TextBook textBook = new TextBook("Title", "Author", "Category");
             foreach (var book in ul.Catalogue)
             {
                 Console.WriteLine(book.ToString());
