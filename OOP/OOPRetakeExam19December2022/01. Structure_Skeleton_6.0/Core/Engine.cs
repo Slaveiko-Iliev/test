@@ -18,7 +18,7 @@
         {
             this.reader = new Reader();
             this.writer = new Writer();
-            //this.controller = new Controller();
+            this.controller = new Controller();
         }
 
         public void Run()
@@ -76,7 +76,7 @@
                         int universityId = int.Parse(input[1]);
 
                         result = controller.UniversityReport(universityId);
-                    }                    
+                    }
 
                     writer.WriteLine(result);
                 }
