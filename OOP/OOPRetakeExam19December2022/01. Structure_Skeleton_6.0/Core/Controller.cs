@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UniversityCompetition.Core.Contracts;
 using UniversityCompetition.Models;
 using UniversityCompetition.Models.Contracts;
@@ -28,7 +29,7 @@ namespace UniversityCompetition.Core
                 return $"{firstName} {lastName} is already added in the repository.";
             }
 
-            IStudent currentStudent = new Student(students.Models.Count, firstName, lastName);
+            IStudent currentStudent = new Student(students.Models.Count + 1, firstName, lastName);
 
             students.AddModel(currentStudent);
 
@@ -71,7 +72,12 @@ namespace UniversityCompetition.Core
             }
 
             int universityId = universities.Models.Count + 1;
-            List<int> requiredSubjectsAsInt = requiredSubjects.Select(int.Parse).ToList();
+            List<int> requiredSubjectsAsInt = new();
+
+            foreach (var subjectName in requiredSubjects)
+            {
+                requiredSubjectsAsInt.Add(subjects.FindByName(subjectName).Id);
+            }
 
             IUniversity currentUniversity = new University(universityId, universityName, category, capacity, requiredSubjectsAsInt);
 
@@ -82,17 +88,84 @@ namespace UniversityCompetition.Core
 
         public string ApplyToUniversity(string studentName, string universityName)
         {
-            throw new NotImplementedException();
+            string[] studentFullName = studentName.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            string studentFirstName = studentFullName[0];
+            string studentLastName = studentFullName[1];
+
+            if (!students.Models.Any(stu => stu.FirstName == studentFirstName && stu.LastName == studentLastName))
+            {
+                return $"{studentFirstName} {studentLastName} is not registered in the application!";
+            }
+
+            if (!universities.Models.Any(uni => uni.Name == universityName))
+            {
+                return $"{universityName} is not registered in the application!";
+            }
+
+            bool isCovered = true;
+            IUniversity currentUniversity = universities.FindByName(universityName);
+            IStudent currentStudent = students.Models.First(stu => stu.FirstName == studentFirstName && stu.LastName == studentLastName);
+
+            foreach (var exam in currentUniversity.RequiredSubjects)
+            {
+                if (!currentStudent.CoveredExams.Contains(exam))
+                {
+                    isCovered = false;
+                }
+            }
+
+            if (!isCovered)
+            {
+                return $"{studentName} has not covered all the required exams for {universityName} university!";
+            }
+
+            if (currentStudent.University == currentUniversity)
+            {
+                return $"{studentFirstName} {studentLastName} has already joined {currentUniversity.Name}.";
+            }
+
+            currentStudent.JoinUniversity(currentUniversity);
+
+            return $"{studentFirstName} {studentLastName} joined {universityName} university!";
         }
 
         public string TakeExam(int studentId, int subjectId)
         {
-            throw new NotImplementedException();
+            if (!students.Models.Any(stu => stu.Id == studentId))
+            {
+                return "Invalid student ID!";
+            }
+
+            if (!subjects.Models.Any(obj => obj.Id == subjectId))
+            {
+                return "Invalid subject ID!";
+            }
+
+            IStudent currentStudent = students.Models.First(stu => stu.Id == studentId);
+            ISubject currentSubject = subjects.Models.First(obj => obj.Id == subjectId);
+
+            if (currentStudent.CoveredExams.Contains(subjectId))
+            {
+                return $"{currentStudent.FirstName} {currentStudent.LastName} has already covered exam of {currentSubject.Name}.";
+            }
+
+            currentStudent.CoverExam(currentSubject);
+
+            return $"{currentStudent.FirstName} {currentStudent.LastName} covered {currentSubject.Name} exam!";
         }
 
         public string UniversityReport(int universityId)
         {
-            throw new NotImplementedException();
+            IUniversity currentUniversity = universities.FindById(universityId);
+
+            StringBuilder sb = new();
+
+            sb.AppendLine($"*** {currentUniversity.Name} ***");
+            sb.AppendLine($"Profile: {currentUniversity.Category}");
+            sb.AppendLine($"Students admitted: {students.Models.Where(st => st.University == currentUniversity).Count()}");
+            sb.AppendLine($"University vacancy: {currentUniversity.Capacity - students.Models.Where(st => st.University == currentUniversity).Count()}");
+
+            return sb.ToString().TrimEnd();
         }
     }
 }
