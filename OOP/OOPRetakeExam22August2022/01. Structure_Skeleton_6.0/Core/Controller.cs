@@ -9,6 +9,7 @@ using BookingApp.Repositories;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace BookingApp.Core
 {
@@ -48,7 +49,8 @@ namespace BookingApp.Core
                 IRoom roomForBooking = hotel.Rooms.All()
                     .Where(r => r.PricePerNight > 0)
                     .Where(r => r.BedCapacity >= adults + children)
-                    .FirstOrDefault(r => r.BedCapacity == adults + children);
+                    .OrderBy(r => r.BedCapacity)
+                    .FirstOrDefault();
 
                 if (roomForBooking != null)
                 {
@@ -63,54 +65,64 @@ namespace BookingApp.Core
 
         public string HotelReport(string hotelName)
         {
-            var currentHotel = hotels.All().Where(h => h.FullName == hotelName);
+            var currentHotel = hotels.Select(hotelName);
 
             if (currentHotel == null)
             {
                 return $"Profile {hotelName} doesn't exist!";
             }
 
+            StringBuilder sb = new();
 
+            sb.AppendLine($"Hotel name: {hotelName}");
+            sb.AppendLine($"--{currentHotel.Category} star hotel");
+            sb.AppendLine($"--Turnover: {currentHotel.Turnover:f2} $");
+            sb.AppendLine("--Bookings:");
+            sb.AppendLine();
+
+            if (currentHotel.Bookings.All().Count == 0)
+            {
+                sb.AppendLine("none");
+            }
+            else
+            {
+                foreach (IBooking currentBooking in currentHotel.Bookings.All())
+                {
+                    sb.AppendLine(currentBooking.BookingSummary());
+                    sb.AppendLine();
+                }
+            }
+
+            return sb.ToString().TrimEnd();
         }
 
         public string SetRoomPrices(string hotelName, string roomTypeName, double price)
         {
-            if (!hotels.All().Any(ho => ho.FullName == hotelName))
+            if (hotels.Select(hotelName) == null)
             {
                 return $"Profile {hotelName} doesn’t exist!";
             }
-            var subclassTypes = Assembly
-                .GetAssembly(typeof(Room))
-                .GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(Room)));
 
-            bool isValid = false;
-
-            foreach (var room in subclassTypes)
+            if (roomTypeName != nameof(DoubleBed) && roomTypeName != nameof(Studio) && roomTypeName != nameof(Apartment))
             {
-                if (room.Name == roomTypeName)
-                {
-                    isValid = true;
-                    break;
-                }
+                throw new ArgumentException("Incorrect room type!");
             }
 
-            if (!isValid)
-            {
-                throw new ArgumentNullException("Incorrect room type!");
-            }
+            IHotel currentHotel = hotels.Select(hotelName);
 
-            if (!hotels.All().First(ho => ho.FullName == hotelName).Rooms.All().Any(r => r.GetType().Name == roomTypeName))
+            if (currentHotel.Rooms.Select(roomTypeName) == null)
             {
                 return $"Room type is not created yet!";
             }
 
-            if (hotels.All().First(ho => ho.FullName == hotelName).Rooms.All().First(r => r.GetType().Name == roomTypeName).PricePerNight != 0)
+            IRoom currentRoom = currentHotel.Rooms.Select(roomTypeName);
+
+            if (currentRoom.PricePerNight > 0)
             {
                 return $"Price is already set!";
             }
 
-            hotels.All().First(ho => ho.FullName == hotelName).Rooms.All().First(r => r.GetType().Name == roomTypeName).SetPrice(price);
+            currentRoom.SetPrice(price);
 
             return $"Price of {roomTypeName} room type in {hotelName} hotel is set!";
         }

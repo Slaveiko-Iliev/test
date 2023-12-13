@@ -18,7 +18,6 @@ namespace BookingApp.Repositories
 
         public IReadOnlyCollection<IRoom> All() => _rooms.AsReadOnly();
 
-        // ???
-        public IRoom Select(string criteria) => _rooms.Where(r => r.GetType().Name == criteria) as IRoom;
+        public IRoom Select(string criteria) => _rooms.FirstOrDefault(r => r.GetType().Name == criteria);
     }
 }

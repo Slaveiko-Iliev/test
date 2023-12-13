@@ -18,6 +18,6 @@ namespace BookingApp.Repositories
 
         public IReadOnlyCollection<IBooking> All() => _bookings.AsReadOnly();
 
-        public IBooking Select(string criteria) => _bookings.FirstOrDefault(b => b.BookingNumber == int.Parse(criteria)) as IBooking;
+        public IBooking Select(string criteria) => _bookings.FirstOrDefault(b => b.BookingNumber == int.Parse(criteria));
     }
 }
