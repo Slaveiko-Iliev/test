@@ -12,7 +12,7 @@ namespace NauticalCatchChallenge.Repositories
             _models = new List<IDiver>();
         }
 
-        public IReadOnlyCollection<IDiver> Models => _models;
+        public IReadOnlyCollection<IDiver> Models => _models.AsReadOnly();
 
         public void AddModel(IDiver model) => _models.Add(model);
 

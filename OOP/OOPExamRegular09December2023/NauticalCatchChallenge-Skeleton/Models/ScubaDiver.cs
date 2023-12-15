@@ -2,7 +2,7 @@
 {
     public class ScubaDiver : Diver
     {
-        public const int _OxygenLevel = 540;
+        private const int _OxygenLevel = 540;
 
         public ScubaDiver(string name) : base(name, _OxygenLevel)
         {

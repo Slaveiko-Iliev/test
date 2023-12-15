@@ -8,7 +8,7 @@ namespace NauticalCatchChallenge.Models
         private int _oxygenLevel;
         private List<string> _catch;
 
-        public Diver(string name, int oxygenLevel)
+        protected Diver(string name, int oxygenLevel)
         {
             Name = name;
             OxygenLevel = oxygenLevel;
@@ -30,9 +30,20 @@ namespace NauticalCatchChallenge.Models
             }
         }
 
-        public int OxygenLevel { get; protected set; }
+        public int OxygenLevel
+        {
+            get => _oxygenLevel;
+            protected set //ToDo
+            {
+                _oxygenLevel = value;
+                if (_oxygenLevel < 0)
+                {
+                    _oxygenLevel = 0;
+                }
+            }
+        }
 
-        public IReadOnlyCollection<string> Catch => _catch;
+        public IReadOnlyCollection<string> Catch => _catch.AsReadOnly();
 
         public double CompetitionPoints { get; private set; }
 

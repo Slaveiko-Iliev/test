@@ -3,19 +3,19 @@ using NauticalCatchChallenge.Repositories.Contracts;
 
 namespace NauticalCatchChallenge.Repositories
 {
-    public class DiverRepository : IRepository<IDiver>
+    public class DiverRepository : IRepository<IFish>
     {
-        private List<IDiver> _models;
+        private List<IFish> _models;
 
         public DiverRepository()
         {
-            _models = new List<IDiver>();
+            _models = new List<IFish>();
         }
 
-        public IReadOnlyCollection<IDiver> Models => _models;
+        public IReadOnlyCollection<IFish> Models => _models.AsReadOnly();
 
-        public void AddModel(IDiver model) => _models.Add(model);
+        public void AddModel(IFish model) => _models.Add(model);
 
-        public IDiver GetModel(string name) => Models.FirstOrDefault(diver => diver.Name == name);
+        public IFish GetModel(string name) => Models.FirstOrDefault(diver => diver.Name == name);
     }
 }
