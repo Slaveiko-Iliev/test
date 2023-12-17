@@ -66,6 +66,22 @@ namespace VendingRetail.Tests
         {
             coffeeMat.AddDrink("coffee", 2);
             Assert.AreEqual("CoffeeMat is out of water!", coffeeMat.BuyDrink("coffee"));
+
+        }
+
+        [Test]
+        public void BuyDrinkShouldDecreaseWater()
+        {
+            coffeeMat.FillWaterTank();
+            coffeeMat.AddDrink("coffee", 2);
+            coffeeMat.BuyDrink("coffee");
+            Assert.AreEqual($"Water tank is filled with {80}ml", coffeeMat.FillWaterTank());
+        }
+
+        [Test]
+        public void TestBuyDrinkButNoWater2()
+        {
+            coffeeMat.AddDrink("coffee", 2);
             coffeeMat.FillWaterTank();
             coffeeMat.BuyDrink("coffee");
             coffeeMat.BuyDrink("coffee");
@@ -79,8 +95,14 @@ namespace VendingRetail.Tests
         {
             coffeeMat.FillWaterTank();
             Assert.AreEqual("coffee is not available!", coffeeMat.BuyDrink("coffee"));
+        }
+
+        [Test]
+        public void TestBuyInvalidDrink2()
+        {
+            coffeeMat.FillWaterTank();
             coffeeMat.AddDrink("coffee", 2);
-            Assert.AreEqual("coffeeLate is not available!", coffeeMat.BuyDrink("coffeeLate"));
+            Assert.AreEqual("coffeeLate is not available!", coffeeMat.BuyDrink("coffeeLatte"));
         }
 
         [Test]
