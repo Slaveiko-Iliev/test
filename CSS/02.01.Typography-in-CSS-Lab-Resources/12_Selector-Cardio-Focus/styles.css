@@ -8,3 +8,6 @@
     color: black;
     cursor: pointer;
   }
+  .joinBtn:focus {
+    background-color: darkmagenta;
+  }

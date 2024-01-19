@@ -8,3 +8,6 @@
     color: black;
     cursor: pointer;
   }
+  .joinBtn:active {
+    background-color: blue;
+  }
