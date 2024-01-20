@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Sentinel A', 'Sentinel B', Georgia, 'Times New Roman', Times, serif;
+    font: 400 1.15 #747474;
+}
+
+span {
+    font-family: 'Graphik Semibold Web', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: oblique;
+    font: 600 16px 1.46 #5c5a5a;
+}
+
+p {
+    font-family: 'Graphik Regular Web', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font: 400 16px 1.46 #5c5a5a;
+}

@@ -1,0 +1,24 @@
+article {
+    padding: 5px 15px;
+    border: 1px solid #b2ad7d;
+    margin: 15px 10px;
+}
+
+h2 {
+    font-size: inherit;
+    }
+
+section {
+    font-style: italic;
+    color: #4c7658;
+}
+
+article {
+    background-color: #f2f4c0;
+}
+
+body {
+    width: 700px;
+    background-color: #e4e978;
+}
+
