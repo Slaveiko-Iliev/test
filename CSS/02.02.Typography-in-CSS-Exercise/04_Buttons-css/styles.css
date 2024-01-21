@@ -1,0 +1,13 @@
+@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+
+button {
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+}
+
+.fill {
+    background-color: rgb(51, 51, 51);
+    color: white;
+}
+
