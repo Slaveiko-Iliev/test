@@ -1,0 +1,40 @@
+body {
+    font: 16px/1.5 Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, serif;
+}
+
+blockquote {
+    border-left: 4px solid rgb(221,221,221);
+    padding-left: 2em;
+    font-style: italic;
+}
+
+.blockquote-p-left {
+    text-align: right;
+}
+
+table {
+text-indent: 0.5em;
+width: 100%;
+border: 1px solid rgb(179, 179, 179);
+border-collapse: collapse;
+}
+
+thead {
+    background-color: rgb(179, 179, 179);
+    font-weight: bold;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgb(235, 235, 235);
+}
+
+td {
+    border-inline: 1px solid rgb(179, 179, 179);
+    border-collapse: collapse;
+}
+
+
