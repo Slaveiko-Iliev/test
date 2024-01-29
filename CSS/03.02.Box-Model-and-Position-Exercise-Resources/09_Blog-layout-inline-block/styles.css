@@ -1,0 +1,24 @@
+body {
+    max-width: 1200px;
+    font-family: Georgia, sans-serif;
+    background-color: rgb(238, 238, 238);
+    color: rgb(51, 51, 51);
+}
+
+article {
+    width: 70%;
+    float: left;
+}
+
+aside {
+    width: 30%;
+    float: right;
+}
+
+ul {
+    list-style-type: square;
+}
+
+img {
+    width: 75%;
+}
