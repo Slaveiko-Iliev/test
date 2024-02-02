@@ -7,12 +7,29 @@ header {
     font-family: Helvetica, sans-serif;
 }
 
-header nav li {
-    display: inline-block;
+header nav a {
     padding-left: 2em;
     color: rgb(94, 179, 106);
 }
 
+p.site-title {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+a {
+     text-decoration: none;
+}
+
+header nav,
+header .site-title {
+    display: inline-block;
+}
+
 hr {
     border-top: 1px solid #000;
+}
+
+h1 {
+    font-weight: 500;
 }
