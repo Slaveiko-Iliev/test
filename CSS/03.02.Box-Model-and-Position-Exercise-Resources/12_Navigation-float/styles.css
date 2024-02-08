@@ -1,0 +1,81 @@
+/* * {
+    padding: 0;
+    margin: 0;
+} */
+
+body {
+    background-color: rgb(238, 238, 238);
+    padding: 4em;
+    max-width: 100ch;
+}
+body > header * {
+    display: inline;
+}
+
+h1,h2, h3 {
+    font: 1em/1.2 Georgia, serif;
+    font-weight: 500;
+}
+
+main {
+    max-width: 70%;
+    float: left;
+    margin-right: 5%;
+}
+
+body > aside {
+    width: 25%;
+    float: right;
+}
+
+/* hr {
+    
+} */
+
+a {
+    color: rgb(0, 102, 0);
+    text-decoration: none;
+}
+
+img {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 0.8 0.5 rgba(0, 0, 0, 0.25);
+    float: right;
+    border: solid 2px #000;
+    padding: 0.3em;
+}
+
+#author-name {
+    text-align: right;
+}
+
+.right-float {
+    margin-left: 1em;
+    margin-bottom: 1em
+}
+
+
+
+blockquote {
+    width: 40%;
+    float: right;
+    border-left: solid 2px #b8b8b8;
+    padding-left: 2em;
+    margin-left: 2em;
+    font-style: italic;
+}
+
+
+.left-float {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+aside {
+    float: right;
+}
+
+aside ul {
+    list-style-type: square;
+}

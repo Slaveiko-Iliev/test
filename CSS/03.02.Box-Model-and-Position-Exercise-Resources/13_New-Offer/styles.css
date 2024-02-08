@@ -1,0 +1,10 @@
+main {
+    Width: 700px;
+    Height: 500px;
+    Margin: 60px;
+}
+img.new {
+    position: relative;
+    top: -200px;
+    right: 150px;
+}

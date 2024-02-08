@@ -1,33 +1,37 @@
 body {
-    background-color: rgb(238, 238, 238) ;
+    background-color: rgb(238, 238, 238);
+    font-family: Georgia, serif;
 }
 
 .card {
-    background-color: rgb(255, 255, 255) ;
+    background-color: rgb(255, 255, 255);
+    width: 300px; /* Променете този размер според вашите изисквания */
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
 }
 
-button {
-    background-color: rgb(0, 153, 0);
-    padding: 0.5em 0.7em;
-    border-radius: 3px;
-    border: none;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-}
-
-/* img {
+.image img {
     position: absolute;
-} */
+}
 
-h3 {
-    font-family: Georgia, serif;
+.info {
+    margin-top: 50px; /* Променете този отстъп според вашите изисквания */
+}
+
+h3, p {
     font-size: 1em;
     line-height: 1.2;
 }
 
-.info {
-    padding: 2em;
+.button {
+    background-color: rgb(0, 153, 0);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: rgb(0, 128, 0);
 }

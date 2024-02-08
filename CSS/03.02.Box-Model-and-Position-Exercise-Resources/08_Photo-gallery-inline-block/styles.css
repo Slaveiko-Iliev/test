@@ -13,7 +13,7 @@ ul {
 list-style-type: none;
 }
 
-li {
+.gallery li {
     width: 18rem;
     display: inline-block;
     background-color: #fff;
@@ -23,7 +23,7 @@ li {
     margin: 0.5rem;
 }
 
-img {
+.gallery img {
     display: block;
     width: 100%;
     height: auto;
