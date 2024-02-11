@@ -1,3 +1,9 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #eee;
     padding: 5rem;
@@ -12,13 +18,20 @@ header, main, aside, footer {
     border-radius: 0.4rem;
     color: #000;
     display: flex;
-    align-content: flex-start;
     border: solid 2px lightgray;
-    box-shadow: 0 0 0.3px 2px rgb(85, 85, 85, 0.5);
+    box-shadow: 0 0 0.5em 0 rgb(0, 0, 0, 0.5);
 }
 
 header, footer {
     flex-basis: 100%;
+}
+
+header {
+    min-height: 150px;
+}
+
+footer {
+    min-height: 100px;
 }
 
 main {
@@ -27,4 +40,9 @@ main {
 
 aside {
     flex: 2 1 20rem;
+}
+
+main, aside {
+    
+    min-height: 400px;
 }

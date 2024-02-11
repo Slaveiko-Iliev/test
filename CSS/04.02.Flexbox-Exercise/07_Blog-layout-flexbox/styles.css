@@ -1,0 +1,82 @@
+* {
+    /* padding: 0;
+    margin: 0; */
+    box-sizing: border-box;
+}
+
+body {
+    padding: 4em;
+    background-color: rgb(238, 238, 238);
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+img {
+    background-color: rgb(255, 255, 255);
+    padding: 0.3em;
+    background-color: #fff;
+    border: 3px solid #666;
+    box-shadow: 0 0 0.5em 0 rgb(0, 0, 0, 0.3),
+    0 0 0.5em 0 rgb(0, 0, 0, 0.2) inset;
+}
+
+.site-title {
+    font-family: Helvetica, sans-serif;
+    font-size: 2em;
+    font-weight: 600;
+    width: 100%;
+    border-bottom: 2px solid #666;
+}
+
+.div-with-blockquote {
+    float: right;
+    max-width: 40%;
+    margin: 0 0 2em 2m;
+}
+
+main {
+    width: 73%;
+}
+
+aside {
+    width: auto;
+    padding-left: 3em;
+}
+
+blockquote {
+    font-family: Georgia, serif;
+    border-left: 2px solid #666;
+    padding-left: 2em;
+    opacity: 0.5;
+    font-style: italic;
+}
+
+h1, h2 {
+    font-family: Georgia, serif;
+    font-weight: 500;
+}
+
+aside a {
+    color: rgb(0, 153, 0);
+}
+
+ul {
+    list-style-type: square;
+}
+
+.right-float {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+.left-float {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+#author-name {
+    text-align: right;
+}

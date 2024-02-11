@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+}
+
+body {
+  height: 100vh;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(238, 238, 238);
+
+  }
+  
+.card {
+  width: 30%;
+  padding: 0 1.5em;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 0.7em 0 rgb(66, 66, 66, 0.5);
+  font-weight: 500;
+}
+
+.card-title {
+  font-weight: 600;
+}
