@@ -4,4 +4,11 @@
 
 .post {
   container-type: inline-size;
+  container-name: post;
+}
+
+@container post (min-width: 600px) {
+  .card {
+    font-size: 10em;
+  }
 }

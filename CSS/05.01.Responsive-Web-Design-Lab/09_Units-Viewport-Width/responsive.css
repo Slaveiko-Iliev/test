@@ -1,0 +1,11 @@
+@media (max-width: 425px) {
+    body {
+        width: 95vw;
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}

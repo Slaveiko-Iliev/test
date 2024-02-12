@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body header, main, footer {
+    background-color: rgb(181, 216, 255);
+}
+
+.site {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.site-header {
+    width: 100%;
+}
+
+
+
+.site-main {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    gap: 1em;
+}
+
+
+
+.site-footer {
+    width: 100%;
+}
