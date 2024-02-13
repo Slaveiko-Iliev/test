@@ -52,19 +52,46 @@ img {
 .site-title {
     font-size: 2.5em;
     color: white;
-    padding-bottom: 0.8em;
+    padding-bottom: 0.4em;
 }
 
 .site-content {
     font-weight: 500;
 }
 
+.sait-footer {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    width: auto;
+}
+
+li {
+    display: flex;
+}
+
 .sait-links {
     list-style-type: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding-top: 1em;
 }
 
-.sait-nav ul {
-   
+.link-sales {
+    background-color: rgb(182, 65, 109);
+    padding: 0.4em 0.5em;
+    color: white;
+    border: 1px solid black;
+    border-radius: 0.3em;
+}
+
+.link-more {
+    padding: 0.4em 0.5em;
+    color: black;
+    background-color: transparent;
+    font-weight: 600;
+    border: 1px solid black;
+    border-radius: 0.3em;
 }

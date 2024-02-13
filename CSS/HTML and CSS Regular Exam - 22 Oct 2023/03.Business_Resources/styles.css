@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.sait > * {
+    padding: 2em;
+}
+
+.sait-header-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sait-header-nav {
+justify-content: space-between;
+}
+
+.sait-header-nav ul {
+display: flex;
+}
+
+.sait-header-nav-logo img{
+    width: 4em;
+}
