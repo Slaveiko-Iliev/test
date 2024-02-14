@@ -1,3 +1,6 @@
+@import 'https://fonts.googleapis.com/css?family=PT+Serif';
+@import 'https://fonts.googleapis.com/css?family=PT+Sans:400,700';
+
 * {
     padding: 0;
     margin: 0;
@@ -10,23 +13,165 @@ image {
     height: auto;
 }
 
-.sait > * {
+body {
+    /* width: 90vw; */
+}
+
+/* .sait > * {
     padding: 2em;
+} */
+
+.sait-header {
+    background: url(images/background.jpg);
+    background-size: cover;
+    color: white;
+}
+
+.sait-header-nav-logo img{
+    width: 4em;
 }
 
 .sait-header-nav {
     display: flex;
     justify-content: space-between;
-}
-
-.sait-header-nav {
-justify-content: space-between;
+    padding-right: 1em;
+    /* align-items: flex-start; */
 }
 
 .sait-header-nav ul {
 display: flex;
+list-style-type: none;
+font-size: 0.6em;
+/* opacity: 0.8; */
+gap: 1em;
 }
 
-.sait-header-nav-logo img{
+.sait-header-nav a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.header-about {
+    width: 50%;
+    padding-left: 6em;
+}
+
+.header-about-title{
+    font-size: 2.5em;
+}
+
+.header-about-info {
+    line-height: 1.4;
+    padding: 1.5em 0 12em 0;
+}
+
+.sait-main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-info {
+    display: flex;
+    gap: 3em;
+    padding: 4em 5em;
+}
+
+
+
+.main-info-article {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.main-info-article a {
+    width: 10em;
+    padding: 0.4em 0.6em;
+    color: rgb(177, 133, 96);
+    background-color: transparent;
+    border: 1px solid rgb(177, 133, 96);
+    text-decoration: none;
+    text-align: center;
+}
+
+.sait-sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    border-top: 2px solid rgb(231, 231, 231);
+    /* background-color: aquamarine; */
+}
+
+.sait-sponsors * {
+    width: 100%;
+    text-align: center;
+}
+
+.sait-sponsors h2 {
+    color: rgb(177, 133, 96);
+}
+
+.sait-sponsors p {
+    color: rgb(182, 170, 171);
+}
+
+.sponsors-list{
+    width: 20%;
+    display: flex;
+    gap: 2em;
+    
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.sponsors-list li{
+    border-radius: 50%;
+    background-color: rgb(221, 221, 221);
+    padding: 0.7em;
+}
+
+.sponsors-list img{
     width: 4em;
+}
+
+.sait-footer-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 6em;
+    background-color: rgb(23, 23, 32);
+    color: rgb(179, 166, 168);
+}
+
+.sait-footer-copyright {
+    
+    padding: 0.5em 6em;
+    background-color: rgb(23, 23, 32);
+    color: rgb(179, 166, 168);
+}
+
+.sait-footer-nav ul{
+    list-style-type: none;
+
+}
+
+.sait-footer-nav h4{
+    margin-bottom: 1em;
+}
+
+.sait-footer-nav a {
+    
+    color: rgb(179, 166, 168);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.footer-nav-title{
+    
+    color: white;
+}
+
+.sait-footer-nav div{
+    display: flex;
+    flex-direction: column;
 }
