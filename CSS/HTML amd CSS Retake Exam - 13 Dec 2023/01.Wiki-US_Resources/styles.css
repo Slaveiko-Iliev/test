@@ -12,14 +12,14 @@ img {
 }
 
 body {
-    width: 70em;
+    width: 55em;
     margin: 0 auto;
     font-family: 'Agbalumo';
 }
 
 main {
     /* flex: 1 0 100%; */
-    /* height: 100%; */
+    height: auto;
     padding: 2em 2em 2em 1em;
     
     /* display: flex; */
@@ -48,7 +48,7 @@ header, footer {
 }
 
 .main-map {
-    width: 30%;
+    width: 40%;
     float: left;
     padding: 0.7em 1em 1em 0.7em;
     border: 2px solid black;
@@ -61,7 +61,35 @@ header, footer {
 }
 
 .footer-title {
+    background-color: white;
     width: 100%;
-    float: right;
+    float: left;
 }
 
+.title {
+    width: 45%;
+    color: white;
+    background-color: black;
+    margin-top: 3em;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+footer {
+    float: left;
+    width: 100%;
+    
+}
+
+.footer-desc {
+    margin-top: 0;
+    padding: 0 0 1em 2.5em;
+}
+
+.facts-title {
+    font-weight: 600;
+}
+
+.vai {
+    color: rgb(213, 235, 234);
+}

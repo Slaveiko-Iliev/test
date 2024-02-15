@@ -31,7 +31,6 @@ body {
     width: 4em;
 }
 
-<<<<<<< Updated upstream
 .sait-header-nav {
     display: flex;
     justify-content: space-between;
@@ -45,12 +44,6 @@ list-style-type: none;
 font-size: 0.6em;
 /* opacity: 0.8; */
 gap: 1em;
-=======
-.sait-header {
-    background: url(images/background.jpg);
-    background-size: cover;
-    color: white;
->>>>>>> Stashed changes
 }
 
 .sait-header-nav a {
@@ -142,7 +135,6 @@ gap: 1em;
     width: 4em;
 }
 
-<<<<<<< Updated upstream
 .sait-footer-nav {
     display: flex;
     justify-content: space-between;
@@ -170,30 +162,10 @@ gap: 1em;
 .sait-footer-nav a {
     
     color: rgb(179, 166, 168);
-=======
-.sait-header-nav {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 1em;
-    /* align-items: flex-start; */
-}
-
-.sait-header-nav ul {
-display: flex;
-list-style-type: none;
-font-size: 0.6em;
-/* opacity: 0.8; */
-gap: 1em;
-}
-
-.sait-header-nav a {
-    color: white;
->>>>>>> Stashed changes
     text-decoration: none;
     text-transform: uppercase;
 }
 
-<<<<<<< Updated upstream
 .footer-nav-title{
     
     color: white;
@@ -202,31 +174,4 @@ gap: 1em;
 .sait-footer-nav div{
     display: flex;
     flex-direction: column;
-=======
-.header-about {
-    width: 45%;
-    padding-left: 6em;
-}
-
-.header-about-title{
-    font-size: 2.5em;
-}
-
-.header-about-info {
-    line-height: 1.4;
-    padding: 1.5em 0 12em 0;
-}
-
-.sait-main {
-    display: flex;
-}
-
-.main-info-article {
-    display: flex;
-    flex-direction: column;
-}
-
-.sait-sponsors {
-    
->>>>>>> Stashed changes
 }
