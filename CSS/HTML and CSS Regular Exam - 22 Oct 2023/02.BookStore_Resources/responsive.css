@@ -1,0 +1,42 @@
+@media (width <= 600px){
+    .home-navbar1 {
+        visibility: hidden;
+        /* padding: 12px 0; */
+    }
+
+    .home-header {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    
+    .home-container {
+        padding-top: 50px;
+    }
+    
+    .home-cards-container {
+        justify-content: space-evenly;
+        grid-gap: 15px;
+    }
+    
+    .category-card-image {
+        width: 175px;
+        height: 175px;
+    }
+    
+    .section-container {
+        flex-direction: column;
+        padding: 30px 0;
+    }
+
+    .home-content {
+        margin-bottom: 20px;
+    }
+
+    .home-text30 {
+        width: auto;
+        text-align: justify;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
