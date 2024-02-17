@@ -1,6 +1,12 @@
 @media (width <= 600px){
+    .home-navbar {
+        position: static;
+        /* padding: 12px 0; */
+    }
+
     .home-navbar1 {
         visibility: hidden;
+        position: static;
         /* padding: 12px 0; */
     }
 
@@ -8,9 +14,13 @@
         padding-top: 0;
         padding-bottom: 0;
     }
+
+    .home-main {
+        padding-bottom: 20px;
+    }
     
     .home-container {
-        padding-top: 50px;
+        padding-top: 0;
     }
     
     .home-cards-container {
@@ -19,24 +29,114 @@
     }
     
     .category-card-image {
-        width: 175px;
-        height: 175px;
+        width: 185px;
+        height: 185px;
+        margin-bottom: 10px;
     }
     
     .section-container {
         flex-direction: column;
-        padding: 30px 0;
+        padding-top: 0 ;
+    }
+
+    .max-width-container {
+        padding: 0;
+    }
+
+    .home-container08 {
+        flex-direction: column;
+        align-content: space-evenly;
+    }
+
+    .Heading-2 {
+        font-size: 20px;
+    }
+
+    .section-heading-text {
+        margin-top: 45px;
+        margin-bottom: 10px;
+    }
+
+    .section-heading-text1 {
+        font-size: 12px;
+    }
+
+    .section-heading-section-heading {
+        margin-bottom: 30px;
+    }
+
+    .home-left4 {
+        padding: 20px 0;
     }
 
     .home-content {
-        margin-bottom: 20px;
+        margin: 0 0 10px 0;
+    }
+
+    .home-text29 {
+        font-size: 20px;
     }
 
     .home-text30 {
         width: auto;
-        text-align: justify;
+        padding: 0 10px;
+        /* text-align: justify; */
         font-size: 12px;
         line-height: 15px;
+    }
+
+    .home-text31 {
+        font-size: 12px;
+    }
+
+    .button {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .home-image6 {
+        width: 100%;
+        height: auto;
+        
+    }
+
+    .category-card-category-card {
+        font-size: 12px;
+    }
+
+    .home-text23 {
+        font-size: 12px;
+        line-height: 150%;
+        margin-bottom: 10px;
+        padding: 0 10px;
+    }
+
+    .blog-post-card-text {
+        margin-top: 5px;
+        font-size: 16px;
+        line-height: 10px;
+        margin-bottom: 14px;
+    }
+
+    .blog-post-card-text1 {
+        font-size: 12px;
+        margin-bottom: 22px;
+    }
+
+    .button {
+        font-size: 12px;
+    }
+
+    .home-footer1 {
+        flex-direction: column;
+        padding: 35px 0 12px 20px;
+    }
+
+    .home-container09 {
+        order: 1000;
+    }
+
+    .home-links-container {
+        flex-direction: column;
     }
 }
 
