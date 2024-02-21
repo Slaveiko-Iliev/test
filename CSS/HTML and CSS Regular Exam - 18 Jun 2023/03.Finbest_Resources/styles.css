@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap');
+
+body {
+    font-family: 'Inter';
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.sait {
+    max-width: 1400px;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    /* text-decoration: none; */
+}
+
+header {
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+header, .sait-nav, .sait-login {
+    display: flex;
+}
+
+.sait-nav {
+    max-width: 30%;
+    
+    justify-content: space-between;
+}
+
+.sait-login {
+    max-width: 12%;
+}
+
+.download {
+    background-color: rgb(173, 226, 223);
+    width: auto;
+}
+
+.download-button {
+    display: flex;
+}
+
+.statistics {
+    display: flex;
+}
+
+.info {
+    background-color: rgb(173, 226, 223);
+}
+
+.info ul {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.info ul img {
+    width: 250px;
+}
+
+.prices-all {
+    background-color: rgb(243, 245, 250);
+}
+
+.price {
+    display: flex;
+}
+
+.plans {
+    background-color: white;
+    display: flex;
+    margin-top: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
