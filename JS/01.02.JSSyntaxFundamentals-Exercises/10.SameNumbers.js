@@ -4,22 +4,26 @@ function solve(number) {
     let isTrue = true;
     let sum = 0;
 
-    while (number > 0) {
+    while (Math.abs(number) > 0) {
 
-        let nextDigit = number%10;
+        let nextDigit = Math.abs(number)%10;
 
        if (currentDigit != null && currentDigit != nextDigit) {
-                isTrue = !isTrue;
+                if (isTrue) {
+                    isTrue = !isTrue;
+                }
             } 
         
         currentDigit = nextDigit;
         sum += nextDigit;
-        number = Math.floor(number / 10);
+        number = Math.floor(Math.abs(number) / 10);
     }
 
     console.log(isTrue);
     console.log(sum);
 }
 
-solve(2222222);
-solve(1234);
+// solve(2222222);
+// solve(1234);
+// solve(0);
+solve(-369);
