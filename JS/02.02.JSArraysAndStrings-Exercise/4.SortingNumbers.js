@@ -1,6 +1,6 @@
 function solve(input) {
     let emptyArray = [];
-    input.sort(function(a, b){return a-b});
+    input.sort((a,b) => a - b);
     while (input.length > 0) {
         emptyArray.push(input.shift());
         emptyArray.push(input.pop());

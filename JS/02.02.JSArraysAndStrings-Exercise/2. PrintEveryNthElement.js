@@ -1,12 +1,15 @@
-function solve(input, N) {
-    let output = [];
+// function solve(input, N) {
+//     let output = [];
 
-    for (let i = 0; i < input.length; i+=N) {
-        // if (i === 0 || i % N == 0){
-        //     output.push(input[i]);
-        // }
-        output.push(input[i]);
-    }
+//     for (let i = 0; i < input.length; i+=N) {
+//         output.push(input[i]);
+//     }
+
+//     return output;
+// }
+
+function solve(input, N) {
+    let output = input.filter((element, index) => index % N === 0)
 
     return output;
 }

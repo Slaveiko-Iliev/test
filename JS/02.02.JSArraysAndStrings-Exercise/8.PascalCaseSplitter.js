@@ -10,20 +10,24 @@ function solve(text) {
     for (let i = 0; i < text.length; i++) {
         if (startIndex === -1 && isUpper(text[i])){
             startIndex = i;
+            
         } else if (startIndex !== -1 && isUpper(text[i])){
             endIndex = i;
             pascalArray.push(text.substring(startIndex, endIndex));
+            
             startIndex = i;
-        } else if (i === text.length - 1){
-            endIndex = text.length;
-            pascalArray.push(text.substring(startIndex, endIndex));
+            if (i === text.length - 1) {
+                pascalArray.push(text.substring(startIndex));
+            }
+        } else if (startIndex !== -1 && i === text.length - 1){
+            pascalArray.push(text.substring(startIndex));
         }
     }
 
     console.log (pascalArray.join(', '));
 }
 
-// solve ('SplitMeIfYouCanHaHaYouCantOrYouCan');
+// solve ('SplitMeIfYouCanHaHaYouCantOrYouCanT');
 // solve ('HoldTheDoor');
 // solve ('ThisIsSoAnnoyingToDo');
-solve ('T');
+solve ('DT');

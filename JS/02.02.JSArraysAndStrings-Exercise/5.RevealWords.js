@@ -1,36 +1,30 @@
-function solve(words, text) {
-    let wordsAsArray = words.split(', ');
 
-    for (const word of wordsAsArray) {
-        let currentPurposeInText = ` ${'*'.repeat(word.length)} `;
-        let wordForReplace =  `${'*'.repeat(word.length)}`;
 
-        while (text.includes(currentPurposeInText)) {
-            text = text.replace(wordForReplace, word);
-            
-        }
-    }
-
-    
-    console.log (text);
-}
- 
 // function solve(words, text) {
-//     let wordsAsArray = words.split(', ');
-
+//     let wordsAsArray = words.split(', ').sort((a,b) => b.length - a.length);
+    
 //     for (const word of wordsAsArray) {
-//         let currentPurposeInText = ` ${'*'.repeat(word.length)} `;
-//         let wordForReplace =  `${'*'.repeat(word.length)}`;
-
-//         while (text.includes(currentPurposeInText)) {
-//             text = text.replace(wordForReplace, word);
-            
-//         }
+//         text = text.replace('*'.repeat(word.length), word)
 //     }
 
     
 //     console.log (text);
 // }
+
+function solve(words, text) {
+    let wordsAsArray = words.split(', ');
+    let textAsArray = text.split(' ');
+    
+    const result = textAsArray
+        .map(element =>
+            element.includes('*') 
+            ? wordsAsArray.find(word => word.length === element.length)
+            : element)
+        .join(' ');
+    
+    console.log (result);
+}
+ 
 
 solve ('great',
 'softuni is ***** place for learning new programming languages'
