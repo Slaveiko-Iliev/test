@@ -3,7 +3,7 @@ namespace Television.Tests
     using System;
     using System.Diagnostics;
     using NUnit.Framework;
-    public class Tests
+    public class Testsheade
     {
         private const string _Brand = "Brand";
         private const double _Price = 100;
