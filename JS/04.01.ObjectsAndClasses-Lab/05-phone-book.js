@@ -5,7 +5,7 @@ function solve(inputPhoneBook){
         let personInfo = record.split(' ');
 
         let personName = personInfo[0];
-        let phoneNumber = Number(personInfo[1]);
+        let phoneNumber = personInfo[1];
 
         phoneBook[personName] = phoneNumber;
     }
