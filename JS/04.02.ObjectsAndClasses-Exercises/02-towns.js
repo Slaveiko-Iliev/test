@@ -15,6 +15,17 @@ function solve(input) {
     }
 }
 
-solve(['Sofia | 42.696552 | 23.32601',
+function fancySolve(input) {
+    input
+        .map(row => row.split(' | '))
+        .map(row => ({
+            town: row[0],
+            latitude: Number(row[1]).toFixed(2),
+            longitude: Number(row[2]).toFixed(2),
+        }))
+        .forEach(town => console.log(town));
+}
+
+fancySolve(['Sofia | 42.696552 | 23.32601',
 'Beijing | 39.913818 | 116.363625']
 );
