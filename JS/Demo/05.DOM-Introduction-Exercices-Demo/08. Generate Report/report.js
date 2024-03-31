@@ -21,12 +21,8 @@ function generateReport() {
 
             const result = Array
                 .from(tdElements)
-                // .filter((tdElement, i) => columns[i].active)
+                .filter((tdElement, i) => columns[i].active)
                 .reduce((data, tdElement, i) => {
-                    if(!columns[i].active){
-                        return data;
-                    }
-
                     const columnName = columns[i].name;
                     data[columnName] = tdElement.textContent;
 

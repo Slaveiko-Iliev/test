@@ -2,19 +2,19 @@ function solve() {
    document.querySelector('#searchBtn').addEventListener('click', onClick);
 
    function onClick() {
-      let trElements = document.querySelectorAll('table.container tbody tr');
+      const trElements = document.querySelectorAll('table.container tbody tr');
       const searchFieldElement = document.getElementById('searchField');
-
+      const searchText = searchFieldElement.value;
+      
       for (const trElement of trElements) {
-         let isSelected = false;
-         trElement.classList.remove("select");
          const tdElements = trElement.querySelectorAll('td');
+         let isSelected = false;
 
-         for (const td of tdElements) {
-
-            if (td.textContent.toLowerCase().includes(searchFieldElement.value.toLowerCase())){
+         trElement.classList.remove('select');
+         
+         for (const tdElement of tdElements) {
+            if (tdElement.textContent.includes(searchText)) {
                isSelected = true;
-               // tr.classList.add("select");
                break;
             }
          }
@@ -23,7 +23,6 @@ function solve() {
             trElement.className = 'select';
          }
       }
-
       searchFieldElement.value = '';
    }
 }
