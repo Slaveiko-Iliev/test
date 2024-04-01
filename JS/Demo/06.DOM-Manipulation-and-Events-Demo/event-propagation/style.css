@@ -1,0 +1,15 @@
+.orange {
+    height: 200px;
+    background: orange;
+    padding: 40px;
+}
+
+.green {
+    height: 100px;
+    background: green;
+    padding: 40px;
+}
+
+.yellow {
+    background: yellow;
+}
