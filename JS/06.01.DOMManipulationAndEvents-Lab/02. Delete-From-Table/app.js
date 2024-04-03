@@ -8,15 +8,22 @@ function deleteByEmail() {
 
     for (const row of Array.from(tbodyTrElement)) {
         console.log(row);
-        if (inputElement.value === row[1]){
-            console.log(row[1]);
-            tbodyTrElement.remove(row);
-            isFound = true;
-            resultElement.textContent = `Deleted.`;
+        
+        const tdElementsOfrow = row.querySelectorAll('td');
+
+        for (const td of Array.from(tdElementsOfrow)) {
+            if (inputElement.value === td.textContent){
+                console.log(td.textContent);
+                row.remove();
+                isFound = true;
+                resultElement.textContent = `Deleted.`;
+            }
         }
     }
     
     if (!isFound){
         resultElement.textContent = `Not found.`;
     }
+
+    inputElement.value= '';
 }
