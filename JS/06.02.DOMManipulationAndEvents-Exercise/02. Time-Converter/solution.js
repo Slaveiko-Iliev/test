@@ -37,7 +37,7 @@ function attachEventsListeners() {
     })
 
     minutesBtnElement.addEventListener('click', () => {
-        daysInputElement.value = convertDaysToHours(convertMinutesToHours(minutesInputElement.value));
+        daysInputElement.value = convertHoursToDays(convertMinutesToHours(minutesInputElement.value));
         hoursInputElement.value = convertMinutesToHours(minutesInputElement.value);
         secondsInputElement.value = convertMinutesToSeconds(minutesInputElement.value);
     })
