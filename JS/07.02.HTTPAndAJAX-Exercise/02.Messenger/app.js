@@ -1,5 +1,5 @@
 function attachEvents() {
-    // TODO:
+    const requestsURL = `http://localhost:3030/jsonstore/messenger`;
 }
 
 attachEvents();
