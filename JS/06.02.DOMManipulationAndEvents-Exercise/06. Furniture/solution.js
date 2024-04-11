@@ -4,6 +4,5 @@ function solve() {
   var generateButtonElement = document.querySelector('#exercise button:nth-of-type(2)');
   var buyButtonElement = document.querySelector('#exercise button:nth-of-type(2)');
 
-  console.log(generateButtonElement);
-  console.log(buyButtonElement);
+  
 }
