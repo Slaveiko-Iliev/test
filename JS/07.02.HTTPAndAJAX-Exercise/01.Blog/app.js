@@ -8,22 +8,23 @@ function attachEvents() {
     const postTitleElement = document.getElementById('post-title');
     const postBodyElement = document.getElementById('post-body');
 
-    btnLoadPostsElement.addEventListener('click', async function getPosts() {
+    btnLoadPostsElement.addEventListener('click', async () => {
         try {
             const response = await fetch(`${baseURL}/posts`);
             const posts = await response.json();
             const postsValues = Object.values(posts);
 
-            const optionElementsFragment = document.createDocumentFragment();
+            // const optionElementsFragment = document.createDocumentFragment();
 
             for (const potstValue of postsValues) {
                 const optionElement = document.createElement('option');
                 optionElement.value = potstValue.id;
                 optionElement.textContent = potstValue.title;
-                optionElementsFragment.appendChild(optionElement);
+                // optionElementsFragment.appendChild(optionElement);
+                postsElement.appendChild(optionElement)
             }
 
-            postsElement.appendChild(optionElementsFragment);
+            // postsElement.appendChild(optionElementsFragment);
         } catch (error) {
             console.log(`Vai, vai error`);
         }
