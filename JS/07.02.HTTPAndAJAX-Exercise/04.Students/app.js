@@ -9,8 +9,6 @@ function attachEvents() {
   const inputGradeNameElement = document.getElementById('grade');
   const resultTbodyElement = document.querySelector('#results tbody');
 
-  extractsStudentsRecords();
-
   function extractsStudentsRecords() {
     fetch(`${baseURL}`)
     .then(studentsRecordsresponse => studentsRecordsresponse.json())
@@ -42,6 +40,10 @@ function attachEvents() {
        }
     })
     .catch(error => console.log('Something went wrong'));
+    
+  }
+
+  function createStudent() {
     
   }
 }
