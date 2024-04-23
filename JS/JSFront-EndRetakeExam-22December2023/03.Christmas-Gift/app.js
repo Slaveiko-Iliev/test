@@ -6,6 +6,7 @@ function solve() {
     const inputForElement = document.getElementById('for');
     const inputPriceElement = document.getElementById('price');
     const giftListElement = document.getElementById('gift-list');
+    const addPresentElement = document.getElementById('add-present');
 
     loadPresentsElement.addEventListener(('click'), () => {
         giftListElement.innerHTML = ``;
@@ -53,6 +54,13 @@ function solve() {
 
     });
 
+    addPresentElement.addEventListener(('click'), () => {
+        const newPresent = {
+            'gift': inputGiftElement
+        };
+
+
+    });
 }
 
 solve();
