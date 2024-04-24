@@ -215,3 +215,72 @@ INSERT into RentalOrders(EmployeeId, CustomerId, CarId, TankLevel, KilometrageSt
 
 -- Task 15 Hotel Database --
 
+CREATE DATABASE Hotel;
+
+CREATE TABLE Employees (
+    Id INT IDENTITY PRIMARY KEY ,
+    FirstName VARCHAR (50) NOT NULL,
+    LastName VARCHAR (50) NOT NULL,
+    Title VARCHAR (15),
+    Notes VARCHAR (MAX)
+)
+
+CREATE TABLE Customers (
+    AccountNumber INT IDENTITY PRIMARY KEY,
+    FirstName VARCHAR (50) NOT NULL,
+    LastName VARCHAR (50) NOT NULL,
+    PhoneNumber,
+    EmergencyName,
+    EmergencyNumber,
+    Notes
+ )
+
+CREATE TABLE RoomStatus (
+    RoomStatus VARCHAR (50) NOT NULL,
+    Notes
+    )
+    
+CREATE TABLE RoomTypes (
+    RoomType VARCHAR (50) NOT NULL,
+    Notes
+    )
+
+CREATE TABLE BedTypes (
+    BedType VARCHAR (50) NOT NULL,
+    Notes
+    )
+CREATE TABLE Rooms (
+    RoomNumber VARCHAR (50) NOT NULL,
+    RoomType,
+    BedType,
+    Rate,
+    RoomStatus,
+    Notes
+    )
+
+CREATE TABLE Payments (
+    Id,
+    EmployeeId,
+    PaymentDate,
+    AccountNumber,
+    FirstDateOccupied,
+    LastDateOccupied,
+    TotalDays,
+    AmountCharged,
+    TaxRate,
+    TaxAmount,
+    PaymentTotal,
+    Notes
+    )
+
+CREATE TABLE Occupancies (
+    Id,
+    EmployeeId,
+    DateOccupied,
+    AccountNumber,
+    RoomNumber,
+    RateApplied,
+    PhoneCharge,
+    Notes
+    )
+
