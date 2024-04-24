@@ -12,29 +12,30 @@ CREATE TABLE Users (
 );
 
 INSERT INTO Users (Username, Password)
-    VALUES ('Misho', '123'),
-            ('Pesho', '135'),
-            ('Ivan', 'abc'),
-            ('Niki', 'lo'),
-            ('Lili', '89')
+    VALUES ('Misho', '12366'),
+            ('Pesho', '13665'),
+            ('Ivan', 'a666bc'),
+            ('Niki', 'l666o'),
+            ('Lili', '86669')
 
 SELECT * FROM Users
 
 -- Task 09 --
 
 ALTER TABLE Users
-DROP CONSTRAINT PK__Users__3214EC0775FCA0E7
+DROP CONSTRAINT PK__Users__3214EC07DD158AF2
 
 ALTER TABLE Users
 ADD CONSTRAINT PK_Users_Complex
     PRIMARY KEY (Id, Username)
 
--- Task 10 !!!!! --
+-- Task 10 --
 
-ALTER TABLE Users DROP CONSTRAINT CHK_PasswordLength;
 
 ALTER TABLE Users
-ADD CONSTRAINT CHK_PasswordLength CHECK (DATALENGTH(Password) >= 5);
+    ADD CONSTRAINT CHK_PasswordLength 
+    CHECK(LEN(Password) > 5);
+
 
 
 -- Task 11 --
@@ -131,10 +132,10 @@ CREATE DATABASE CarRental;
 CREATE TABLE Categories (
     Id INT PRIMARY KEY IDENTITY (1,1),
     CategoryName VARCHAR (10) NOT NULL,
-    DailyRate DECIMAL (4,2) NOT NULL,
-    WeeklyRate DECIMAL (5,2) NOT NULL,
-    MonthlyRate DECIMAL (5,2) NOT NULL,
-    WeekendRate DECIMAL (4,2) NOT NULL,
+    DailyRate DECIMAL (4,2),
+    WeeklyRate DECIMAL (5,2),
+    MonthlyRate DECIMAL (5,2),
+    WeekendRate DECIMAL (4,2)
     )
 
 CREATE TABLE Cars (
@@ -181,12 +182,36 @@ CREATE TABLE RentalOrders (
     StartDate DATETIME NOT NULL,
     EndDate DATETIME NOT NULL,
     TotalDays INT NOT NULL,
-    RateApplied,
-    TaxRate,
-    OrderStatus,
-    Notes)
+    RateApplied VARCHAR (10),
+    TaxRate DECIMAL (5,2),
+    OrderStatus VARCHAR(8),
+    Notes VARCHAR (MAX)
+    )
 
--- SELECT A.column1, B.column2
--- FROM TableA A
--- INNER JOIN TableB B ON A.commonColumn = B.commonColumn
--- WHERE A.someCondition = 'Your Condition';
+INSERT INTO Categories (CategoryName)
+VALUES ('1'),
+        ('2'),
+        ('3')
+
+INSERT INTO Cars (PlateNumber, Manufacturer, Model, CategoryId, Available)
+VALUES ('CB7623HB', 'Ford', 'Fiesta', 1, 'yes'),
+        ('CB7623HB', 'Ford', 'Fiesta', 2, 'yes'),
+        ('CB7623HB', 'Ford', 'Fiesta', 3, 'yes')
+
+INSERT INTO Employees (FirstName, LastName, Title)
+VALUES ('Petar', 'Ford', 'Something'),
+        ('Petar', 'Ivanov', 'Something'),
+        ('Petar', 'Petrov', 'Something')
+
+INSERT INTO Customers (DriverLicenceNumber, FullName, Address, City, ZIPCode)
+VALUES (456892457, 'Petar Ford', 'Somewhere', 'Sofia', 1345),
+(456892457, 'Petar Ford', 'Somewhere', 'Sofia', 1345),
+(456892457, 'Petar Ford', 'Somewhere', 'Sofia', 1345)
+
+INSERT into RentalOrders(EmployeeId, CustomerId, CarId, TankLevel, KilometrageStart, KilometrageEnd, TotalKilometrage, StartDate, EndDate, TotalDays)
+    VALUES (1, 2, 3, 30, 2135, 2223, 45, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1),
+            (1, 2, 3, 30, 2135, 2223, 45, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1),
+            (1, 2, 3, 30, 2135, 2223, 45, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1)
+
+-- Task 15 Hotel Database --
+
