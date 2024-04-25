@@ -229,58 +229,102 @@ CREATE TABLE Customers (
     AccountNumber INT IDENTITY PRIMARY KEY,
     FirstName VARCHAR (50) NOT NULL,
     LastName VARCHAR (50) NOT NULL,
-    PhoneNumber,
-    EmergencyName,
-    EmergencyNumber,
-    Notes
+    PhoneNumber INT,
+    EmergencyName VARCHAR (20),
+    EmergencyNumber INT,
+    Notes VARCHAR(MAX)
  )
 
+INSERT INTO Customers (FirstName, LastName)
+    VALUES ('Petar', 'Petrov'),
+        ('Ivan', 'Ivanov'),
+        ('Petar', 'Ivanov')
+
 CREATE TABLE RoomStatus (
-    RoomStatus VARCHAR (50) NOT NULL,
-    Notes
+    RoomStatus VARCHAR (50) PRIMARY KEY,
+    Notes VARCHAR(MAX)
     )
-    
+
+INSERT INTO RoomStatus (RoomStatus)
+    VALUES ('Good'),
+        ('Fine'),
+        ('Vip')
+
 CREATE TABLE RoomTypes (
-    RoomType VARCHAR (50) NOT NULL,
-    Notes
+    RoomType VARCHAR (50) PRIMARY KEY,
+    Notes VARCHAR(MAX)
     )
+
+INSERT INTO RoomTypes (RoomType)
+    VALUES ('One bed'),
+        ('Two beds'),
+        ('Four beds')
 
 CREATE TABLE BedTypes (
-    BedType VARCHAR (50) NOT NULL,
-    Notes
+    BedType VARCHAR (50) PRIMARY KEY,
+    Notes VARCHAR(MAX)
     )
+
+INSERT INTO BedTypes (BedType)
+    VALUES ('Single'),
+        ('Twin'),
+        ('Twin XL')
+
 CREATE TABLE Rooms (
-    RoomNumber VARCHAR (50) NOT NULL,
-    RoomType,
-    BedType,
-    Rate,
-    RoomStatus,
-    Notes
+    RoomNumber INT PRIMARY KEY IDENTITY,
+    RoomType VARCHAR (50) NOT NULL,
+    BedType VARCHAR (50) NOT NULL,
+    Rate VARCHAR (10) NOT NULL,
+    RoomStatus VARCHAR (10) NOT NULL,
+    Notes VARCHAR (MAX)
     )
+
+INSERT INTO Rooms (RoomType, BedType, Rate, RoomStatus)
+    VALUES ('One bed', 'One bed', 'Vip', 'Good'),
+        ('One bed', 'One bed', 'Vip', 'Good'),
+        ('One bed', 'One bed', 'Vip', 'Good')
 
 CREATE TABLE Payments (
-    Id,
-    EmployeeId,
-    PaymentDate,
-    AccountNumber,
-    FirstDateOccupied,
-    LastDateOccupied,
-    TotalDays,
-    AmountCharged,
-    TaxRate,
-    TaxAmount,
-    PaymentTotal,
-    Notes
+    Id INT IDENTITY PRIMARY KEY,
+    EmployeeId INT NOT NULL,
+    PaymentDate DATE,
+    AccountNumber INT,
+    FirstDateOccupied DATE,
+    LastDateOccupied DATE,
+    TotalDays INT,
+    AmountCharged DECIMAL (5,2) NOT NULL,
+    TaxRate DECIMAL (5,2),
+    TaxAmount DECIMAL (5,2),
+    PaymentTotal DECIMAL (5,2),
+    Notes VARCHAR (MAX)
     )
 
+INSERT INTO Payments (EmployeeId, AmountCharged)
+    VALUES (1, 34.55),
+            (2, 24.55),
+            (3, 34.53)
+
 CREATE TABLE Occupancies (
-    Id,
-    EmployeeId,
-    DateOccupied,
-    AccountNumber,
-    RoomNumber,
-    RateApplied,
-    PhoneCharge,
-    Notes
+    Id INT IDENTITY PRIMARY KEY,
+    EmployeeId INT NOT NULL,
+    DateOccupied DATE NOT NULL,
+    AccountNumber INT,
+    RoomNumber INT,
+    RateApplied VARCHAR (10) NOT NULL,
+    PhoneCharge DECIMAL (5,2),
+    Notes VARCHAR (MAX)
     )
+
+INSERT INTO Employees (FirstName, LastName)
+    VALUES ('Petar', 'Petrov'),
+        ('Ivan', 'Ivanov'),
+        ('Petar', 'Ivanov')
+
+INSERT INTO Occupancies (EmployeeId, DateOccupied, RateApplied)
+    VALUES (2, '1999-12-14', 'Vip'),
+            (1, '2024-11-22', 'Vip'),
+            (3, '2002-10-13', 'Vip')
+
+
+--Task 16 Create SoftUni Database
 
