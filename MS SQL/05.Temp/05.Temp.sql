@@ -71,6 +71,58 @@ ORDER BY [EmployeeID];
 ORDER BY e.[HireDate];
 
 
+-- Task 07. Employees With Project
+
+  SELECT TOP (5)
+         e.[EmployeeID]
+         , e.[FirstName]
+         , p.[Name] AS [ProjectName]
+    FROM [Employees] AS e 
+    JOIN [EmployeesProjects] AS ep ON e.[EmployeeID] = ep.[EmployeeID]
+    JOIN [Projects] AS p ON ep.[ProjectID] = p.[ProjectID]
+   WHERE p.[StartDate] > 2002-08-13 AND p.[EndDate] IS NULL
+ORDER BY e.[EmployeeID];
+
+
+-- Task 08. Employee 24
+
+  SELECT e.[EmployeeID]
+         , e.[FirstName]
+         , CASE
+             WHEN YEAR(p.[StartDate]) >= 2005 THEN NULL
+             ELSE p.[Name]
+         END AS [ProjectName]
+    FROM [Employees] AS e 
+    JOIN [EmployeesProjects] AS ep ON e.[EmployeeID] = ep.[EmployeeID]
+    JOIN [Projects] AS p ON ep.[ProjectID] = p.[ProjectID]
+   WHERE e.[EmployeeID] = 24;
+
+
+-- Task 09. Employee Manager
+
+  SELECT e.[EmployeeID]
+         , e.[FirstName]
+         , e.[ManagerID]
+         , m.[FirstName] AS [ManagerName]
+    FROM [Employees] AS e 
+    JOIN [Employees] AS m ON e.[ManagerID] = m.[EmployeeID]
+   WHERE e.[ManagerID] IN (3,7)
+ORDER BY e.[EmployeeID];
+
+
+-- Task 10. Employees Summary
+
+  SELECT TOP (50)
+         e.[EmployeeID]
+         , CONCAT(e.[FirstName], ' ', e.[LastName]) AS [EmployeeName]
+         , CONCAT(m.[FirstName], ' ', m.[LastName]) AS [ManagerName]
+         , d.[Name] AS [DepartmentName]
+    FROM [Employees] AS e 
+    JOIN [Employees] AS m ON e.[ManagerID] = m.[EmployeeID]
+    JOIN [Departments] AS d ON e.[DepartmentID] = d.[DepartmentID]
+ORDER BY e.[EmployeeID];
+
+
 -- Task 11.Min Average Salary
 
     WITH [AverageSalaries]
@@ -82,3 +134,17 @@ GROUP BY [DepartmentID]
 )
   SELECT MIN([s]) AS [MinAverageSalry]
     FROM [AverageSalaries];
+
+
+-- Task 12. Highest Peaks in Bulgaria
+
+SELECT mc.[CountryCode]
+         , m.[MountainRange]
+         , p.[PeakName]
+         , p.[Elevation]
+    FROM [Peaks] AS p 
+    JOIN [Mountains] AS m ON p.[MountainId] = m.[Id]
+    JOIN [MountainsCountries] AS mc ON p.[MountainId] = mc.[MountainId]
+   WHERE mc.[CountryCode] = 'BG' AND p.[Elevation] > 2835
+ORDER BY p.Elevation DESC;
+
