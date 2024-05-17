@@ -1,3 +1,5 @@
+USE SoftUni
+
 -- Task 01. Employee Address
 
 SELECT TOP (5) e.[EmployeeID]
@@ -136,6 +138,11 @@ GROUP BY [DepartmentID]
     FROM [AverageSalaries];
 
 
+GO
+
+USE [Geography]
+
+
 -- Task 12. Highest Peaks in Bulgaria
 
 SELECT mc.[CountryCode]
@@ -147,4 +154,46 @@ SELECT mc.[CountryCode]
     JOIN [MountainsCountries] AS mc ON p.[MountainId] = mc.[MountainId]
    WHERE mc.[CountryCode] = 'BG' AND p.[Elevation] > 2835
 ORDER BY p.Elevation DESC;
+
+
+-- Task 13. Count Mountain Ranges
+
+SELECT c.CountryCode
+       , COUNT(m.MountainRange)
+  FROM [Countries] AS c 
+  JOIN [MountainsCountries] AS mc ON c.CountryCode = mc.CountryCode
+  JOIN [Mountains] AS m ON mc.MountainId = m.Id
+ WHERE mc.CountryCode IN ('BG','RU','US')
+GROUP BY c.[CountryCode];
+
+
+-- Task 14. Countries With or Without Rivers
+
+  SELECT TOP (5)
+         c.CountryName
+         , r.RiverName
+    FROM [Countries] AS c 
+    LEFT JOIN [CountriesRivers] AS cr ON c.CountryCode = cr.CountryCode
+    LEFT JOIN [Rivers] AS r ON cr.RiverId = r.Id
+   WHERE c.ContinentCode = 'AF'
+ORDER BY c.CountryName;
+
+
+-- Task 15. Continents and Currencies
+
+SELECT
+    ContinentCode,
+    CurrencyCode,
+    COUNT(CurrencyCode) AS CurrencyUsage
+FROM
+    Countries
+
+GROUP BY
+    ContinentCode,
+    CurrencyCode
+HAVING
+    COUNT(DISTINCT CountryCode) > 1
+ORDER BY
+    ContinentCode;
+
 
