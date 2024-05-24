@@ -179,7 +179,8 @@ SELECT [ProductName]
                 , ('Steven', '1992-09-10 00:00:00.000')
                 , ('Stephen', '1910-09-19 00:00:00.000')
                 , ('John', '2010-01-06 00:00:00.000');
-  
+
+GO
 
 SELECT [Name]
        , DATEDIFF(YEAR, [Birthdate], GETDATE ()) AS [Age in Years]
