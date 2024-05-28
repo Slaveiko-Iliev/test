@@ -1,0 +1,22 @@
+USE AdventureWorks2012;
+GO
+SELECT ProductNumber, Category = CASE ProductLine
+    WHEN 'R' THEN 'Road'
+    WHEN 'M' THEN 'Mountain'
+    WHEN 'T' THEN 'Touring'
+    WHEN 'S' THEN 'Other sale items'
+    ELSE 'Not for sale'
+END, Name
+FROM Production.Product
+ORDER BY ProductNumber;
+GO
+
+-------------------------------------------------------------------
+
+SELECT OrderID, Quantity,
+    CASE
+        WHEN Quantity > 30 THEN 'Количество над 30'
+        WHEN Quantity = 30 THEN 'Количество 30'
+        ELSE 'Количество под 30'
+    END AS QuantityText
+FROM Orders;
