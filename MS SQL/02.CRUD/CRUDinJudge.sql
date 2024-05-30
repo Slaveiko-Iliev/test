@@ -4,7 +4,7 @@ SELECT * from Departments;
 
 -- Task 03. Find all Department Names
 
-SELECT Name  FROM Departments;
+SELECT [Name]  FROM Departments;
 
 -- Task 04. Find Salary of Each Employee
 
