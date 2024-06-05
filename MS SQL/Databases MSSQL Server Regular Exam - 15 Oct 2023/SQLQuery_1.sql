@@ -103,3 +103,24 @@ DELETE
 
 -- Task 05. Bookings by Price of Room and Arrival Date
 
+  SELECT FORMAT([ArrivalDate], 'yyyy-MM-dd') AS 'ArrivalDate'
+        ,[AdultsCount]
+        ,[ChildrenCount]
+    FROM [Bookings] AS b 
+    JOIN [Rooms] AS r ON b.RoomId = r.Id
+ORDER BY [Price] DESC, [ArrivalDate];
+
+
+-- Task 06. Hotels by Count of Bookings
+
+  SELECT *
+    FROM [Bookings] AS b
+
+        --  h.Id
+        -- ,h.Name
+        -- ,r.[Type]
+    -- JOIN [HotelsRooms] AS hr ON b.HotelId = hr.HotelId
+    JOIN [Rooms] AS r ON r.Id = b.RoomId
+    JOIN Hotels as h ON h.Id = b.HotelId
+    
+    

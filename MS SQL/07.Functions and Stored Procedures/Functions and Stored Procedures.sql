@@ -64,7 +64,7 @@ CREATE PROC usp_GetEmployeesFromTown (@townName NVARCHAR (10))
 
 -- Task 05. Salary Level Function
 
-CREATE or ALTER FUNCTION udf_GetSalaryLevel(@salary DECIMAL(18,4))
+CREATE OR ALTER FUNCTION udf_GetSalaryLevel(@salary DECIMAL(18,4))
       RETURNS VARCHAR(7)
                       AS
                    BEGIN
@@ -153,5 +153,32 @@ CREATE PROC usp_GetHoldersWithBalanceHigherThan (@suppliedNumber MONEY)
 
 -- Task 11. Future Value Function
 
+CREATE OR ALTER FUNCTION dbo.udf_CalculateFutureValue (@initialSum MONEY, @interest FLOAT, @years INT)
+   RETURNS MONEY
+                      AS
+                   BEGIN
+                         DECLARE @futureValue MONEY
+                             SET @futureValue = @initialSum * (POWER((1 + @interest), @years))
+                          RETURN ROUND(@futureValue, 4)
+                     END
+
+GO
 
 
+-- Task 12. Calculating Interest
+
+CREATE OR ALTER PROC usp_CalculateFutureValueForAccount
+         AS
+     SELECT ah.[Id]
+           ,[FirstName] AS [First Name]
+           ,[LastName] AS [Last Name]
+           ,[Balance] AS [Current Balance]
+           ,dbo.udf_CalculateFutureValue(a.Balance,0.1,5) AS [Balance in 5 years]
+       FROM [AccountHolders] AS ah 
+       JOIN [Accounts] AS a ON ah.Id = a.AccountHolderId;
+
+       EXEC usp_CalculateFutureValueForAccount
+
+       
+
+      --  select dbo.udf_CalculateFutureValue(dbo.Accounts.[Balance], 0.1, 5)
