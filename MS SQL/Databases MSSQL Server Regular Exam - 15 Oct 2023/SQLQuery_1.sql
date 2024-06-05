@@ -113,14 +113,89 @@ ORDER BY [Price] DESC, [ArrivalDate];
 
 -- Task 06. Hotels by Count of Bookings
 
-  SELECT *
-    FROM [Bookings] AS b
-
-        --  h.Id
-        -- ,h.Name
-        -- ,r.[Type]
-    -- JOIN [HotelsRooms] AS hr ON b.HotelId = hr.HotelId
+  SELECT h.Id
+        ,h.Name
+    FROM [Bookings] AS b  
     JOIN [Rooms] AS r ON r.Id = b.RoomId
     JOIN Hotels as h ON h.Id = b.HotelId
+   WHERE b.HotelId
+      IN (
+  SELECT HotelId
+    FROM [HotelsRooms]
+   WHERE [RoomId] = 8
+)
+GROUP BY h.Id, h.Name
+ORDER BY COUNT(h.[Id]) DESC
+
     
-    
+-- Task 07. Tourists without Bookings
+
+  SELECT [Id]
+        ,[Name]
+        ,[PhoneNumber]
+    FROM [Tourists]
+   WHERE [Id] NOT IN (
+  SELECT [TouristId]
+    FROM [Bookings]
+   )
+ORDER BY [Name]
+
+
+-- Task 08. First 10 Bookings
+
+  SELECT
+ TOP(10) h.Name AS [HotelName]
+        ,d.Name AS [DestinationName]
+        ,c.Name AS [CountryName]
+    FROM [Bookings] AS b 
+    JOIN [Hotels] AS h ON b.HotelId = h.Id
+    JOIN [Destinations] AS d ON d.Id = h.DestinationId
+    JOIN [Countries] AS c ON d.CountryId = c.Id
+   WHERE [ArrivalDate] < '2023-12-31'
+     AND h.Id % 2 = 1
+ORDER BY [CountryName], [ArrivalDate]
+
+
+-- Task 09. Tourists booked in Hotels
+
+  SELECT h.Name AS [HotelName]
+        ,r.Price AS [RoomPrice]
+    FROM [Bookings] AS b 
+    JOIN Hotels AS h ON b.HotelId = h.Id
+    JOIN [Rooms] AS r ON r.Id = b.RoomId
+    JOIN [Tourists] AS t ON t.Id = b.TouristId
+   WHERE t.Name NOT LIKE '%EZ'
+ORDER BY r.Price DESC;
+
+-- Task 10. Hotels Revenue
+
+  SELECT [HotelName]
+        ,SUM([BookingTotal])
+    FROM 
+         (
+  SELECT h.Name AS [HotelName]
+        ,DATEDIFF(DD, [ArrivalDate], [DepartureDate]) * r.Price AS [BookingTotal]
+    FROM [Bookings] AS b 
+    JOIN [Hotels] AS h ON b.HotelId = h.Id
+    JOIN [Rooms] AS r ON b.RoomId = r.Id
+    )
+      AS [BookingTotalQuery]
+GROUP BY [HotelName]
+ORDER BY SUM([BookingTotal]) DESC;
+
+
+-- Task 11. Rooms with Tourists
+
+GO
+
+CREATE FUNCTION udf_RoomsWithTourists(@name VARCHAR(40))
+  RETURNS TABLE
+             AS
+         RETURN (
+                SELECT [Type]
+                  FROM [Bookings] AS b
+                  JOIN [Rooms] AS r ON b.RoomId = r.Id
+              GROUP BY Type
+                 WHERE r.TYPE = @name
+         )
+             
