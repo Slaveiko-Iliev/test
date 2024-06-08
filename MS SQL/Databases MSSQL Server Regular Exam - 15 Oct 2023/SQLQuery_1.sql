@@ -8,55 +8,56 @@ USE TouristAgency;
 
 GO
 
-CREATE TABLE Countries (
-             [Id] INT PRIMARY KEY IDENTITY
-            ,[Name] NVARCHAR(50) NOT NULL
-)
+-- CREATE TABLE Countries (
+--              [Id] INT PRIMARY KEY IDENTITY
+--             ,[Name] NVARCHAR(50) NOT NULL
+-- )
 
-CREATE TABLE Destinations (
-             [Id] INT PRIMARY KEY IDENTITY
-            ,[Name] VARCHAR(50) NOT NULL
-            ,[CountryId] INT FOREIGN KEY REFERENCES Countries (Id) NOT NULL
-)
+-- CREATE TABLE Destinations (
+--              [Id] INT PRIMARY KEY IDENTITY
+--             ,[Name] VARCHAR(50) NOT NULL
+--             ,[CountryId] INT FOREIGN KEY REFERENCES Countries (Id) NOT NULL
+-- )
 
-CREATE TABLE Rooms (
-             [Id] INT PRIMARY KEY IDENTITY
-            ,[Type] VARCHAR(40) NOT NULL
-            ,[Price] DECIMAL(18,2) NOT NULL
-            ,[BedCount] INT CHECK ([BedCount] BETWEEN 1 AND 10) NOT NULL
-)
+-- CREATE TABLE Rooms (
+--              [Id] INT PRIMARY KEY IDENTITY
+--             ,[Type] VARCHAR(40) NOT NULL
+--             ,[Price] DECIMAL(18,2) NOT NULL
+--             ,[BedCount] INT CHECK ([BedCount] BETWEEN 1 AND 10) NOT NULL
+-- )
 
-CREATE TABLE Hotels (
-             [Id] INT PRIMARY KEY IDENTITY
-            ,[Name] VARCHAR(50) NOT NULL
-            ,[DestinationId] INT FOREIGN KEY REFERENCES Destinations (Id) NOT NULL
-)
+-- CREATE TABLE Hotels (
+--              [Id] INT PRIMARY KEY IDENTITY
+--             ,[Name] VARCHAR(50) NOT NULL
+--             ,[DestinationId] INT FOREIGN KEY REFERENCES Destinations (Id) NOT NULL
+-- )
 
-CREATE TABLE Tourists (
-             [Id] INT PRIMARY KEY IDENTITY
-            ,[Name] NVARCHAR(80) NOT NULL
-            ,[PhoneNumber] VARCHAR(20) NOT NULL
-            ,[Email] VARCHAR(80)
-            ,[CountryId] INT FOREIGN KEY REFERENCES [Countries] (Id) NOT NULL
-)
+-- CREATE TABLE Tourists (
+--              [Id] INT PRIMARY KEY IDENTITY
+--             ,[Name] NVARCHAR(80) NOT NULL
+--             ,[PhoneNumber] VARCHAR(20) NOT NULL
+--             ,[Email] VARCHAR(80)
+--             ,[CountryId] INT FOREIGN KEY REFERENCES [Countries] (Id) NOT NULL
+-- )
 
-CREATE TABLE Bookings (
-             [Id] INT PRIMARY KEY IDENTITY
-            ,[ArrivalDate] DATETIME2 NOT NULL
-            ,[DepartureDate] DATETIME2 NOT NULL
-            ,[AdultsCount] INT CHECK ([AdultsCount] BETWEEN 1 AND 10) NOT NULL
-            ,[ChildrenCount] INT CHECK ([ChildrenCount] BETWEEN 0 AND 9) NOT NULL
-            ,[TouristId] INT FOREIGN KEY REFERENCES [Tourists](Id) NOT NULL
-            ,[HotelId] INT FOREIGN KEY REFERENCES [Hotels](Id) NOT NULL
-            ,[RoomId] INT FOREIGN KEY REFERENCES [Rooms](Id) NOT NULL
-)
+-- CREATE TABLE Bookings (
+--              [Id] INT PRIMARY KEY IDENTITY
+--             ,[ArrivalDate] DATETIME2 NOT NULL
+--             ,[DepartureDate] DATETIME2 NOT NULL
+--             ,[AdultsCount] INT CHECK ([AdultsCount] BETWEEN 1 AND 10) NOT NULL
+--             ,[ChildrenCount] INT CHECK ([ChildrenCount] BETWEEN 0 AND 9) NOT NULL
+--             ,[TouristId] INT FOREIGN KEY REFERENCES [Tourists](Id) NOT NULL
+--             ,[HotelId] INT FOREIGN KEY REFERENCES [Hotels](Id) NOT NULL
+--             ,[RoomId] INT FOREIGN KEY REFERENCES [Rooms](Id) NOT NULL
+-- )
 
-CREATE TABLE HotelsRooms (
-             [HotelId] INT FOREIGN KEY REFERENCES [Hotels](Id) NOT NULL
-             ,[RoomId] INT FOREIGN KEY REFERENCES [Rooms](Id) NOT NULL
-             ,PRIMARY KEY ([HotelId],[RoomId])
-)
+-- CREATE TABLE HotelsRooms (
+--              [HotelId] INT FOREIGN KEY REFERENCES [Hotels](Id) NOT NULL
+--              ,[RoomId] INT FOREIGN KEY REFERENCES [Rooms](Id) NOT NULL
+--              ,PRIMARY KEY ([HotelId],[RoomId])
+-- )
 
+GO
 
 -- Task 02.Insert
 
@@ -188,14 +189,63 @@ ORDER BY SUM([BookingTotal]) DESC;
 
 GO
 
+
+GO
+
+-- CREATE OR ALTER FUNCTION udf_RoomsWithTourists(@name VARCHAR(40))
+--   RETURNS TABLE
+--              AS
+--          RETURN (
+--                 SELECT SUM([ChildrenCount] + [AdultsCount]) AS [Count]
+--                   FROM [Bookings] AS b
+--                   JOIN [Rooms] AS r ON b.RoomId = r.Id
+--                  WHERE [Type] = @name
+--          )
+             
+-- GO
+
+-- SELECT dbo.udf_RoomsWithTourists ('VIP Apartment');
+
+
+
 CREATE FUNCTION udf_RoomsWithTourists(@name VARCHAR(40))
-  RETURNS TABLE
-             AS
-         RETURN (
-                SELECT [Type]
+  RETURNS INT
+           AS
+        BEGIN
+              DECLARE @totalNumberOfTourists INT
+                  
+               SELECT @totalNumberOfTourists = SUM([ChildrenCount] + [AdultsCount])
                   FROM [Bookings] AS b
                   JOIN [Rooms] AS r ON b.RoomId = r.Id
-              GROUP BY Type
-                 WHERE r.TYPE = @name
-         )
-             
+                 WHERE [Type] = @name
+
+               RETURN @totalNumberOfTourists
+          END
+
+GO
+
+SELECT dbo.udf_RoomsWithTourists ('VIP Apartment');
+
+GO
+
+-- Task 12. Search for Tourists from a Specific Country
+
+CREATE OR ALTER PROC usp_SearchByCountry(@country NVARCHAR(50))
+         AS
+     SELECT [Name]
+           ,[PhoneNumber]
+           ,[Email]
+           ,COUNT([Name]) AS [CountOfBookings]
+       FROM (
+            SELECT t.[Name]
+                  ,[PhoneNumber]
+                  ,[Email]
+              FROM [Bookings] AS b 
+              JOIN [Tourists] AS t ON b.TouristId = t.Id
+              JOIN [Countries] AS c ON c.Id = t.CountryId
+             WHERE c.Name = @country
+       ) AS SearchByCuontryQuery
+   GROUP BY [Name],[PhoneNumber],[Email]
+
+
+EXEC usp_SearchByCountry 'Greece'
