@@ -199,3 +199,52 @@ ORDER BY [TicketPrice], [HourOfDeparture];
    WHERE [Price] > 76.99
 GROUP BY tow.Name
 ORDER BY tow.Name;
+
+
+-- Task 10. Maintenance Inspection with Town and Station
+
+  SELECT [TrainId]
+        ,tow.Name AS [DepartureTown]
+        ,[Details]
+    FROM [MaintenanceRecords] AS m 
+    JOIN [Trains] AS t ON m.TrainId = t.Id
+    JOIN [Towns] AS tow ON t.DepartureTownId = tow.Id
+   WHERE [Details] LIKE '%inspection%'
+ORDER BY [TrainId];
+
+
+--Task 11. Towns with Trains
+
+GO
+
+CREATE FUNCTION udf_TownsWithTrains(@name VARCHAR(30)) 
+    RETURNS INT
+             AS
+          BEGIN
+                DECLARE @totalNumberOfTrains INT
+                 SELECT @totalNumberOfTrains = COUNT(t.Id)
+                   FROM [Trains] AS t 
+                   JOIN [Towns] AS tow ON t.ArrivalTownId = tow.Id OR t.DepartureTownId = tow.Id
+                  WHERE tow.Name = @name
+                 RETURN @totalNumberOfTrains
+
+            END
+
+GO
+        
+
+-- Task 12. Search Passengers travelling to Specific Town
+
+
+
+CREATE PROC usp_SearchByTown(@townName VARCHAR(30))
+         AS
+     SELECT p.Name AS [PassengerName]
+           ,[DateOfDeparture]
+           ,[HourOfDeparture]
+       FROM [Passengers] AS p 
+       JOIN [Tickets] AS ti ON p.Id = ti.PassengerId
+       JOIN [Trains] AS tr ON tr.Id = ti.TrainId
+       JOIN [Towns] AS tow ON tow.Id = tr.ArrivalTownId
+      WHERE tow.Name = @townName
+   ORDER BY [DateOfDeparture] DESC, [PassengerName];
