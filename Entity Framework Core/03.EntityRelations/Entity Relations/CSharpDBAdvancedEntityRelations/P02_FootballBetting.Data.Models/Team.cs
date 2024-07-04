@@ -6,6 +6,13 @@ namespace P02_FootballBetting.Data.Models;
 
 public class Team
 {
+    public Team()
+    {
+        this.Players = new HashSet<Player>();
+        this.HomeGames = new HashSet<Game>();
+        this.AwayGames = new HashSet<Game>();
+    }
+
     [Key]
     public int TeamId { get; set; }
 
@@ -24,23 +31,23 @@ public class Team
     public int PrimaryKitColorId { get; set; }
 
     [ForeignKey(nameof(PrimaryKitColorId))]
-    public Color PrimaryColor { get; set; }
+    public virtual Color PrimaryKitColor { get; set; }
 
     public int SecondaryKitColorId { get; set; }
 
     [ForeignKey(nameof(SecondaryKitColorId))]
-    public Color SecondaryColor { get; set; }
+    public virtual Color SecondaryKitColor { get; set; }
 
     public int TownId { get; set; }
 
     [ForeignKey(nameof(TownId))]
-    public Town Town { get; set; }
+    public virtual Town Town { get; set; }
 
-    public ICollection<Player> Players { get; set; }
+    public virtual ICollection<Player> Players { get; set; }
 
-    [InverseProperty("HomeTeam")]
-    public ICollection<Game>GamesInHome { get; set; }
+    [InverseProperty(nameof(Game.HomeTeam))]
+    public virtual ICollection<Game> HomeGames { get; set; }
 
-    [InverseProperty("AwayTeam")]
-    public ICollection<Game> GuestGames { get; set; }
+    [InverseProperty(nameof(Game.AwayTeam))]
+    public virtual ICollection<Game> AwayGames { get; set; }
 }

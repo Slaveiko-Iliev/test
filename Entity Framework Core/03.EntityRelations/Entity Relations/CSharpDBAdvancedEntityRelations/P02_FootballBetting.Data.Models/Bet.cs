@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using P02_FootballBetting.Data.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P02_FootballBetting.Data.Models;
@@ -12,7 +13,7 @@ public class Bet
 
     [Required]
     [Column(TypeName = "varchar(20)")]
-    public string Prediction { get; set; }
+    public Prediction Prediction { get; set; }
 
     public DateTime DateTime { get; set; }
 

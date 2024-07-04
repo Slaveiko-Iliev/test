@@ -5,6 +5,11 @@ namespace P02_FootballBetting.Data.Models;
 
 public class Player
 {
+    public Player()
+    {
+        this.PlayersStatistics = new HashSet<PlayerStatistic>();
+    }
+
     [Key]
     public int PlayerId { get; set; }
 
@@ -19,19 +24,17 @@ public class Player
     public int PositionId { get; set; }
 
     [ForeignKey(nameof(PositionId))]
-    public Position Position { get; set; }
+    public virtual Position Position { get; set; }
 
     public int TeamId { get; set; }
 
     [ForeignKey(nameof(TeamId))]
-    public Team Team { get; set; }
+    public virtual Team Team { get; set; }
 
     public int TownId { get; set; }
 
     [ForeignKey(nameof(TownId))]
-    public Town Town { get; set; }
+    public virtual Town Town { get; set; }
 
-    public ICollection<Game> Games { get; set; }
+    public virtual ICollection<PlayerStatistic> PlayersStatistics { get; set; }
 }
-//
-//⦁	Player – PlayerId, Name, SquadNumber, IsInjured, PositionId , TeamId, TownId
