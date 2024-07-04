@@ -7,7 +7,9 @@ namespace P01_StudentSystem.Data.Models
     {
         public Course()
         {
-            Resources = new HashSet<Resource>();
+            this.Resources = new HashSet<Resource>();
+            this.Homeworks = new HashSet<Homework>();
+            this.StudentsCourses = new HashSet<StudentCourse>();
         }
 
         [Key]
@@ -20,17 +22,18 @@ namespace P01_StudentSystem.Data.Models
         [Column(TypeName = "nvarchar")]
         public string Description { get; set; }
 
-        [Required]
         public DateTime StartDate { get; set; }
 
-        [Required]
         public DateTime EndDate { get; set; }
 
-        [Required]
         public decimal Price { get; set; }
 
         public virtual ICollection<Resource> Resources { get; set; }
+
         public virtual ICollection<Homework> Homeworks { get; set; }
+
+        public virtual ICollection<StudentCourse> StudentsCourses { get; set; }
+
 
     }
 }

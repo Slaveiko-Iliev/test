@@ -16,18 +16,19 @@ namespace P01_StudentSystem.Data.Models
         [Column(TypeName = "varchar")]
         public string Url { get; set; }
 
-        public enum ResourceType
-        {
-            Video, Presentation, Document, Other
-        }
+        public ResourceType ResourceType { get; set; }
 
-        [Required]
         public int CourseId { get; set; }
 
         [ForeignKey(nameof(CourseId))]
         public Course Course { get; set; }
 
 
+    }
+
+    public enum ResourceType
+    {
+        Video, Presentation, Document, Other
     }
 }
 
