@@ -2,7 +2,7 @@
 {
     public class StartUp
     {
-        public static void Main()
+        public static async void Main()
         {
 
         }
