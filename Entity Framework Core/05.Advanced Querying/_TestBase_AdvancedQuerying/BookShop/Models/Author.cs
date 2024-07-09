@@ -7,7 +7,7 @@ namespace BookShop.Models
     {
         public Author()
         {
-            Authors = new HashSet<Author>();
+            Books = new HashSet<Book>();
         }
 
         [Key]
@@ -19,6 +19,6 @@ namespace BookShop.Models
         [Column(TypeName = "nvarchar(50)")]
         public string LastName { get; set; } = null!;
 
-        public ICollection<Author> Authors { get; set; }
+        public ICollection<Book> Books { get; set; }
     }
 }

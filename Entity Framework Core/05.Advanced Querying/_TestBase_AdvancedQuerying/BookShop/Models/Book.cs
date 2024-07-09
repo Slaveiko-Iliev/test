@@ -32,7 +32,7 @@ namespace BookShop.Models
 
         public int AuthorId { get; set; }
         [ForeignKey(nameof(AuthorId))]
-        public Author Author { get; set; } = null!; //check
+        public Author Author { get; set; } //check
 
         public ICollection<BookCategory> BookCategories { get; set; } = null!;
     }

@@ -4,14 +4,14 @@ using MusicHub.Data;
 
 namespace BookShop.Data
 {
-    public class BookShopContext : DbContext
+    public class BookShopContext2 : DbContext
     {
-        public BookShopContext()
+        public BookShopContext2()
         {
 
         }
 
-        public BookShopContext(DbContextOptions options)
+        public BookShopContext2(DbContextOptions options)
             : base(options)
         {
 
