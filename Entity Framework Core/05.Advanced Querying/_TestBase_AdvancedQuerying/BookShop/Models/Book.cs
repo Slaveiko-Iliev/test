@@ -6,6 +6,11 @@ namespace BookShop.Models
 {
     public class Book
     {
+        public Book()
+        {
+            BookCategories = new HashSet<BookCategory>();
+        }
+
         [Key]
         public int BookId { get; set; }
 
@@ -29,6 +34,6 @@ namespace BookShop.Models
         [ForeignKey(nameof(AuthorId))]
         public Author Author { get; set; } = null!; //check
 
-        public string BookCategories { get; set; } = null!;
+        public ICollection<BookCategory> BookCategories { get; set; } = null!;
     }
 }

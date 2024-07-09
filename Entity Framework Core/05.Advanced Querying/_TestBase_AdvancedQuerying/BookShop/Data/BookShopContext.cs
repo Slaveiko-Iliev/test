@@ -8,16 +8,19 @@ namespace BookShop.Data
     {
         public BookShopContext()
         {
-            
+
         }
 
         public BookShopContext(DbContextOptions options)
-            : base(options) 
+            : base(options)
         {
-            
+
         }
 
-        DbSet<Author> Author { get; set; }
+        public DbSet<Author> Author { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<BookCategory> BookCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +33,13 @@ namespace BookShop.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BookCategory>()
+                .HasKey(bc => new
+                {
+                    bc.BookId,
+                    bc.CategoryId
+                });
+
             base.OnModelCreating(modelBuilder);
         }
     }
