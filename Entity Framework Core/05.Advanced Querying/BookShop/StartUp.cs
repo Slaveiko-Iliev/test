@@ -1,23 +1,73 @@
 ﻿namespace BookShop;
 
+using BookShop.Models.Enums;
 using Data;
 using System;
-using Initializer;
 using System.Text;
-using BookShop.Models;
-using BookShop.Models.Enums;
 
 public class StartUp
 {
     public static void Main()
     {
-        using var db = new BookShopContext();
+        using var context = new BookShopContext();
         //DbInitializer.ResetDatabase(db);
 
-        //Task 2 string command = Console.ReadLine();
-        // Task 2 Console.WriteLine(GetBooksByAgeRestriction(db, command));
+        Console.WriteLine(GetBooksReleasedBefore(context, "30-12-1989"));
+    }
 
-        Console.WriteLine(GetBooksByPrice(db));
+    //Task 7
+    public static string GetBooksReleasedBefore(BookShopContext context, string date)
+    {
+        DateTime dateTime = DateTime.Parse(date);
+
+        var books = context.Books
+            .Where(b => b.ReleaseDate < dateTime)
+            .OrderByDescending(b => b.ReleaseDate)
+            .Select(b => new
+            {
+                b.Title,
+                b.EditionType,
+                b.Price
+            })
+            .ToArray();
+
+        StringBuilder sb = new StringBuilder();
+
+        foreach (var book in books)
+        {
+            sb.AppendLine($"{book.Title} - {book.EditionType} - ${book.Price:f2}");
+        }
+
+        return sb.ToString().TrimEnd();
+    }
+
+    //Task 6
+    //public static string GetBooksByCategory(BookShopContext context, string input)
+    //{
+    //    string[] listOfCategories = input
+    //        .Split();
+
+    //    for (int i = 0; i < listOfCategories.Length; i++)
+    //    {
+    //        listOfCategories[i] = listOfCategories[i].ToLower();
+    //    }
+
+    //    var booksTitle = context.Books
+    //        .Where(b => b.BookCategories)
+    //}
+
+    //Task 5
+    public static string GetBooksNotReleasedIn(BookShopContext context, int year)
+    {
+        string[] books = context.Books
+            .Where(b => b.ReleaseDate!.Value.Year != year)
+            .OrderBy(b => b.BookId)
+            .Select(b => b.Title)
+            .ToArray();
+
+        string result = string.Join(Environment.NewLine, books);
+
+        return result;
     }
 
     //Task 4
@@ -37,7 +87,7 @@ public class StartUp
 
         foreach (var book in books)
         {
-            sb.AppendLine($"{book.Title} - {book.Price:f2}");
+            sb.AppendLine($"{book.Title} - ${book.Price:f2}");
         }
 
         return sb.ToString().TrimEnd();
