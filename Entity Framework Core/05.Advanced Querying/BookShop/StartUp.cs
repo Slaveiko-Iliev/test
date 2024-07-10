@@ -1,8 +1,12 @@
 ﻿namespace BookShop;
 
+using BookShop.Initializer;
+using BookShop.Models;
 using BookShop.Models.Enums;
 using Data;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Globalization;
 using System.Text;
 
 public class StartUp
@@ -10,17 +14,105 @@ public class StartUp
     public static void Main()
     {
         using var context = new BookShopContext();
-        //DbInitializer.ResetDatabase(db);
+        //DbInitializer.ResetDatabase(context);
 
-        Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
+        Console.WriteLine(CountCopiesByAuthor(context));
     }
 
+    //Task 13
+    public static string GetTotalProfitByCategory(BookShopContext context)
+    {
+        var info = from c in context.Categories
+                   join bc in context.BooksCategories on c.CategoryId equals bc.CategoryId
+                   join b in context.Books on bc.BookId equals b.BookId
+                   select new
+                   {
+                       ExamId = p.ExamId
+                                   SubjectId = p.SubjectId
+                                   ObjectiveId = q.ObjectiveId
+                                   Number = q.Number
+                                   ObjectiveDetailId = r.ObjectiveDetailId
+                                   Text = r.Text
+                   } into x
+                   select x;
+    }
 
+    //Task 12
+    public static string CountCopiesByAuthor(BookShopContext context)
+    {
+        var books = context.Authors
+            .Select(a => new
+            {
+                FullName = $"{a.FirstName} {a.LastName}",
+                TotalBooks = a.Books.Sum(b => b.Copies)
+            })
+            .OrderByDescending(b => b.TotalBooks)
+            .ToArray();
+
+        return string.Join(Environment.NewLine, books.Select(b => $"{b.FullName} - {b.TotalBooks}"));
+    }
+
+    //Task 11
+    public static int CountBooks(BookShopContext context, int lengthCheck)
+    {
+        var books = context.Books
+            .Where(b => b.Title.Length > lengthCheck);
+
+        return books.Count();
+    }
+
+    //Task 10
+    public static string GetBooksByAuthor(BookShopContext context, string input)
+    {
+        var books = context.Books
+            .Where(b => b.Author.LastName.ToLower().StartsWith(input.ToLower()))
+            .OrderBy(b => b.BookId)
+            .Select(b => new
+            {
+                b.Title,
+                FullName = b.Author.FirstName + " " + b.Author.LastName
+            })
+            .ToArray();
+        
+
+
+        return string.Join(Environment.NewLine, books.Select(b => $"{b.Title} ({b.FullName})"));
+    }
+
+    //Task 9
+    public static string GetBookTitlesContaining(BookShopContext context, string input)
+    {
+        var titles = context.Books
+            .Where(b => b.Title.ToLower().Contains(input.ToLower()))
+            .OrderBy(b => b.Title)
+            .Select(b => new
+            {
+                b.Title
+            })
+            .ToArray();
+
+        return string.Join(Environment.NewLine, titles.Select(t => t.Title));
+    }
+
+    //Task 8
+    public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
+    {
+        var authors = context.Authors
+            .Where(a => a.FirstName.EndsWith(input))
+            .Select(a => new
+            {
+                FullName = a.FirstName + " " + a.LastName
+            })
+            .OrderBy(a => a.FullName)
+            .ToArray();
+        
+        return string.Join(Environment.NewLine, authors.Select(a => a.FullName));
+    }
 
     //Task 7
     public static string GetBooksReleasedBefore(BookShopContext context, string date)
     {
-        DateTime dateTime = DateTime.Parse(date);
+        var dateTime = DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
         var books = context.Books
             .Where(b => b.ReleaseDate < dateTime)
