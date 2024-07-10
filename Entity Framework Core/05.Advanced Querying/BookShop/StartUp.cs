@@ -12,8 +12,10 @@ public class StartUp
         using var context = new BookShopContext();
         //DbInitializer.ResetDatabase(db);
 
-        Console.WriteLine(GetBooksReleasedBefore(context, "30-12-1989"));
+        Console.WriteLine(GetBooksByCategory(context, "horror mystery drama"));
     }
+
+
 
     //Task 7
     public static string GetBooksReleasedBefore(BookShopContext context, string date)
@@ -42,19 +44,24 @@ public class StartUp
     }
 
     //Task 6
-    //public static string GetBooksByCategory(BookShopContext context, string input)
-    //{
-    //    string[] listOfCategories = input
-    //        .Split();
+    public static string GetBooksByCategory(BookShopContext context, string input)
+    {
+        string[] listOfCategories = input
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(w => w.ToLower())
+            .ToArray();
 
-    //    for (int i = 0; i < listOfCategories.Length; i++)
-    //    {
-    //        listOfCategories[i] = listOfCategories[i].ToLower();
-    //    }
 
-    //    var booksTitle = context.Books
-    //        .Where(b => b.BookCategories)
-    //}
+
+        var booksTitle = context.Books
+            .Where(b => b.BookCategories
+                .Any(bc => listOfCategories.Contains(bc.Category.Name.ToLower())))
+            .OrderBy(b => b.Title)
+            .Select(b => b.Title)
+            .ToArray();
+
+        return string.Join(Environment.NewLine, booksTitle);
+    }
 
     //Task 5
     public static string GetBooksNotReleasedIn(BookShopContext context, int year)
