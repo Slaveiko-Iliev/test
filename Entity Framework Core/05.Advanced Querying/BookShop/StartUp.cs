@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Globalization;
 using System.Text;
+using static System.Reflection.Metadata.BlobBuilder;
 
 public class StartUp
 {
@@ -16,25 +17,95 @@ public class StartUp
         using var context = new BookShopContext();
         //DbInitializer.ResetDatabase(context);
 
-        Console.WriteLine(CountCopiesByAuthor(context));
+        Console.WriteLine(RemoveBooks(context));
+
+        IncreasePrices(context);
+    }
+
+    //Task 16
+    public static int RemoveBooks(BookShopContext context)
+    {
+        Book[] booksToDelete = context.Books
+            .Where(b => b.Copies < 4200)
+            .ToArray();
+
+        int countOfBooksToDelete = booksToDelete.Length;
+
+        foreach (var book in booksToDelete)
+        {
+            context.Books.Remove(book);
+        }
+
+        context.SaveChanges();
+
+        return countOfBooksToDelete;
+    }
+
+    //Task 15
+    public static void IncreasePrices(BookShopContext context)
+    {
+        Book[] books = context.Books
+            .Where(b => b.ReleaseDate.Value.Year < 2010)
+            .ToArray();
+
+        foreach (var book in books)
+        {
+            book.Price += 5;
+        }
+
+        context.SaveChanges();
+    }
+
+    //Task 14
+    public static string GetMostRecentBooks(BookShopContext context)
+    {
+        var recentBooksByCategories = context.Categories
+            .OrderBy(c => c.Name)
+            .Select(c => new
+            {
+                CategoryName = c.Name,
+                MostResentBooks = c.CategoryBooks
+                    .OrderByDescending(cb => cb.Book.ReleaseDate)
+                    .Take(3)
+                    .Select(cb => new
+                    {
+                        cb.Book.Title,
+                        cb.Book.ReleaseDate
+                    })
+                    .ToArray()
+            })
+            .ToArray();
+
+        StringBuilder sb = new StringBuilder();
+
+        foreach (var category in recentBooksByCategories)
+        {
+            sb.AppendLine($"--{category.CategoryName}");
+
+            foreach (var book in category.MostResentBooks)
+            {
+                sb.AppendLine($"{book.Title} ({book.ReleaseDate.Value.Year})");
+            }
+        }
+
+        return sb.ToString().TrimEnd();
     }
 
     //Task 13
     public static string GetTotalProfitByCategory(BookShopContext context)
     {
-        var info = from c in context.Categories
-                   join bc in context.BooksCategories on c.CategoryId equals bc.CategoryId
-                   join b in context.Books on bc.BookId equals b.BookId
-                   select new
-                   {
-                       ExamId = p.ExamId
-                                   SubjectId = p.SubjectId
-                                   ObjectiveId = q.ObjectiveId
-                                   Number = q.Number
-                                   ObjectiveDetailId = r.ObjectiveDetailId
-                                   Text = r.Text
-                   } into x
-                   select x;
+        var profitsByCategory = context.Categories
+                .Select(c => new
+                {
+                    CategoryName = c.Name,
+                    TotalProfit = c.CategoryBooks
+                        .Sum(bc => bc.Book.Copies * bc.Book.Price)
+                })
+                .OrderByDescending(c => c.TotalProfit)
+                .ThenBy(c => c.CategoryName);
+
+        return string.Join(Environment.NewLine, profitsByCategory
+                                                    .Select(p => $"{p.CategoryName} ${p.TotalProfit:f2}"));
     }
 
     //Task 12
@@ -195,10 +266,8 @@ public class StartUp
     //Task 3
     public static string GetGoldenBooks(BookShopContext context)
     {
-        EditionType editionType = Enum.Parse<EditionType>("Gold");
-
         string[] books = context.Books
-            .Where(b => b.EditionType == editionType && b.Copies < 5000)
+            .Where(b => b.EditionType == EditionType.Gold && b.Copies < 5000)
             .OrderBy(b => b.BookId)
             .Select(b => b.Title)
             .ToArray();
