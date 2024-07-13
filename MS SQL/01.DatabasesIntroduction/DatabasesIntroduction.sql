@@ -400,9 +400,9 @@ SELECT * FROM Employees ORDER BY [Salary] desc;
 
 -- Task 21 Basic Select Some Fields
 
-SELECT ([Name]) FROM Towns;
-SELECT ([Name])  FROM Departments;
-SELECT [FirstName], [LastName], [JobTitle], [Salary] FROM Employees;
+SELECT [Name] FROM Towns ORDER BY [Name] asc;
+SELECT [Name] FROM Departments ORDER BY [Name] asc;
+SELECT [FirstName], [LastName], [JobTitle], [Salary] FROM Employees ORDER BY [Salary] desc;
 
 
 -- Task 22 Increase Employees Salary

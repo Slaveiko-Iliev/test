@@ -198,7 +198,7 @@ CREATE TABLE [Majors]
              ,[Name] VARCHAR (20)
 );
 
-CREATE TABLE [Students2]
+CREATE TABLE [Students]
 (
              [StudentID] INT PRIMARY KEY IDENTITY
              , [StudentNumber] INT NOT NULL
@@ -214,13 +214,9 @@ CREATE TABLE [Subjects]
 
 CREATE TABLE [Agenda]
 (
-             [StudentID] INT
-             , [SubjectID] INT
-             , CONSTRAINT PK_Agenda PRIMARY KEY (StudentID, SubjectID)
-             , CONSTRAINT FK_Agenda_Students2
-             FOREIGN KEY (StudentID) REFERENCES [Students2](StudentID)
-             , CONSTRAINT FK_Agenda_Subjects
-             FOREIGN KEY (SubjectID) REFERENCES [Subjects](SubjectID)
+             [StudentID] INT NOT NULL FOREIGN KEY REFERENCES [Students](StudentID)
+             ,[SubjectID] INT NOT NULL FOREIGN KEY REFERENCES [Subjects](SubjectID)
+             ,PRIMARY KEY ([StudentID],[SubjectID])
 );
 
 CREATE TABLE [Payments]
@@ -228,9 +224,7 @@ CREATE TABLE [Payments]
                 [PaumentID]  INT PRIMARY KEY IDENTITY
                 , [PaymentDate] DATE NOT NULL
                 , [PaymentAmount] DECIMAL (5,2) NOT NULL
-                , [StudentID] INT NOT NULL
-                , CONSTRAINT FK_Payments_Students
-                FOREIGN KEY (StudentID) REFERENCES [Students](StudentID)
+                , [StudentID] INT NOT NULL FOREIGN KEY REFERENCES [Students](StudentID)
              );
 
 

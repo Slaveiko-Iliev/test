@@ -132,7 +132,8 @@ CREATE PROC usp_GetHoldersFullName
 
 CREATE PROC usp_GetHoldersWithBalanceHigherThan (@suppliedNumber MONEY)
          AS
-     SELECT *
+     SELECT [First Name]
+           ,[Last Name]
        FROM
           (
               SELECT [FirstName] AS [First Name]
@@ -147,6 +148,9 @@ CREATE PROC usp_GetHoldersWithBalanceHigherThan (@suppliedNumber MONEY)
    ORDER BY [First Name],[Last Name]
 
        EXEC usp_GetHoldersWithBalanceHigherThan 100000;
+
+
+
          
          GO
 
@@ -167,7 +171,7 @@ GO
 
 -- Task 12. Calculating Interest
 
-CREATE OR ALTER PROC usp_CalculateFutureValueForAccount
+CREATE PROC usp_CalculateFutureValueForAccount
          AS
      SELECT ah.[Id]
            ,[FirstName] AS [First Name]
