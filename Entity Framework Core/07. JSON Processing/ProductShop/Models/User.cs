@@ -11,7 +11,7 @@
             ProductsBought = new List<Product>();
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string? FirstName { get; set; }
 

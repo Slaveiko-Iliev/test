@@ -18,12 +18,12 @@ namespace ProductShop
         //Task 2
         public static string ImportProducts(ProductShopContext context, string inputJson)
         {
-            Product[] products = JsonConvert.DeserializeObject<Product[]>(inputJson);
+            var products = JsonConvert.DeserializeObject<List<Product>>(inputJson);
 
             context.AddRange(products);
             context.SaveChanges();
 
-            return $"Successfully imported {products.Length}";
+            return $"Successfully imported {products.Count}";
         }
 
         //Task 1

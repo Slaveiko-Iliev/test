@@ -12,7 +12,7 @@ using ProductShop.Data;
 namespace ProductShop.Migrations
 {
     [DbContext(typeof(ProductShopContext))]
-    [Migration("20240717201016_Initial")]
+    [Migration("20240718121511_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -132,13 +132,12 @@ namespace ProductShop.Migrations
                 {
                     b.HasOne("ProductShop.Models.User", "Buyer")
                         .WithMany("ProductsBought")
-                        .HasForeignKey("BuyerId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("BuyerId");
 
                     b.HasOne("ProductShop.Models.User", "Seller")
                         .WithMany("ProductsSold")
                         .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Buyer");
