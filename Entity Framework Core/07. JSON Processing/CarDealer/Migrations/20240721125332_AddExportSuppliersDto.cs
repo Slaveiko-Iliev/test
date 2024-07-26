@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace ProductShop.Migrations
+namespace CarDealer.Migrations
 {
-    public partial class Initial2 : Migration
+    public partial class AddExportSuppliersDto : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

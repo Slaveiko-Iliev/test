@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductShop.Data;
 
@@ -12,10 +11,9 @@ using ProductShop.Data;
 namespace ProductShop.Migrations
 {
     [DbContext(typeof(ProductShopContext))]
-    [Migration("20240718121511_Initial")]
-    partial class Initial
+    partial class ProductShopContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +51,7 @@ namespace ProductShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CategoriesProducts");
+                    b.ToTable("CategoryProducts");
                 });
 
             modelBuilder.Entity("ProductShop.Models.Product", b =>
@@ -98,6 +96,7 @@ namespace ProductShop.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -112,13 +111,13 @@ namespace ProductShop.Migrations
             modelBuilder.Entity("ProductShop.Models.CategoryProduct", b =>
                 {
                     b.HasOne("ProductShop.Models.Category", "Category")
-                        .WithMany("CategoriesProducts")
+                        .WithMany("CategoryProducts")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProductShop.Models.Product", "Product")
-                        .WithMany("CategoriesProducts")
+                        .WithMany("CategoryProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -147,12 +146,12 @@ namespace ProductShop.Migrations
 
             modelBuilder.Entity("ProductShop.Models.Category", b =>
                 {
-                    b.Navigation("CategoriesProducts");
+                    b.Navigation("CategoryProducts");
                 });
 
             modelBuilder.Entity("ProductShop.Models.Product", b =>
                 {
-                    b.Navigation("CategoriesProducts");
+                    b.Navigation("CategoryProducts");
                 });
 
             modelBuilder.Entity("ProductShop.Models.User", b =>

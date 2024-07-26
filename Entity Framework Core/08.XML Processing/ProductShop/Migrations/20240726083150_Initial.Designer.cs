@@ -12,8 +12,8 @@ using ProductShop.Data;
 namespace ProductShop.Migrations
 {
     [DbContext(typeof(ProductShopContext))]
-    [Migration("20240718122827_Initial2")]
-    partial class Initial2
+    [Migration("20240726083150_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,7 +53,7 @@ namespace ProductShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CategoriesProducts");
+                    b.ToTable("CategoryProducts");
                 });
 
             modelBuilder.Entity("ProductShop.Models.Product", b =>
@@ -88,16 +88,17 @@ namespace ProductShop.Migrations
 
             modelBuilder.Entity("ProductShop.Models.User", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -112,13 +113,13 @@ namespace ProductShop.Migrations
             modelBuilder.Entity("ProductShop.Models.CategoryProduct", b =>
                 {
                     b.HasOne("ProductShop.Models.Category", "Category")
-                        .WithMany("CategoriesProducts")
+                        .WithMany("CategoryProducts")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProductShop.Models.Product", "Product")
-                        .WithMany("CategoriesProducts")
+                        .WithMany("CategoryProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -147,12 +148,12 @@ namespace ProductShop.Migrations
 
             modelBuilder.Entity("ProductShop.Models.Category", b =>
                 {
-                    b.Navigation("CategoriesProducts");
+                    b.Navigation("CategoryProducts");
                 });
 
             modelBuilder.Entity("ProductShop.Models.Product", b =>
                 {
-                    b.Navigation("CategoriesProducts");
+                    b.Navigation("CategoryProducts");
                 });
 
             modelBuilder.Entity("ProductShop.Models.User", b =>
