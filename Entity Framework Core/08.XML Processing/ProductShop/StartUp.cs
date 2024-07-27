@@ -26,15 +26,41 @@ namespace ProductShop
             //string categoriesProducts = File.ReadAllText("../../../Datasets/categories-products.xml");
             //Console.WriteLine(ImportCategoryProducts(context, categoriesProducts));
 
-            Console.WriteLine(GetCategoriesByProductsCount(context));
+            Console.WriteLine(GetUsersWithProducts(context));
         }
 
         //Task 8
         public static string GetUsersWithProducts(ProductShopContext context)
         {
+            var usersAndProducts = context.Users
+                //.ToArray() // fix for Exception InMemory Query Internal, Test 000_001
+                .Where(u => u.ProductsSold.Any())
+                .OrderByDescending(u => u.ProductsSold.Count)
+                .Take(10)
+                .Select(u => new UserDto
+                {
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Age = u.Age,
+                    ProductSold = new ProductSold
+                    {
+                        Count = u.ProductsSold.Count,
+                        Products = u.ProductsSold.Select(ps => new ProductsDto
+                        {
+                            Name = ps.Name,
+                            Price = ps.Price,
+                        }).OrderByDescending(ps => ps.Price).ToArray()
+                    }
+                })
+                .ToArray();
 
+            var users = new ExportUserCountDto
+            {
+                Count = context.Users.Count(u => u.ProductsSold.Any()),
+                Users = usersAndProducts
+            };
 
-            return "";
+            return SerializeToXml(users, "Users", true);
         }
 
         //Task 7
@@ -215,7 +241,7 @@ namespace ProductShop
             return $"Successfully imported {users.Length}";
         }
 
-        private static string SerializeToXml<T>(T dto, string xmlRootAttribute)
+        private static string SerializeToXml<T>(T dto, string xmlRootAttribute, bool omitDeclaration = false)
         {
             XmlSerializer xmlSerializer =
                 new XmlSerializer(typeof(T), new XmlRootAttribute(xmlRootAttribute));
