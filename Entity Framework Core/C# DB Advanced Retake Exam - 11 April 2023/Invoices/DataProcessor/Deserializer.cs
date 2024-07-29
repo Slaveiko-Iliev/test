@@ -93,12 +93,14 @@
             StringBuilder sb = new StringBuilder();
             List<Invoice> invoices = new List<Invoice>();
 
+            int[] validIds = context.Clients.Select(c => c.Id).ToArray();
+
             foreach (var i in invoicesTmp)
             {
                 if (!IsValid(i)
                     || i.DueDate < i.IssueDate
                     || i.Amount <= 0
-                    //|| !context.Clients.Select(c => c.Id).Contains(i.Id)
+                    || !validIds.Contains(i.ClientId)
                     )
                 {
                     sb.AppendLine(ErrorMessage);
@@ -116,9 +118,21 @@
 
         public static string ImportProducts(InvoicesContext context, string jsonString)
         {
+            ImportProductDto[] importProductDtos = (ImportProductDto[])JsonConvert.DeserializeObject(jsonString)!;
+            StringBuilder sb = new StringBuilder();
+            List<Product> productsToImport = new List<Product>();
+
+            foreach (var importProductDto in importProductDtos)
+            {
+                if (!IsValid(importProductDto))
+                {
+                    sb.AppendLine(ErrorMessage);
+                    continue;
+                }
+            }
 
 
-            throw new NotImplementedException();
+            return sb.ToString().TrimEnd();
         }
 
         public static bool IsValid(object dto)

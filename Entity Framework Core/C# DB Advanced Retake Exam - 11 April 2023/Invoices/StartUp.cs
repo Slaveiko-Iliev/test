@@ -16,7 +16,7 @@ namespace Invoices
 
             ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 
-            ExportEntities(context, projectDir + @"ExportResults/");
+            //ExportEntities(context, projectDir + @"ExportResults/");
 
             using (var transaction = context.Database.BeginTransaction())
             {
@@ -36,10 +36,10 @@ namespace Invoices
                     File.ReadAllText(baseDir + "invoices.json"));
             PrintAndExportEntityToFile(invoices, exportDir + "Actual Result - ImportInvoices.txt");
 
-            var products =
-             DataProcessor.Deserializer.ImportProducts(context,
-                 File.ReadAllText(baseDir + "products.json"));
-            PrintAndExportEntityToFile(products, exportDir + "Actual Result - ImportProducts.txt");
+            //var products =
+            // DataProcessor.Deserializer.ImportProducts(context,
+            //     File.ReadAllText(baseDir + "products.json"));
+            //PrintAndExportEntityToFile(products, exportDir + "Actual Result - ImportProducts.txt");
         }
 
         private static void ExportEntities(InvoicesContext context, string exportDir)

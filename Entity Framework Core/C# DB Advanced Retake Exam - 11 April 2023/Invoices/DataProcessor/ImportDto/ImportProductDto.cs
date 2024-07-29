@@ -1,5 +1,6 @@
-﻿using Invoices.Data.Models.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+
+using static Invoices.Common.ValidationConstants;
 
 namespace Invoices.DataProcessor.ImportDto
 {
@@ -8,8 +9,10 @@ namespace Invoices.DataProcessor.ImportDto
         [MinLength(9)]
         [MaxLength(30)]
         public string Name { get; set; } = null!;
-        [Range(5.00, 1000.00)]
+        [Range(typeof(decimal), "5.00", "1000.00")]
         public decimal Price { get; set; }
-        public CategoryType CategoryType { get; set; }
+        [Range(ProductCategoryTypeMinValue, ProductCategoryTypeMaxValue)]
+        public int CategoryType { get; set; }
+        public int[] Clients { get; set; } = null!;
     }
 }
