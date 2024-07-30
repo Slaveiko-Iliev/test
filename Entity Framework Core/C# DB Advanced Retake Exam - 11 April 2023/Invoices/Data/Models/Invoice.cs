@@ -7,11 +7,9 @@ namespace Invoices.Data.Models
     public class Invoice
     {
         public int Id { get; set; }
-        [Range(1000000000, 1500000000)]
         public int Number { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime DueDate { get; set; }
-        [Range(0, int.MaxValue)]
         public decimal Amount { get; set; }
         [Range(0, 2)]
         public CurrencyType CurrencyType { get; set; }

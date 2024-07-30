@@ -9,7 +9,7 @@ namespace Invoices.DataProcessor.ImportDto
         [MinLength(9)]
         [MaxLength(30)]
         public string Name { get; set; } = null!;
-        [Range(typeof(decimal), "5.00", "1000.00")]
+        [Range(typeof(decimal), ProductPriceMinValue, ProductPriceMaxValue)]
         public decimal Price { get; set; }
         [Range(ProductCategoryTypeMinValue, ProductCategoryTypeMaxValue)]
         public int CategoryType { get; set; }

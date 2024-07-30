@@ -2,9 +2,12 @@
 {
     using Invoices.Data;
     using Invoices.Data.Models;
+    using Invoices.Data.Models.Enums;
     using Invoices.DataProcessor.ImportDto;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Globalization;
     using System.Text;
     using System.Xml.Serialization;
 
@@ -89,16 +92,22 @@
 
         public static string ImportInvoices(InvoicesContext context, string jsonString)
         {
-            Invoice[] invoicesTmp = JsonConvert.DeserializeObject<Invoice[]>(jsonString);
+            ImportInvoicesDto[] invoicesTmp = JsonConvert.DeserializeObject<ImportInvoicesDto[]>(jsonString)!;
             StringBuilder sb = new StringBuilder();
-            List<Invoice> invoices = new List<Invoice>();
 
             int[] validIds = context.Clients.Select(c => c.Id).ToArray();
 
+            var invoicesToImport = new List<Invoice>();
+
             foreach (var i in invoicesTmp)
             {
+                bool isValidIssueDate = DateTime.TryParse(i.IssueDate, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime issueDate);
+                bool isValidDueDate = DateTime.TryParse(i.DueDate, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dueDate);
+
                 if (!IsValid(i)
-                    || i.DueDate < i.IssueDate
+                    || !isValidIssueDate
+                    || !isValidDueDate
+                    || dueDate < issueDate
                     || i.Amount <= 0
                     || !validIds.Contains(i.ClientId)
                     )
@@ -106,11 +115,22 @@
                     sb.AppendLine(ErrorMessage);
                     continue;
                 }
-                invoices.Add(i);
+
+                Invoice newInvoice = new Invoice()
+                {
+                    Id = i.Id,
+                    Number = i.Number,
+                    IssueDate = issueDate,
+                    DueDate = dueDate,
+                    Amount = i.Amount,
+                    CurrencyType = (CurrencyType)i.CurrencyType,
+                    ClientId = i.ClientId
+                };
+                invoicesToImport.Add(newInvoice);
                 sb.AppendLine($"Successfully imported invoice with number {i.Number}.");
             }
 
-            context.Invoices.AddRange(invoices);
+            context.Invoices.AddRange(invoicesToImport);
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();
@@ -118,9 +138,12 @@
 
         public static string ImportProducts(InvoicesContext context, string jsonString)
         {
-            ImportProductDto[] importProductDtos = (ImportProductDto[])JsonConvert.DeserializeObject(jsonString)!;
+            ImportProductDto[] importProductDtos = JsonConvert.DeserializeObject<ImportProductDto[]>(jsonString)!;
             StringBuilder sb = new StringBuilder();
             List<Product> productsToImport = new List<Product>();
+            int[] validClientIds = context.Clients
+                .Select(c => c.Id)
+                .ToArray();
 
             foreach (var importProductDto in importProductDtos)
             {
@@ -129,8 +152,35 @@
                     sb.AppendLine(ErrorMessage);
                     continue;
                 }
-            }
 
+                Product newProduct = new Product()
+                {
+                    Name = importProductDto.Name,
+                    Price = importProductDto.Price,
+                    CategoryType = (CategoryType)importProductDto.CategoryType
+                };
+
+                foreach (var dtoClientId in importProductDto.Clients.Distinct())
+                {
+                    if (!validClientIds.Contains(dtoClientId))
+                    {
+                        sb.AppendLine(ErrorMessage);
+                        continue;
+                    }
+
+                    ProductClient productClient = new ProductClient()
+                    {
+                        ClientId = dtoClientId,
+                        Product = newProduct
+                    };
+
+                    newProduct.ProductsClients.Add(productClient);
+                }
+                sb.AppendLine(string.Format(SuccessfullyImportedProducts, newProduct.Name, newProduct.ProductsClients.Count));
+                productsToImport.Add(newProduct);
+            }
+            context.Products.AddRange(productsToImport);
+            context.SaveChanges();
 
             return sb.ToString().TrimEnd();
         }
