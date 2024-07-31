@@ -1,10 +1,5 @@
 ﻿using Invoices.Data.Models;
 using Invoices.Data.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Invoices.DataProcessor.ExportDto
@@ -19,7 +14,7 @@ namespace Invoices.DataProcessor.ExportDto
         [XmlElement]
         public string VatNumber { get; set; }
         [XmlArray]
-        InvoiceDto[] Invoices { get; set; }
+        public InvoiceDto[] Invoices { get; set; }
     }
 
     [XmlType("Invoices")]
@@ -30,7 +25,7 @@ namespace Invoices.DataProcessor.ExportDto
         [XmlElement]
         public decimal InvoiceAmount { get; set; }
         [XmlElement]
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
         [XmlElement]
         public CurrencyType Currency { get; set; }
     }

@@ -1,6 +1,5 @@
 ﻿namespace Invoices.DataProcessor
 {
-    using Invoices.Common;
     using Invoices.Data;
     using Invoices.DataProcessor.ExportDto;
     using Newtonsoft.Json;
@@ -8,14 +7,29 @@
     using System.Linq;
     using System.Text;
     using System.Xml.Serialization;
-    using Trucks.Utilities;
 
     public class Serializer
     {
         public static string ExportClientsWithTheirInvoices(InvoicesContext context, DateTime date)
         {
-            throw new NotImplementedException();
+            ExportClientsWithInvoices[] exportClients = context.Clients
+                .Where(c => c.Invoices.Any(i => i.IssueDate > date))
+                .Select(c => new ExportClientsWithInvoices()
+                {
+                    ClientName = c.Name,
+                    VatNumber = c.NumberVat,
+                    Invoices = c.Invoices.Select(i => new InvoiceDto()
+                    {
+                        InvoiceNumber = i.Number,
+                        InvoiceAmount = i.Amount,
+                        DueDate = i.DueDate.ToString("d", CultureInfo.InvariantCulture),
+                        Currency = i.CurrencyType
+                    })
+                                                        .ToArray()
+                })
+                .ToArray();
 
+            return SerializeToXml(exportClients, "Clients");
         }
 
         public static string ExportProductsWithMostClients(InvoicesContext context, int nameLength)
@@ -31,10 +45,10 @@
                     Clients = p.ProductsClients
                         .Where(pc => pc.Client.Name.Length >= nameLength)
                         .Select(pc => new ClientDto
-                             {
-                                 Name = pc.Client.Name,
-                                 NumberVat = pc.Client.NumberVat
-                             })
+                        {
+                            Name = pc.Client.Name,
+                            NumberVat = pc.Client.NumberVat
+                        })
                         .OrderBy(c => c.Name)
                         .ToArray()
                 })

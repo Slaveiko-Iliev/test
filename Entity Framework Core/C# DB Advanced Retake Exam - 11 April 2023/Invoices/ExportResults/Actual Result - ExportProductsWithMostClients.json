@@ -1,7 +1,7 @@
 [
   {
     "Name": "MAHLE KX400KIT",
-    "Price": "26.13",
+    "Price": 26.13,
     "Category": "Tyres",
     "Clients": [
       {
@@ -40,7 +40,7 @@
   },
   {
     "Name": "MAHLE KC 522D",
-    "Price": "108.30",
+    "Price": 108.30,
     "Category": "Tyres",
     "Clients": [
       {
@@ -75,7 +75,7 @@
   },
   {
     "Name": "HENGST E82",
-    "Price": "271.51",
+    "Price": 271.51,
     "Category": "Tyres",
     "Clients": [
       {
@@ -106,7 +106,7 @@
   },
   {
     "Name": "MAHLE OX434D",
-    "Price": "91.37",
+    "Price": 91.37,
     "Category": "Tyres",
     "Clients": [
       {
@@ -137,7 +137,7 @@
   },
   {
     "Name": "Break pads for trailer",
-    "Price": "89.60",
+    "Price": 89.60,
     "Category": "Tyres",
     "Clients": [
       {
