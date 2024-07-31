@@ -16,7 +16,7 @@
 
             ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 
-            //ExportEntities(context, projectDir + @"ExportResults/");
+            ExportEntities(context, projectDir + @"ExportResults/");
 
             using (var transaction = context.Database.BeginTransaction())
             {
@@ -24,7 +24,7 @@
             }
         }
 
-       private static void ExportEntities(MedicinesContext context, string exportDir)
+        private static void ExportEntities(MedicinesContext context, string exportDir)
         {
             int medicineCategory = 2;
             var ExportMedicinesFromDesiredCategoryInNonStopPharmacies = DataProcessor

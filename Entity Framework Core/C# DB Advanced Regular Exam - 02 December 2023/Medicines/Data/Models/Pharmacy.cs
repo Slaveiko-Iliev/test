@@ -19,7 +19,7 @@ namespace Medicines.Data.Models
         [StringLength(14)]
         public string PhoneNumber { get; set; } = null!;
         public bool IsNonStop { get; set; }
-        ICollection<Medicine> Medicines { get; set; }
+        public ICollection<Medicine> Medicines { get; set; }
     }
 }
  

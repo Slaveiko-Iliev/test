@@ -1,4 +1,5 @@
-﻿using Medicines.Data.Models.Enums;
+﻿using Medicines.Data.Models;
+using Medicines.Data.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,7 @@ namespace Medicines.Data.Models
         public int Id { get; set; }
         [MaxLength(150)]
         public string Name { get; set; } = null!;
+        [RegularExpression(@"^\d{1,18}(\.\d{1,2})?$")]
         public decimal Price { get; set; }
         public Category Category { get; set; }
         public DateTime ProductionDate { get; set; }
@@ -31,4 +33,5 @@ namespace Medicines.Data.Models
         public ICollection<PatientMedicine> PatientsMedicines { get; set; }
     }
 }
+
 
