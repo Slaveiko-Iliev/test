@@ -12,7 +12,7 @@ namespace Cadastre.Data.Models
         }
         public int Id { get; set; }
         [MaxLength(ValidationConstants.PropertyIdentifierMaxLength)]
-        public string PropertyIdentifier { get; set; }
+        public string PropertyIdentifier { get; set; } = null!;
         public int Area { get; set; }
         [MaxLength(ValidationConstants.PropertyDetailsMaxLength)]
         public string? Details { get; set; }

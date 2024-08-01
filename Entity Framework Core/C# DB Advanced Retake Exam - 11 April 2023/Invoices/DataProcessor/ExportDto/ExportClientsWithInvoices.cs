@@ -17,7 +17,7 @@ namespace Invoices.DataProcessor.ExportDto
         public InvoiceDto[] Invoices { get; set; }
     }
 
-    [XmlType("Invoices")]
+    [XmlType("Invoice")]
     public class InvoiceDto
     {
         [XmlElement]

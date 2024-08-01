@@ -1,9 +1,11 @@
 ﻿using Cadastre.Common;
 using Cadastre.Data.Enumerations;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace Cadastre.Data.Models
 {
+    [XmlType("district2")]
     public class District
     {
         public District()

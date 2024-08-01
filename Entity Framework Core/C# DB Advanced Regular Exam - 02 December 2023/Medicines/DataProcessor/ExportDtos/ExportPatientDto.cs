@@ -27,6 +27,6 @@ namespace Medicines.DataProcessor.ExportDtos
         [XmlElement]
         public string Producer { get; set; }
         [XmlElement]
-        public DateTime BestBefore { get; set; }
+        public string BestBefore { get; set; }
     }
 }

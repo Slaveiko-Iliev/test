@@ -3,6 +3,10 @@
     using Cadastre.Data;
     using System.ComponentModel.DataAnnotations;
 
+    using Cadastre.Utilities;
+    using Cadastre.DataProcessor.ImportDtos;
+    using System.Xml.Serialization;
+
     public class Deserializer
     {
         private const string ErrorMessage =
@@ -14,7 +18,13 @@
 
         public static string ImportDistricts(CadastreContext dbContext, string xmlDocument)
         {
-            throw new NotImplementedException();
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ImportDistrictDto), "Districts");
+
+            using StringReader stringReader = new StringReader(xmlDocument);
+
+            ImportDistrictDto[] districtDtos = (ImportDistrictDto[])xmlSerializer.Deserialize(stringReader);
+
+            return "";
         }
 
         public static string ImportCitizens(CadastreContext dbContext, string jsonDocument)

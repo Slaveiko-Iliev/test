@@ -16,17 +16,23 @@
                 .Where(c => c.Invoices.Any(i => i.IssueDate > date))
                 .Select(c => new ExportClientsWithInvoices()
                 {
+                    InvoicesCount = c.Invoices.Count,
                     ClientName = c.Name,
                     VatNumber = c.NumberVat,
-                    Invoices = c.Invoices.Select(i => new InvoiceDto()
+                    Invoices = c.Invoices
+                    .OrderBy(i => i.IssueDate)
+                    .ThenByDescending(i => i.DueDate)
+                    .Select(i => new InvoiceDto()
                     {
                         InvoiceNumber = i.Number,
                         InvoiceAmount = i.Amount,
                         DueDate = i.DueDate.ToString("d", CultureInfo.InvariantCulture),
                         Currency = i.CurrencyType
                     })
-                                                        .ToArray()
+                    .ToArray()
                 })
+                .OrderByDescending(c => c.InvoicesCount)
+                .ThenBy(c => c.ClientName)
                 .ToArray();
 
             return SerializeToXml(exportClients, "Clients");
