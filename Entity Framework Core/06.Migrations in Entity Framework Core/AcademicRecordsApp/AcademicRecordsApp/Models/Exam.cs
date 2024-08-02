@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AcademicRecordsApp.Models
+﻿namespace AcademicRecordsApp.Models
 {
     public partial class Exam
     {
@@ -14,5 +11,6 @@ namespace AcademicRecordsApp.Models
         public string Name { get; set; } = null!;
 
         public virtual ICollection<Grade> Grades { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

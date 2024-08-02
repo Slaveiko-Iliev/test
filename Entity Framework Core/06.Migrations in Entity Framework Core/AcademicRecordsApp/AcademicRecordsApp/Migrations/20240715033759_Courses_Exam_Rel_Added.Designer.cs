@@ -4,6 +4,7 @@ using AcademicRecordsApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcademicRecordsApp.Migrations
 {
     [DbContext(typeof(AcademicRecordsDBContext))]
-    partial class AcademicRecordsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240715033759_Courses_Exam_Rel_Added")]
+    partial class Courses_Exam_Rel_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,6 @@
-﻿namespace AcademicRecordsApp.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AcademicRecordsApp.Models
 {
     public class Course
     {
@@ -10,6 +12,10 @@
 
         public int Id { get; set; }
         public string Name { get; set; } = null!;
+        public int? ExamId { get; set; }
+
+        [ForeignKey(nameof(ExamId))]
+        public Exam Exam { get; set; }
         public ICollection<Student> Students { get; set; }
         public ICollection<StudentCourse> CourseStudents { get; set; }
     }
