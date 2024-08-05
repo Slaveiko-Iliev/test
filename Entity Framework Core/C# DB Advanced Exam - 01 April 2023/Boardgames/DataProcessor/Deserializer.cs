@@ -1,13 +1,13 @@
 ﻿namespace Boardgames.DataProcessor
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Text;
     using Boardgames.Data;
     using Boardgames.Data.Models;
     using Boardgames.Data.Models.Enums;
     using Boardgames.DataProcessor.ImportDto;
     using Boardgames.Utilities;
     using Newtonsoft.Json;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
     public class Deserializer
     {
@@ -65,7 +65,7 @@
                 creators.Add(creator);
                 sb.AppendLine(string.Format(SuccessfullyImportedCreator, creator.FirstName, creator.LastName, creator.Boardgames.Count));
             }
-            return sb.ToString().TrimEnd();
+            //return sb.ToString().TrimEnd();
 
             context.Creators.AddRange(creators);
             context.SaveChanges();
@@ -79,6 +79,10 @@
 
             var sb = new StringBuilder();
             List<Seller> sellers = new List<Seller>();
+
+            int[] validGamesIds = context.Boardgames
+                .Select(x => x.Id)
+                .ToArray();
 
             foreach (var sd in sellerDtos)
             {
@@ -98,27 +102,28 @@
 
                 foreach (var b in sd.Boardgames.Distinct())
                 {
-                    if (!context.Boardgames.Any(bg => bg.Id == b))
+                    if (!validGamesIds.Any(vgi => vgi == b))
                     {
                         sb.AppendLine(ErrorMessage);
+                        continue;
                     }
 
-                    BoardgameSeller boardgameSeller = new BoardgameSeller()
+                    BoardgameSeller newBoardgameSeller = new BoardgameSeller()
                     {
-                        BoardgameId = b,
-                        Seller = newSeller
+                        Seller = newSeller,
+                        BoardgameId = b
                     };
 
-                    newSeller.BoardgamesSellers.Add(boardgameSeller);
+                    newSeller.BoardgamesSellers.Add(newBoardgameSeller);
                 }
                 sellers.Add(newSeller);
 
                 sb.AppendLine(string.Format(SuccessfullyImportedSeller, newSeller.Name, newSeller.BoardgamesSellers.Count));
             }
-            return sb.ToString().TrimEnd();
 
             context.Sellers.AddRange(sellers);
             context.SaveChanges();
+            return sb.ToString().TrimEnd();
         }
 
         private static bool IsValid(object dto)
